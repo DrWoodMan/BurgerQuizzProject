@@ -1,0 +1,92 @@
+--------------------------------------------------------------------------------
+--- README ---------------------------------------------------------------------
+--------------------------------------------------------------------------------
+The application must have two parts:
+  - A web based front-end (PHP, MySQL...).
+  - A C++ based back-end (C++, MySQL, Qt...)
+The plateform test have to be configured to handle these two parts. Please
+follow the instructions below to configure your virtual host.
+
+The README contains the following parts:
+  - Test plateform access
+    - Linux
+    - Windows
+  - Test plateform configuration
+
+--------------------------------------------------------------------------------
+--- Test plateform access ------------------------------------------------------
+--------------------------------------------------------------------------------
+
+--- LINUX ----------------------------------------------------------------------
+SSH (remote access):
+  > ssh login@ip
+
+SSH (remote access with X server):
+  > ssh -X login@ip
+  > xeyes
+
+SCP (file transfer):
+  > scp -r login@ip:folder_src folder_dest
+  > scp -r folder_src login@ip:folder_dest
+
+--- WINDOWS --------------------------------------------------------------------
+SSH (remote access):
+  Install putty: https://www.putty.org/
+  Confugure server access (ip, login...)
+
+SSH (remote access with X server):
+  Install XMing: https://sourceforge.net/projects/xming/
+  Activate X11 forwarding in Putty (SSH > X11)
+  Confugure server access (ip, login...)
+  > xeyes
+
+SCP (file transfer):
+  Install WinSCP: https://winscp.net/eng/download.php
+  Confugure server access (ip, login...)
+
+
+--------------------------------------------------------------------------------
+--- Test plateform configuration -----------------------------------------------
+--------------------------------------------------------------------------------
+Update system:
+  > sudo apt update
+  > sudo apt upgrade
+
+Install Apache:
+  > sudo apt install apache2
+
+Install MySQL:
+  > sudo apt install mysql-server
+  > sudo mysql -u root -p
+  > (no password)
+  > use mysql;
+  > UPDATE user SET authentication_string=password('YOUR_MYSQL_PASSWORD') WHERE user='root';
+  > UPDATE user SET plugin='mysql_native_password' WHERE user='root';
+  > flush privileges;
+  > exit;
+  > systemctl restart mysql
+
+Install PHP7:
+  > sudo apt install php7.0
+  > sudo apt install libapache2-mod-php7.0
+  > sudo apt install php7.0-gd php7.0-mysql php7.0-bz2 php7.0-json php7.0-curl
+  > sudo apt install php7.0-intl php7.0-mcrypt php-mbstring php7.0-mbstring
+
+Install PHPMyAdmin:
+  > sudo apt install phpmyadmin
+  WARNING: CHOOSE APACHE2 SERVER BY PRESSING "SPACE BAR"
+  WARNING: ENTER MYSQL PASSWORD
+
+Install g++:
+  > sudo apt install build-essential
+
+Install MySQL C++ Connector:
+  > sudo apt install libmysqlcppconn-dev
+  > sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
+  Comment : "bind-address		= 127.0.0.1"
+  > sudo systemctl restart mysql
+  Create MySQL user/pwd for your application (using PHPMyAdmin)
+
+Install Qt5:
+  > sudo apt install qt5-default
+  

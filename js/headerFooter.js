@@ -1,3 +1,4 @@
+winLoad();
 function winLoad(){
 
     var header = '<nav class="navbar navbar-expand-lg navbar-light bg-light">'+
@@ -22,8 +23,10 @@ function winLoad(){
 	'</ul>'+
 	'</div>'+
 	'</nav>';
-    
-    $("header").html(header);
+
+
+
+    $('header').html(header);
 
     var footer = '<div class="navbar navbar-expand-lg navbar-light bg-light" style="position: static; bottom :0px; width:100%;"'+
 	'<div class="collapse navbar-collapse" id="navbarSupportedContent">'+
@@ -37,8 +40,9 @@ function winLoad(){
 	'</ul>'+
 	'</div>'+
 	'</div>';
-    
-    $("footer").html(footer);
+
+
+    $('footer').html(footer);
 }
 
 

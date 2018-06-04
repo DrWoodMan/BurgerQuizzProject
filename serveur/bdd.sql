@@ -2,6 +2,13 @@
 #        Script MySQL.
 #------------------------------------------------------------
 
+DROP TABLE IF EXISTS score;
+DROP TABLE IF EXISTS has;
+DROP TABLE IF EXISTS game;
+DROP TABLE IF EXISTS proposition;
+DROP TABLE IF EXISTS question;
+DROP TABLE IF EXISTS theme;
+DROP TABLE IF EXISTS user;
 
 USE saladeQuiz;
 
@@ -37,7 +44,7 @@ ENGINE=InnoDB;
 CREATE TABLE proposition(
     idProposition Int  Auto_increment  NOT NULL,
     proposition   Varchar (50) NOT NULL,
-    solution      Varchar (50) NOT NULL,
+    solution      Int NOT NULL,
     idQuestion    Int NOT NULL,
     CONSTRAINT proposition_PK PRIMARY KEY (idProposition),
     CONSTRAINT proposition_question_FK FOREIGN KEY (idQuestion) REFERENCES question(idQuestion)
@@ -66,6 +73,7 @@ CREATE TABLE score(
     idGame Int NOT NULL,
     login  Varchar (50) NOT NULL,
     score  Int NOT NULL,
+    timestamp TIMESTAMP NOT NULL,
     CONSTRAINT score_PK PRIMARY KEY (idGame,login),
 	CONSTRAINT score_game_FK FOREIGN KEY (idGame) REFERENCES game(idGame),
 	CONSTRAINT score_user0_FK FOREIGN KEY (login) REFERENCES user(login)

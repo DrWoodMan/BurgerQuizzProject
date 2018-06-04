@@ -10,7 +10,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 		<!-- Title -->
-		<title>Salade Quiz</title>
+		<title>Salade Quiz - Utilisateur</title>
 
 		<!-- Css Styles -->
 		<link href="css/style.css" rel="stylesheet" type="text/css" />
@@ -33,14 +33,14 @@
 
 		</div>
 
-    <div class="row">
+    <div class="row" style="margin-left:10px;">
       <div class="col-lg-1">
       </div>
       <h4 class =" col-lg-2 " >Meilleurs scores</h4>
 
       <div class="col-lg-2">
       </div>
-      <h4 class =" col-lg-2 " >Mon historique</h4>
+      <h4 class =" col-lg-2 " i>Mon historique</h4>
 
 
 
@@ -77,7 +77,7 @@
 				<div class="col-lg-2">
 				</div>
 
-        <div class=" col-lg-2">
+        <div class=" col-lg-2" style="margin-left:50px;">
           <div class="row">
             <div>
               <a id="score" >score</a>
@@ -117,7 +117,7 @@
         <div class="col-lg-2">
         </div>
 
-        <div class=" col-lg-2">
+				<div class=" col-lg-2" style="margin-left:50px;">
           <div class="row">
             <div>
               <a id="score">score</a>
@@ -160,7 +160,7 @@
 				<div class="col-lg-2">
 				</div>
 
-        <div class=" col-lg-2">
+				<div class=" col-lg-2" style="margin-left:50px;">
           <div class="row">
             <div>
               <a id="score">score</a>
@@ -172,7 +172,7 @@
           </div>
 
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-2" style="margin-left:40px;">
         </div>
         <button type="submit" class="btn btn-primary">C'est parti!</button>
 			</div>
@@ -202,7 +202,7 @@
       <div class="col-lg-2">
       </div>
 
-      <div class=" col-lg-2">
+			<div class=" col-lg-2" style="margin-left:50px;">
         <div class="row">
           <div>
             <a id="score">score</a>
@@ -241,7 +241,7 @@
       <div class="col-lg-2">
       </div>
 
-      <div class=" col-lg-2">
+			<div class=" col-lg-2" style="margin-left:50px;">
         <div class="row">
           <div>
             <a id="score">score</a>

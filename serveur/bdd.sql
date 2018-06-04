@@ -2,6 +2,8 @@
 #        Script MySQL.
 #------------------------------------------------------------
 
+USE saladeQuiz;
+
 DROP TABLE IF EXISTS score;
 DROP TABLE IF EXISTS has;
 DROP TABLE IF EXISTS game;
@@ -9,8 +11,6 @@ DROP TABLE IF EXISTS proposition;
 DROP TABLE IF EXISTS question;
 DROP TABLE IF EXISTS theme;
 DROP TABLE IF EXISTS user;
-
-USE saladeQuiz;
 
 CREATE TABLE user(
     login        Varchar (50) NOT NULL,

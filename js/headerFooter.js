@@ -1,4 +1,5 @@
 winLoad();
+
 function winLoad(){
 
     var header = '<nav class="navbar navbar-light" style="background-color: #73FF6E; overflow:hidden">'+
@@ -13,14 +14,37 @@ function winLoad(){
 
     $('header').html(header);
 
-    var footer = '<nav class="navbar  navbar-light" style="background-color: #73FF6E; position: relative; bottom: 0px; ">'+
+    var footer = '<nav class="navbar  navbar-light" style="background-color: #73FF6E; position: relative;  ">'+
 				'<span class="navbar-text" style="margin: auto;">'+
 				'Copyright Salade-Quiz 2018'+
 				'</span>'+
 				'</nav>';
 
 
-    $('footer').html(footer);
-}
+	$('footer').html(footer);
+	
+	var windowHeight = $( window ).height();
+	
+	var headerHeight = $('header').height();
+	
+	var footerHeight = $('footer').height();
 
+	var centerHeight = windowHeight - headerHeight - footerHeight;
+	$('#centerPart').css('min-height', centerHeight);
+}
+/*
+function windowHeight(){
+	var w = window;
+	var	d = document;
+	var	e = d.documentElement;
+	var	g = d.getElementsByTagName('body')[0];
+	var	y = parseInt(w.innerHeight || e.clientHeight || g.clientHeight);
+
+	if(isNaN(y)){
+		return 0;
+	}
+
+	return y;
+}
+*/
 

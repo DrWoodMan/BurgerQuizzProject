@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_Controls_t {
-    QByteArrayData data[1];
-    char stringdata0[9];
+    QByteArrayData data[6];
+    char stringdata0[70];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -29,10 +29,16 @@ struct qt_meta_stringdata_Controls_t {
     )
 static const qt_meta_stringdata_Controls_t qt_meta_stringdata_Controls = {
     {
-QT_MOC_LITERAL(0, 0, 8) // "Controls"
+QT_MOC_LITERAL(0, 0, 8), // "Controls"
+QT_MOC_LITERAL(1, 9, 11), // "slot_logout"
+QT_MOC_LITERAL(2, 21, 0), // ""
+QT_MOC_LITERAL(3, 22, 17), // "slot_showPassword"
+QT_MOC_LITERAL(4, 40, 5), // "state"
+QT_MOC_LITERAL(5, 46, 23) // "slot_validateConnection"
 
     },
-    "Controls"
+    "Controls\0slot_logout\0\0slot_showPassword\0"
+    "state\0slot_validateConnection"
 };
 #undef QT_MOC_LITERAL
 
@@ -42,22 +48,38 @@ static const uint qt_meta_data_Controls[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       0,    0, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        0,       // signalCount
 
+ // slots: name, argc, parameters, tag, flags
+       1,    0,   29,    2, 0x0a /* Public */,
+       3,    1,   30,    2, 0x0a /* Public */,
+       5,    0,   33,    2, 0x0a /* Public */,
+
+ // slots: parameters
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,    4,
+    QMetaType::Void,
+
        0        // eod
 };
 
 void Controls::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    Q_UNUSED(_o);
-    Q_UNUSED(_id);
-    Q_UNUSED(_c);
-    Q_UNUSED(_a);
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        Controls *_t = static_cast<Controls *>(_o);
+        Q_UNUSED(_t)
+        switch (_id) {
+        case 0: _t->slot_logout(); break;
+        case 1: _t->slot_showPassword((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 2: _t->slot_validateConnection(); break;
+        default: ;
+        }
+    }
 }
 
 const QMetaObject Controls::staticMetaObject = {
@@ -84,6 +106,15 @@ int Controls::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     _id = QWidget::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 3)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 3;
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 3)
+            *reinterpret_cast<int*>(_a[0]) = -1;
+        _id -= 3;
+    }
     return _id;
 }
 QT_END_MOC_NAMESPACE

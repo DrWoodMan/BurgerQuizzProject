@@ -5,7 +5,7 @@ MainWindow::MainWindow() : QMainWindow(){
 
     setWindowTitle("Salade Quiz - Administration interface");
     setMinimumWidth(300);
-    setMinimumHeight(300);
+    setMinimumHeight(00);
     show();
 
     controls = new Controls();

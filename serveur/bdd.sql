@@ -13,11 +13,10 @@ DROP TABLE IF EXISTS theme;
 DROP TABLE IF EXISTS user;
 
 CREATE TABLE user(
-    idUser      Int  Auto_increment  NOT NULL,
-    login        Varchar (50) NOT NULL,
-    passwordHash Varchar (32) NOT NULL,
-    token        Varchar (50) NOT NULL,
-     mailAddress  Varchar (50) NOT NULL,
+    login           Varchar (50) NOT NULL,
+    passwordHash    Varchar (32) NOT NULL,
+    token           Varchar (50) NOT NULL,
+    mailAddress     Varchar (50) NOT NULL,
 	CONSTRAINT user_PK PRIMARY KEY (login)
 )
 ENGINE=InnoDB;

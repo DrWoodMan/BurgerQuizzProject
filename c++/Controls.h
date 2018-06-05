@@ -16,7 +16,9 @@ class Controls : public QWidget{
 
 
     public slots:
-
+        void slot_logout();
+        void slot_showPassword(int state);
+        void slot_validateConnection();
 
     private:
         QVBoxLayout *mainLayout;
@@ -34,6 +36,8 @@ class Controls : public QWidget{
         QComboBox *serverIP;
         QComboBox *login;
         QLineEdit *password;
+        QCheckBox *showPassword;
+        QPushButton *validateConnection;
 /*
         QSpinBox *worldSizeX;
         QSpinBox *worldSizeY;

@@ -24,7 +24,7 @@ class Controls : public QWidget{
         QVBoxLayout *mainLayout;
 
         QWidget *authenticationWidget;
-        //QWidget *errorsWidget;
+        QWidget *errorsWidget;
         //QWidget *loadingWidget;
         //QWidget *themeWidget;
         //QWidget *questionWidget;

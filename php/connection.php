@@ -1,5 +1,36 @@
 
-<?php?>
+<?php
+require_once('includes/functions.php');
+
+
+if(isset($_POST['pwd'])&&isset($_POST['login'])){
+
+	$validation=true;
+	$content=new User;
+	$dbh = new DBmanage;
+
+	//on se connecte à la BDD, puis on vérifie si le login fourni est dans la base de données
+
+	$dbh->connection();
+	$content=loadUser($_POST['login'],$dbh->getDb());
+
+	print_r($content);
+
+	if(count($content) == 0){
+		echo "Bad Login";
+		$validation=false;
+	}
+	// on vérifie si le mdp associé au login est le bon
+
+	else if($content[0]->getPassword() != $_POST['pwd']){
+		$validation=false;
+		echo" Bad Pwd";
+	}
+
+
+	$dbh=NULL;
+}
+?>
 
 <html>
 
@@ -19,6 +50,7 @@
     <script src="../js/jquery-3.3.1.min.js" defer></script>
     <script src="../js/bootstrap.min.js" defer></script>
     <script src="../js/headerFooter.js" defer></script>
+		<script src="../js/hide.js" defer></script>
     <script type="text/javascript" src="../js/js.cookie.js" defer></script>
 
 
@@ -42,7 +74,7 @@
 	</br>
 	</br>
 	</br>
-		<form>
+		<form method="post" action="">
 
 		<div class="container form-group" id="CenterPart">
       <div class="row">
@@ -54,7 +86,7 @@
 
 				<div class=" col-lg-3">
 					<label>Pseudonyme</label>
-					<input name="choix" type="text" placeholder="..." class="form-control"></input>
+					<input name="choix" type="text" placeholder="..." class="form-control" value="<?= @$_POST['login'];?>"></input>
 				</div>
 
 			</div>
@@ -69,7 +101,7 @@
 
 				<div class=" col-lg-3">
 					<label>Mot de passe</label>
-					<input name="choix" type="password" placeholder="..." class="form-control" ></input>
+					<input id='pwd' name="choix" type="password" placeholder="..." class="form-control" value="<?= @$_POST['pwd'];?>"></input>
 
 				</div>
 
@@ -85,7 +117,7 @@
         <label>Afficher le mot de passe    </label>
       </div>
       <div class=" form-check  col-lg">
-        <input id="show-pwd" type="checkbox" class="form-check-input "></input>
+        <input id="show-pwd" type="checkbox" class="form-check-input " onclick="hide();"></input>
       </div>
     </div>
 

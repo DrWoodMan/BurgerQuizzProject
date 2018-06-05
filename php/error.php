@@ -42,7 +42,7 @@
 
   	</br>
 
-		<form>
+		<form method="post">
     </br>
   </br>
 </br>

@@ -47,7 +47,7 @@
     </div>
   	</br>
 
-		<form>
+		<form method="post">
 
 
 

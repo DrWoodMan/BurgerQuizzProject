@@ -90,7 +90,7 @@
       <h5 class =" col-lg-4 " >Edouard baladur ou un matelas bien dur?</h5>
     </div>
 
-		<form>
+		<form method="post">
     </br>
 
 

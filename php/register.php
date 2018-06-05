@@ -1,6 +1,4 @@
 
-<?php?>
-
 <html>
 
 	<head>
@@ -13,15 +11,14 @@
 		<title>Salade Quiz - Inscription</title>
 
 		<!-- Css Styles -->
-		<link href="css/style.css" rel="stylesheet" type="text/css" />
-		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-		<link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+		<link href="../css\bootstrap.min.css" rel="stylesheet">
 
 		<!-- Js Scripts -->
-		<script src="js/jquery.min.js" defer></script>
-		<script src="js/bootstrap.min.js" defer></script>
+		<script src="../js/jquery-3.3.1.min.js" defer></script>
+		<script src="../js/bootstrap.min.js" defer></script>
+		<script src="../js/headerFooter.js" defer></script>
+		<script type="text/javascript" src="../js/js.cookie.js" defer></script>
 
-		<script type="text/javascript" src="js/js.cookie.js" defer></script>
 	</head>
 
 
@@ -29,23 +26,28 @@
 
 
 	<body>
-		<div id="header">
+		<header>
+		</header>
 
 
-		</div>
-		<div class="row">
-			<div class="col-lg-1">
-			</div>
-			<h2 class =" col-lg-1 ">Inscription</h2>
 
 
-		</div>
-	</br>
-	</br>
-	</br>
-		<form>
+		<form id="centerPart">
+		</br>
 
 		<div class="container form-group" >
+
+			<div class="row">
+				<div class="col-lg-1">
+				</div>
+				<h2 class =" col-lg-1 ">Inscription</h2>
+
+
+			</div>
+		</br>
+		</br>
+		</br>
+
 			<div class="row">
 
 				<div class="col-lg-1">
@@ -109,7 +111,7 @@
 				<div class="col-lg-3">
 				</div>
 				<div class="col-lg-4">
-					<button type="button" onclick="window.location='index.html'"class="btn btn-primary">Retour</button>
+					<button type="button" onclick="window.location='../index.html'"class="btn btn-primary">Retour</button>
 				</div>
 				<div class=" col-lg-4">
 					<button type="submit" class="btn btn-primary">Valider</button>
@@ -119,12 +121,8 @@
 </form>
 
 
-
-
-
-	<div id="footer">
-
-	</div>
+	<footer>
+	</footer>
 
 	</body>
 

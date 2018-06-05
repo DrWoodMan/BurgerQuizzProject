@@ -1,5 +1,4 @@
 
-<?php?>
 
 <html>
 
@@ -12,16 +11,15 @@
 		<!-- Title -->
 		<title>Salade Quiz - Fin de partie</title>
 
-		<!-- Css Styles -->
-		<link href="css/style.css" rel="stylesheet" type="text/css" />
-		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-		<link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
+    <!-- Css Styles -->
+    <link href="../css\bootstrap.min.css" rel="stylesheet">
 
-		<!-- Js Scripts -->
-		<script src="js/jquery.min.js" defer></script>
-		<script src="js/bootstrap.min.js" defer></script>
+    <!-- Js Scripts -->
+    <script src="../js/jquery-3.3.1.min.js" defer></script>
+    <script src="../js/bootstrap.min.js" defer></script>
+    <script src="../js/headerFooter.js" defer></script>
+    <script type="text/javascript" src="../js/js.cookie.js" defer></script>
 
-		<script type="text/javascript" src="js/js.cookie.js" defer></script>
 	</head>
 
 
@@ -29,9 +27,9 @@
 
 
 	<body>
-		<div id="header">
-
-		</div>
+		<header>
+		</header>
+  </br>
 
     <div class="row" style="margin-left:10px;">
       <div class="col-lg-5">
@@ -86,9 +84,8 @@
 
 
 
-	<div id="footer">
-
-	</div>
+	<footer>
+	</footer>
 
 	</body>
 

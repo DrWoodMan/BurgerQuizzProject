@@ -12,30 +12,25 @@
 		<!-- Title -->
 		<title>Salade Quiz - Connexion</title>
 
-		<!-- Css Styles -->
-		<link href="css/style.css" rel="stylesheet" type="text/css" />
-		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-		<link href="css/bootstrap-theme.min.css" rel="stylesheet" type="text/css" />
-    <link rel="shortcut icon" href="resources/favicon.ico"  type="image/x-icon"/>
-    <link rel="icon" href="resources/favicon.ico"  type="image/x-icon"/>
+    <!-- Css Styles -->
+    <link href="../css\bootstrap.min.css" rel="stylesheet">
 
-		<!-- Js Scripts -->
-		<script src="js/jquery.min.js" defer></script>
-		<script src="js/bootstrap.min.js" defer></script>
+    <!-- Js Scripts -->
+    <script src="../js/jquery-3.3.1.min.js" defer></script>
+    <script src="../js/bootstrap.min.js" defer></script>
+    <script src="../js/headerFooter.js" defer></script>
+    <script type="text/javascript" src="../js/js.cookie.js" defer></script>
 
-		<script type="text/javascript" src="js/js.cookie.js" defer></script>
-	</head>
 
 
 
 
 
 	<body>
-		<div id="header">
+		<header>
+		</header>
 
-
-		</div>
-
+  </br>
 
 		<div class="row">
 			<div class="col-lg-1">
@@ -101,7 +96,7 @@
 				<div class="col-lg-1">
 				</div>
 				<div class="col-lg-2">
-					<button type="button" onclick="window.location='index.html'"class="btn btn-primary">Retour</button>
+					<button type="button" onclick="window.location='../index.html'"class="btn btn-primary">Retour</button>
 				</div>
 				<div class=" col-lg-1">
 					<button type="submit" class="btn btn-primary">Valider</button>
@@ -111,7 +106,7 @@
 </form>
 
 <div class="col-sm">
-  <img src="resources/salade.jpg" style=" max-width: 125%; max-height: 125%;">
+  <img src="../resources/salade.jpg" style=" max-width: 125%; max-height: 125%;">
 </div>
 </div>
 </div>
@@ -119,9 +114,9 @@
 
 
 
-	<div id="footer">
+	<footer>
 
-	</div>
+	</footer>
 
 	</body>
 

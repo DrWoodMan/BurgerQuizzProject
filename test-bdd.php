@@ -12,11 +12,11 @@
 
 	$mysqlServerPort = "3306";
 
-	$mysqlDbName = "bq";
+	$mysqlDbName = "SaladeQuiz";
 
-	$mysqlDbUser = "bq";
+	$mysqlDbUser = "SaladeQuiz";
 
-	$mysqlDbPwd = "bq";
+	$mysqlDbPwd = "12345678";
 
 	$mysqlDbCharset = "UTF8";
 

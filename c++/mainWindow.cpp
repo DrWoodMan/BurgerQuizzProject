@@ -4,14 +4,13 @@
 MainWindow::MainWindow() : QMainWindow(){
 
     setWindowTitle("Salade Quiz - Administration interface");
-    setMinimumWidth(300);
-    setMinimumHeight(00);
+    //setWindowIcon(QIcon(QPixmap("salade.jpg")));
+    setMinimumWidth(400);
+    setMinimumHeight(400);
     show();
 
     controls = new Controls();
     setCentralWidget(controls);
-
-
 
     //action de basculement entre la taille d'origine et le plein écran
     connect(controls->getFullscreen(), SIGNAL(stateChanged(int)), this, SLOT(slot_windowSize(int)));

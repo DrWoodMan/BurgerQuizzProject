@@ -4,6 +4,7 @@
 #include <QtWidgets>
 #include <QBoxLayout>
 
+
 #include "Controls.h"
 
 class MainWindow : public QMainWindow {
@@ -19,7 +20,7 @@ class MainWindow : public QMainWindow {
 
     private:
     
-        QWidget *mainWidget;
+        //QWidget *mainWidget;
         QVBoxLayout *mainLayout;
         Controls *controls;
     

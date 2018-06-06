@@ -3,33 +3,35 @@
 require_once('includes/functions.php');
 
 
-if(isset($_POST['pwd'])&&isset($_POST['login'])){
 
 	$validation=true;
 	$content=new User;
 	$dbh = new DBmanage;
-
 	//on se connecte à la BDD, puis on vérifie si le login fourni est dans la base de données
 
 	$dbh->connection();
 	$content=loadUser($_POST['login'],$dbh->getDb());
+	var_dump($dbh);
 
 	print_r($content);
 
 	if(count($content) == 0){
-		echo "Bad Login";
 		$validation=false;
-	}
-	// on vérifie si le mdp associé au login est le bon
-
-	else if($content[0]->getPassword() != $_POST['pwd']){
+	}else if($content[0]->getPassword() != $_POST['pwd']){// on vérifie si le mdp associé au login est le bon
 		$validation=false;
-		echo" Bad Pwd";
+	}else{
+		$content=createToken($content, $dbh->getDb());
 	}
 
+	if(checkToken($content, $dbh->getDb())==true){
+		echo "token valide";
+	}else{
+		echo "token invalide";
+	}
 
 	$dbh=NULL;
-}
+	$_POST['pwd']=NULL;
+
 ?>
 
 <html>
@@ -86,7 +88,7 @@ if(isset($_POST['pwd'])&&isset($_POST['login'])){
 
 				<div class=" col-lg-3">
 					<label>Pseudonyme</label>
-					<input name="choix" type="text" placeholder="..." class="form-control" value="<?= @$_POST['login'];?>"></input>
+					<input  type="text" placeholder="..." class="form-control" name="login" value="<?= @$_POST['login'];?>"></input>
 				</div>
 
 			</div>
@@ -101,7 +103,7 @@ if(isset($_POST['pwd'])&&isset($_POST['login'])){
 
 				<div class=" col-lg-3">
 					<label>Mot de passe</label>
-					<input id='pwd' name="choix" type="password" placeholder="..." class="form-control" value="<?= @$_POST['pwd'];?>"></input>
+					<input id='pwd' type="password" placeholder="..." class="form-control" name='pwd' value=""></input>
 
 				</div>
 

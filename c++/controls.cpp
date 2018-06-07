@@ -1,4 +1,4 @@
-#include "Controls.h"
+#include "Controls.hpp"
 
 Controls::Controls() : QWidget(){
 
@@ -208,6 +208,8 @@ Controls::Controls() : QWidget(){
     buttonsThemeSelectionLayout->addWidget(relatedQuestions);
     relatedQuestions->setMaximumWidth(200);
 
+    connect(relatedQuestions, SIGNAL(clicked()), this, SLOT(slot_relatedQuestions()));
+
     //theme writing
     QVBoxLayout *themeWritingLayout = new QVBoxLayout();
     themeBodyLayout->addLayout(themeWritingLayout);
@@ -249,8 +251,11 @@ Controls::Controls() : QWidget(){
     questionTitleLayout->addWidget(questionTitle);
     questionTitleLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
     
-    QHBoxLayout *selectedThemeLayout = new QHBoxLayout();
-    questionMainLayout->addLayout(selectedThemeLayout);
+    questionPlaceholderLayout = new QHBoxLayout();
+    questionMainLayout->addLayout(questionPlaceholderLayout);
+
+    selectedThemeLayout = new QHBoxLayout();
+    questionPlaceholderLayout->addLayout(selectedThemeLayout);
 
     selectedThemeLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
     selectedTheme = new QLabel("selected theme");
@@ -283,11 +288,15 @@ Controls::Controls() : QWidget(){
     buttonsQuestionSelectionLayout->addWidget(relatedPropositions);
     relatedPropositions->setMaximumWidth(200);
 
+    connect(relatedPropositions, SIGNAL(clicked()), this, SLOT(slot_relatedPropositions()));
+
     //back to theme
-    backToTheme = new QPushButton("RETURN");
+    backToThemes = new QPushButton("RETURN");
     questionSelectionLayout->addSpacerItem(new QSpacerItem(0, 200));
-    questionSelectionLayout->addWidget(backToTheme);
-    backToTheme->setMaximumWidth(200);
+    questionSelectionLayout->addWidget(backToThemes);
+    backToThemes->setMaximumWidth(200);
+
+    connect(backToThemes, SIGNAL(clicked()), this, SLOT(slot_backToThemes()));
 
     //question writing
     QVBoxLayout *questionWritingLayout = new QVBoxLayout();
@@ -343,9 +352,12 @@ Controls::Controls() : QWidget(){
     propositionTitle->setFont(propositionFont);
     propositionTitleLayout->addWidget(propositionTitle);
     propositionTitleLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
-    
-    questionMainLayout->removeItem(selectedThemeLayout);
-    propositionMainLayout->addLayout(selectedThemeLayout);
+    //--------------------------------------------------++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++***************************************
+    propositionPlaceholderLayout = new QHBoxLayout();
+    propositionMainLayout->addLayout(propositionPlaceholderLayout);
+
+    //questionPlaceholderLayout->removeItem(selectedThemeLayout);
+    //propositionPlaceholderLayout->addLayout(selectedThemeLayout);
 
     QHBoxLayout *selectedQuestionLayout = new QHBoxLayout();
     propositionMainLayout->addLayout(selectedQuestionLayout);
@@ -379,10 +391,12 @@ Controls::Controls() : QWidget(){
     deleteProposition->setMaximumWidth(200);
 
     //back to question
-    backToQuestion = new QPushButton("RETURN");
+    backToQuestions = new QPushButton("RETURN");
     propositionSelectionLayout->addSpacerItem(new QSpacerItem(0, 200));
-    propositionSelectionLayout->addWidget(backToQuestion);
-    backToQuestion  ->setMaximumWidth(200);
+    propositionSelectionLayout->addWidget(backToQuestions);
+    backToQuestions ->setMaximumWidth(200);
+
+    connect(backToQuestions, SIGNAL(clicked()), this, SLOT(slot_backToQuestions()));
 
     //proposition writing
     QVBoxLayout *propositionWritingLayout = new QVBoxLayout();
@@ -457,7 +471,7 @@ void Controls::slot_validateConnection(){
 
     qDebug()<<"validate Connection";
     authenticationWidget->hide();
-    propositionWidget->show();
+    themeWidget->show();
     logout->show();
 
 }
@@ -466,3 +480,42 @@ void Controls::slot_logout(){
 
     qDebug()<<"logout";
 }
+
+void Controls::slot_relatedQuestions(){
+
+    qDebug()<<"related Questions";
+    themeWidget->hide();
+    questionWidget->show();
+
+}
+
+void Controls::slot_backToThemes(){
+
+    qDebug()<<"back to theme";
+    questionWidget->hide();
+    themeWidget->show();
+}
+
+void Controls::slot_relatedPropositions(){
+
+    qDebug()<<"related Propositions";
+
+    questionPlaceholderLayout->removeItem(selectedThemeLayout);
+    propositionPlaceholderLayout->addLayout(selectedThemeLayout);
+    
+    questionWidget->hide();
+    propositionWidget->show();
+
+}
+
+void Controls::slot_backToQuestions(){
+
+    qDebug()<<"back to questions";
+
+    propositionPlaceholderLayout->removeItem(selectedThemeLayout);
+    questionPlaceholderLayout->addLayout(selectedThemeLayout);
+
+    propositionWidget->hide();
+    questionWidget->show();
+}
+

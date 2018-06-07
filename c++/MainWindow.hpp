@@ -1,11 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QtWidgets>
-#include <QBoxLayout>
 
-
-#include "Controls.h"
+#include "includes.hpp"
+#include "Controls.hpp"
 
 class MainWindow : public QMainWindow {
 

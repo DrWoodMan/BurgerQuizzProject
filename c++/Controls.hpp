@@ -1,8 +1,7 @@
 #ifndef CONTROLS_H
 #define CONTROLS_H
 
-#include <QtWidgets>
-#include <QBoxLayout>
+#include "includes.hpp"
 
 class Controls : public QWidget{
 
@@ -24,6 +23,10 @@ class Controls : public QWidget{
         void slot_logout();
         void slot_showPassword(int state);
         void slot_validateConnection();
+        void slot_relatedQuestions();
+        void slot_backToThemes();
+        void slot_relatedPropositions();
+        void slot_backToQuestions();
 
     private:
         QVBoxLayout *mainLayout;
@@ -53,6 +56,8 @@ class Controls : public QWidget{
         QPushButton *addTheme;
 
         QWidget *questionWidget;
+        QHBoxLayout *questionPlaceholderLayout;
+        QHBoxLayout *selectedThemeLayout;
         QLabel *selectedTheme;
         QComboBox *questionSelection;
         QPushButton *deleteQuestion;
@@ -61,16 +66,17 @@ class Controls : public QWidget{
         QLineEdit *questionWritingField2;
         QPushButton *modifyQuestion;
         QPushButton *addQuestion;
-        QPushButton *backToTheme;
+        QPushButton *backToThemes;
 
         QWidget *propositionWidget;
+        QHBoxLayout *propositionPlaceholderLayout;
         QLabel *selectedQuestion;
         QComboBox *propositionSelection;
         QPushButton *deleteProposition;
         QTextEdit *propositionWritingField;
         QPushButton *modifyProposition;
         QPushButton *addProposition;
-        QPushButton *backToQuestion;
+        QPushButton *backToQuestions;
 
 
 

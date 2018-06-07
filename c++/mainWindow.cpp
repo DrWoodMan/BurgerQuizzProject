@@ -1,4 +1,4 @@
-#include "MainWindow.h"
+#include "MainWindow.hpp"
 #include "controls.cpp"
 
 MainWindow::MainWindow() : QMainWindow(){

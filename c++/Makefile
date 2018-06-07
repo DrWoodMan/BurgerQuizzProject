@@ -111,9 +111,10 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		c++.pro Controls.h \
-		dataBase.h \
-		MainWindow.h main.cpp \
+		c++.pro Controls.hpp \
+		dataBase.hpp \
+		includes.hpp \
+		MainWindow.hpp main.cpp \
 		mainWindow.cpp
 QMAKE_TARGET  = c++
 DESTDIR       = #avoid trailing-slash linebreak
@@ -280,7 +281,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents Controls.h dataBase.h MainWindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents Controls.hpp dataBase.hpp includes.hpp MainWindow.hpp $(DISTDIR)/
 	$(COPY_FILE) --parents main.cpp mainWindow.cpp $(DISTDIR)/
 
 
@@ -307,11 +308,14 @@ compiler_rcc_clean:
 compiler_moc_header_make_all: moc_Controls.cpp moc_MainWindow.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_Controls.cpp moc_MainWindow.cpp
-moc_Controls.cpp: Controls.h
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/var/www/salade-quiz/c++ -I/var/www/salade-quiz/c++ -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include Controls.h -o moc_Controls.cpp
+moc_Controls.cpp: includes.hpp \
+		Controls.hpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/var/www/salade-quiz/c++ -I/var/www/salade-quiz/c++ -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include Controls.hpp -o moc_Controls.cpp
 
-moc_MainWindow.cpp: MainWindow.h
-	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/var/www/salade-quiz/c++ -I/var/www/salade-quiz/c++ -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MainWindow.h -o moc_MainWindow.cpp
+moc_MainWindow.cpp: includes.hpp \
+		Controls.hpp \
+		MainWindow.hpp
+	/usr/lib/x86_64-linux-gnu/qt5/bin/moc $(DEFINES) -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64 -I/var/www/salade-quiz/c++ -I/var/www/salade-quiz/c++ -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/5 -I/usr/include/x86_64-linux-gnu/c++/5 -I/usr/include/c++/5/backward -I/usr/lib/gcc/x86_64-linux-gnu/5/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include MainWindow.hpp -o moc_MainWindow.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -327,12 +331,15 @@ compiler_clean: compiler_moc_header_clean
 
 ####### Compile
 
-main.o: main.cpp MainWindow.h
+main.o: main.cpp MainWindow.hpp \
+		includes.hpp \
+		Controls.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
-mainWindow.o: mainWindow.cpp MainWindow.h \
-		controls.cpp \
-		Controls.h
+mainWindow.o: mainWindow.cpp MainWindow.hpp \
+		includes.hpp \
+		Controls.hpp \
+		controls.cpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainWindow.o mainWindow.cpp
 
 moc_Controls.o: moc_Controls.cpp 

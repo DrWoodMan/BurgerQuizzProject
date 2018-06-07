@@ -31,7 +31,6 @@ class Controls : public QWidget{
         QCheckBox *fullscreen;
         QPushButton *logout;
 
-        QPushButton *return;
 
         QWidget *loadingWidget;
 
@@ -54,14 +53,25 @@ class Controls : public QWidget{
         QPushButton *addTheme;
 
         QWidget *questionWidget;
+        QLabel *selectedTheme;
         QComboBox *questionSelection;
         QPushButton *deleteQuestion;
         QPushButton *relatedPropositions;
-        QLineEdit *questionField1;
-        QLineEdit *questionField2;
+        QLineEdit *questionWritingField1;
+        QLineEdit *questionWritingField2;
         QPushButton *modifyQuestion;
         QPushButton *addQuestion;
-        //QWidget *propositionWidget;
+        QPushButton *backToTheme;
+
+        QWidget *propositionWidget;
+        QLabel *selectedQuestion;
+        QComboBox *propositionSelection;
+        QPushButton *deleteProposition;
+        QTextEdit *propositionWritingField;
+        QPushButton *modifyProposition;
+        QPushButton *addProposition;
+        QPushButton *backToQuestion;
+
 
 
 /*
@@ -83,3 +93,4 @@ class Controls : public QWidget{
 */
 };
 #endif
+

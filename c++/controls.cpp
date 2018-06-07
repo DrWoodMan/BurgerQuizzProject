@@ -35,8 +35,7 @@ Controls::Controls() : QWidget(){
     QHBoxLayout *authenticationTitleLayout = new QHBoxLayout;
     authenticationLayout->addLayout(authenticationTitleLayout);
     authenticationTitleLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
-    QLabel *authenticationTitle = new QLabel();
-    authenticationTitle->setText("DB conection");
+    QLabel *authenticationTitle = new QLabel("DB conection");
     QFont authenticationFont;
     authenticationFont.setPointSize(20);
     authenticationTitle->setFont(authenticationFont);
@@ -50,8 +49,7 @@ Controls::Controls() : QWidget(){
     
     //server IP label
     QHBoxLayout *serverIPLabelLayout = new QHBoxLayout;
-    QLabel *serverIPLabel = new QLabel();
-    serverIPLabel->setText("Server IP");
+    QLabel *serverIPLabel = new QLabel("Server IP");
     serverIPLabelLayout->addWidget(serverIPLabel);
     serverIPLabelLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
     connectionFieldsLayout->addLayout(serverIPLabelLayout);
@@ -63,8 +61,7 @@ Controls::Controls() : QWidget(){
 
     //login label
     QHBoxLayout *loginLabelLayout = new QHBoxLayout;
-    QLabel *loginLabel = new QLabel();
-    loginLabel->setText("Login");
+    QLabel *loginLabel = new QLabel("Login");
     loginLabelLayout->addWidget(loginLabel);
     loginLabelLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
     connectionFieldsLayout->addLayout(loginLabelLayout);
@@ -76,8 +73,7 @@ Controls::Controls() : QWidget(){
 
     //password label
     QHBoxLayout *passwordLabelLayout = new QHBoxLayout;
-    QLabel *passwordLabel = new QLabel();
-    passwordLabel->setText("Password");
+    QLabel *passwordLabel = new QLabel("Password");
     passwordLabelLayout->addWidget(passwordLabel);
     passwordLabelLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
     connectionFieldsLayout->addLayout(passwordLabelLayout);
@@ -146,8 +142,7 @@ Controls::Controls() : QWidget(){
     QVBoxLayout *errorsLayout = new QVBoxLayout;
     errorsWidget->setLayout(errorsLayout);
 
-    QLabel *errorLabel = new QLabel();
-    errorLabel->setText("ERROR");
+    QLabel *errorLabel = new QLabel("ERROR");
     QFont errorFont;
     errorFont.setPointSize(30);
     errorLabel->setFont(errorFont);
@@ -161,8 +156,7 @@ Controls::Controls() : QWidget(){
     QHBoxLayout *errorsSpecificationsLayout = new QHBoxLayout();
     errorsLayout->addLayout(errorsSpecificationsLayout);
 
-    errorsSpecificationsLabel = new QLabel();
-    errorsSpecificationsLabel->setText("...");
+    errorsSpecificationsLabel = new QLabel("...");
     errorsSpecificationsLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
     errorsSpecificationsLayout->addWidget(errorsSpecificationsLabel);
     errorsSpecificationsLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
@@ -181,8 +175,7 @@ Controls::Controls() : QWidget(){
     QHBoxLayout *themeTitleLayout = new QHBoxLayout;
     themeMainLayout->addLayout(themeTitleLayout);
     themeTitleLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
-    QLabel *themeTitle = new QLabel();
-    themeTitle->setText("Themes");
+    QLabel *themeTitle = new QLabel("Themes");
     QFont themeFont;
     themeFont.setPointSize(20);
     themeTitle->setFont(themeFont);
@@ -204,15 +197,15 @@ Controls::Controls() : QWidget(){
     themeSelectionLayout->addWidget(themeSelection);
 
     //theme selection buttons
-    QHBoxLayout *buttonsSelectionLayout = new QHBoxLayout();
-    themeSelectionLayout->addLayout(buttonsSelectionLayout);
+    QHBoxLayout *buttonsThemeSelectionLayout = new QHBoxLayout();
+    themeSelectionLayout->addLayout(buttonsThemeSelectionLayout);
 
     deleteTheme = new QPushButton("DELETE");
-    buttonsSelectionLayout->addWidget(deleteTheme);
+    buttonsThemeSelectionLayout->addWidget(deleteTheme);
     deleteTheme->setMaximumWidth(200);
 
     relatedQuestions = new QPushButton("QUESTIONS");
-    buttonsSelectionLayout->addWidget(relatedQuestions);
+    buttonsThemeSelectionLayout->addWidget(relatedQuestions);
     relatedQuestions->setMaximumWidth(200);
 
     //theme writing
@@ -242,72 +235,178 @@ Controls::Controls() : QWidget(){
     mainLayout->addWidget(questionWidget);
     questionWidget->hide();
 
-    QVBoxLayout *themeMainLayout = new QVBoxLayout;
-    themeWidget->setLayout(themeMainLayout);
+    QVBoxLayout *questionMainLayout = new QVBoxLayout;
+    questionWidget->setLayout(questionMainLayout);
 
     //title
     QHBoxLayout *questionTitleLayout = new QHBoxLayout;
     questionMainLayout->addLayout(questionTitleLayout);
     questionTitleLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
-    QLabel *questionTitle = new QLabel();
-    questionTitle->setText("Questions");
-    QFont themeFont;
+    QLabel *questionTitle = new QLabel("Questions");
+    QFont questionFont;
     questionFont.setPointSize(20);
     questionTitle->setFont(questionFont);
     questionTitleLayout->addWidget(questionTitle);
     questionTitleLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
     
-    themeMainLayout->addSpacerItem(new QSpacerItem(0, 70));
-    QHBoxLayout *themeBodyLayout = new QHBoxLayout();
-    themeMainLayout->addLayout(themeBodyLayout);
+    QHBoxLayout *selectedThemeLayout = new QHBoxLayout();
+    questionMainLayout->addLayout(selectedThemeLayout);
 
-    //theme selection
-    QVBoxLayout *themeSelectionLayout = new QVBoxLayout();
-    themeBodyLayout->addLayout(themeSelectionLayout);
+    selectedThemeLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
+    selectedTheme = new QLabel("selected theme");
+    selectedThemeLayout->addWidget(selectedTheme);
+    selectedThemeLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
 
-    themeSelectionLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
+    questionMainLayout->addSpacerItem(new QSpacerItem(0, 70));
+    QHBoxLayout *questionBodyLayout = new QHBoxLayout();
+    questionMainLayout->addLayout(questionBodyLayout);
 
-    themeSelection = new QComboBox();
-    themeSelection->setEditable(true);
-    themeSelectionLayout->addWidget(themeSelection);
+    //question selection
+    QVBoxLayout *questionSelectionLayout = new QVBoxLayout();
+    questionBodyLayout->addLayout(questionSelectionLayout);
 
-    //theme selection buttons
-    QHBoxLayout *buttonsSelectionLayout = new QHBoxLayout();
-    themeSelectionLayout->addLayout(buttonsSelectionLayout);
+    questionSelectionLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
 
-    deleteTheme = new QPushButton("DELETE");
-    buttonsSelectionLayout->addWidget(deleteTheme);
-    deleteTheme->setMaximumWidth(200);
+    questionSelection = new QComboBox();
+    questionSelection->setEditable(true);
+    questionSelectionLayout->addWidget(questionSelection);
 
-    relatedQuestions = new QPushButton("QUESTIONS");
-    buttonsSelectionLayout->addWidget(relatedQuestions);
-    relatedQuestions->setMaximumWidth(200);
+    //question selection buttons
+    QHBoxLayout *buttonsQuestionSelectionLayout = new QHBoxLayout();
+    questionSelectionLayout->addLayout(buttonsQuestionSelectionLayout);
 
-    //theme writing
-    QVBoxLayout *themeWritingLayout = new QVBoxLayout();
-    themeBodyLayout->addLayout(themeWritingLayout);
+    deleteQuestion = new QPushButton("DELETE");
+    buttonsQuestionSelectionLayout->addWidget(deleteQuestion);
+    deleteQuestion->setMaximumWidth(200);
 
-    themeWritingField = new QTextEdit();
-    themeWritingLayout->addWidget(themeWritingField);
+    relatedPropositions = new QPushButton("PROPOSITIONS");
+    buttonsQuestionSelectionLayout->addWidget(relatedPropositions);
+    relatedPropositions->setMaximumWidth(200);
+
+    //back to theme
+    backToTheme = new QPushButton("RETURN");
+    questionSelectionLayout->addSpacerItem(new QSpacerItem(0, 200));
+    questionSelectionLayout->addWidget(backToTheme);
+    backToTheme->setMaximumWidth(200);
+
+    //question writing
+    QVBoxLayout *questionWritingLayout = new QVBoxLayout();
+    questionBodyLayout->addLayout(questionWritingLayout);
+
+    QHBoxLayout *questionWritingFieldsLayout = new QHBoxLayout();
+    questionWritingLayout->addLayout(questionWritingFieldsLayout);
+
+    questionWritingField1 = new QLineEdit();
+    questionWritingFieldsLayout->addWidget(questionWritingField1);
+
+    QLabel *comma = new QLabel(",");
+    questionWritingFieldsLayout->addWidget(comma);
+
+    questionWritingField2 = new QLineEdit();
+    questionWritingFieldsLayout->addWidget(questionWritingField2);
+
+    QLabel * endOfQuestion = new QLabel(" ou les deux ?");
+    questionWritingFieldsLayout->addWidget(endOfQuestion);
     
 
-    //theme writing buttons
-    QHBoxLayout *buttonsThemeWritingLayout = new QHBoxLayout();
-    themeWritingLayout->addLayout(buttonsThemeWritingLayout);
+    //question writing buttons
+    QHBoxLayout *buttonsQuestionWritingLayout = new QHBoxLayout();
+    questionWritingLayout->addLayout(buttonsQuestionWritingLayout);
 
-    modifyTheme = new QPushButton("MODIFY");
-    buttonsThemeWritingLayout->addWidget(modifyTheme);
-    modifyTheme->setMaximumWidth(200);
+    modifyQuestion = new QPushButton("MODIFY");
+    buttonsQuestionWritingLayout->addWidget(modifyQuestion);
+    modifyQuestion->setMaximumWidth(200);
 
-    addTheme = new QPushButton("ADD");
-    buttonsThemeWritingLayout->addWidget(addTheme);
-    addTheme->setMaximumWidth(200);
+    addQuestion = new QPushButton("ADD");
+    buttonsQuestionWritingLayout->addWidget(addQuestion);
+    addQuestion->setMaximumWidth(200);
+
+    questionWritingLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
 
 
+//PROPOSITION
 
-    //QVBoxLayout *themeLayout = new QVBoxLayout();
-    //themeBodyLayout->addLayout(themeLayout);
-    //themeBodyLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
+    propositionWidget = new QWidget();
+    mainLayout->addWidget(propositionWidget);
+    propositionWidget->hide();
+
+    QVBoxLayout *propositionMainLayout = new QVBoxLayout;
+    propositionWidget->setLayout(propositionMainLayout);
+
+    //title
+    QHBoxLayout *propositionTitleLayout = new QHBoxLayout;
+    propositionMainLayout->addLayout(propositionTitleLayout);
+    propositionTitleLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
+    QLabel *propositionTitle = new QLabel("Propositions");
+    QFont propositionFont;
+    propositionFont.setPointSize(20);
+    propositionTitle->setFont(propositionFont);
+    propositionTitleLayout->addWidget(propositionTitle);
+    propositionTitleLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
+    
+    questionMainLayout->removeItem(selectedThemeLayout);
+    propositionMainLayout->addLayout(selectedThemeLayout);
+
+    QHBoxLayout *selectedQuestionLayout = new QHBoxLayout();
+    propositionMainLayout->addLayout(selectedQuestionLayout);
+
+    selectedQuestionLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
+    selectedQuestion = new QLabel("selected question");
+    selectedQuestionLayout->addWidget(selectedQuestion);
+    selectedQuestionLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
+
+
+    propositionMainLayout->addSpacerItem(new QSpacerItem(0, 70));
+    QHBoxLayout *propositionBodyLayout = new QHBoxLayout();
+    propositionMainLayout->addLayout(propositionBodyLayout);
+
+    //proposition selection
+    QVBoxLayout *propositionSelectionLayout = new QVBoxLayout();
+    propositionBodyLayout->addLayout(propositionSelectionLayout);
+
+    propositionSelectionLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
+
+    propositionSelection = new QComboBox();
+    propositionSelection->setEditable(true);
+    propositionSelectionLayout->addWidget(propositionSelection);
+
+    //proposition selection buttons
+    QHBoxLayout *buttonsPropositionSelectionLayout = new QHBoxLayout();
+    propositionSelectionLayout->addLayout(buttonsPropositionSelectionLayout);
+
+    deleteProposition = new QPushButton("DELETE");
+    buttonsPropositionSelectionLayout->addWidget(deleteProposition);
+    deleteProposition->setMaximumWidth(200);
+
+    //back to question
+    backToQuestion = new QPushButton("RETURN");
+    propositionSelectionLayout->addSpacerItem(new QSpacerItem(0, 200));
+    propositionSelectionLayout->addWidget(backToQuestion);
+    backToQuestion  ->setMaximumWidth(200);
+
+    //proposition writing
+    QVBoxLayout *propositionWritingLayout = new QVBoxLayout();
+    propositionBodyLayout->addLayout(propositionWritingLayout);
+
+    propositionWritingField = new QTextEdit();
+    propositionWritingLayout->addWidget(propositionWritingField);
+
+    
+
+    //proposition writing buttons
+    QHBoxLayout *buttonsPropositionWritingLayout = new QHBoxLayout();
+    propositionWritingLayout->addLayout(buttonsPropositionWritingLayout);
+
+    modifyProposition = new QPushButton("MODIFY");
+    buttonsPropositionWritingLayout->addWidget(modifyProposition);
+    modifyProposition->setMaximumWidth(200);
+
+    addProposition = new QPushButton("ADD");
+    buttonsPropositionWritingLayout->addWidget(addProposition);
+    addProposition->setMaximumWidth(200);
+
+    propositionWritingLayout->addSpacerItem(new QSpacerItem(0, 300, QSizePolicy::Expanding, QSizePolicy::Expanding));
+
 
 
 
@@ -358,7 +457,8 @@ void Controls::slot_validateConnection(){
 
     qDebug()<<"validate Connection";
     authenticationWidget->hide();
-    themeWidget->show();
+    propositionWidget->show();
+    logout->show();
 
 }
 

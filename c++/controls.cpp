@@ -19,6 +19,7 @@ Controls::Controls() : QWidget(){
 
     
 //AUTHENTICATION
+
     authenticationWidget = new QWidget();
     mainLayout->addWidget(authenticationWidget);
 
@@ -41,23 +42,27 @@ Controls::Controls() : QWidget(){
     authenticationTitle->setFont(authenticationFont);
     authenticationTitleLayout->addWidget(authenticationTitle);
     authenticationTitleLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
-
     authenticationLayout->addSpacerItem(new QSpacerItem(0, 70));
+
+
     //fields connection general layout
     QVBoxLayout *connectionFieldsLayout = new QVBoxLayout;
     authenticationLayout->addLayout(connectionFieldsLayout);
     
+
     //server IP label
     QHBoxLayout *serverIPLabelLayout = new QHBoxLayout;
-    QLabel *serverIPLabel = new QLabel("Server IP");
+    QLabel *serverIPLabel = new QLabel("Server IP:Port");
     serverIPLabelLayout->addWidget(serverIPLabel);
     serverIPLabelLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
     connectionFieldsLayout->addLayout(serverIPLabelLayout);
+
 
     //server IP field
     serverIP = new QComboBox;
     serverIP->setEditable(true);
     connectionFieldsLayout->addWidget(serverIP);
+
 
     //login label
     QHBoxLayout *loginLabelLayout = new QHBoxLayout;
@@ -66,10 +71,12 @@ Controls::Controls() : QWidget(){
     loginLabelLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
     connectionFieldsLayout->addLayout(loginLabelLayout);
 
+
     //login field
     login = new QComboBox;
     login->setEditable(true);
     connectionFieldsLayout->addWidget(login);
+
 
     //password label
     QHBoxLayout *passwordLabelLayout = new QHBoxLayout;
@@ -78,16 +85,18 @@ Controls::Controls() : QWidget(){
     passwordLabelLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
     connectionFieldsLayout->addLayout(passwordLabelLayout);
 
+
     //password field
     password = new QLineEdit;
     password->setEchoMode(QLineEdit::Password);
     connectionFieldsLayout->addWidget(password);
-    //password->setEchoMode(QLineEdit::Normal);
+
 
     //show password
     showPassword = new QCheckBox("Show Password");
     connectionFieldsLayout->addWidget(showPassword);
     connect(showPassword, SIGNAL(stateChanged(int)), this, SLOT(slot_showPassword(int)));
+
 
     //validate connection
     QHBoxLayout *validateConnectionLayout = new QHBoxLayout();
@@ -99,7 +108,9 @@ Controls::Controls() : QWidget(){
 
     connect(validateConnection, SIGNAL(clicked()), this, SLOT(slot_validateConnection()));
 
+
 //LOADING
+
     loadingWidget = new QWidget();
     mainLayout->addWidget(loadingWidget);
     loadingWidget->hide();
@@ -119,22 +130,8 @@ Controls::Controls() : QWidget(){
     loadingLayout->addWidget(animationLabel);
     movie->start();
 
-
-    //title
-    /*QHBoxLayout *loadingTitleLayout = new QHBoxLayout;
-    loadingLayout->addLayout(loadingTitleLayout);
-    loadingTitleLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
-    QLabel *loadingTitle = new QLabel();
-    loadingTitle->setText("Loading...");
-    QFont loadingFont;
-    loadingFont.setPointSize(20);
-    loadingTitle->setFont(loadingFont);
-    loadingTitleLayout->addWidget(loadingTitle);
-    loadingTitleLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));*/
-
-
-
 //ERRORS
+
     errorsWidget = new QWidget();
     mainLayout->addWidget(errorsWidget);
     errorsWidget->hide();
@@ -186,6 +183,7 @@ Controls::Controls() : QWidget(){
     QHBoxLayout *themeBodyLayout = new QHBoxLayout();
     themeMainLayout->addLayout(themeBodyLayout);
 
+
     //theme selection
     QVBoxLayout *themeSelectionLayout = new QVBoxLayout();
     themeBodyLayout->addLayout(themeSelectionLayout);
@@ -195,6 +193,7 @@ Controls::Controls() : QWidget(){
     themeSelection = new QComboBox();
     themeSelection->setEditable(true);
     themeSelectionLayout->addWidget(themeSelection);
+
 
     //theme selection buttons
     QHBoxLayout *buttonsThemeSelectionLayout = new QHBoxLayout();
@@ -209,6 +208,7 @@ Controls::Controls() : QWidget(){
     relatedQuestions->setMaximumWidth(200);
 
     connect(relatedQuestions, SIGNAL(clicked()), this, SLOT(slot_relatedQuestions()));
+
 
     //theme writing
     QVBoxLayout *themeWritingLayout = new QVBoxLayout();
@@ -240,6 +240,7 @@ Controls::Controls() : QWidget(){
     QVBoxLayout *questionMainLayout = new QVBoxLayout;
     questionWidget->setLayout(questionMainLayout);
 
+
     //title
     QHBoxLayout *questionTitleLayout = new QHBoxLayout;
     questionMainLayout->addLayout(questionTitleLayout);
@@ -266,6 +267,7 @@ Controls::Controls() : QWidget(){
     QHBoxLayout *questionBodyLayout = new QHBoxLayout();
     questionMainLayout->addLayout(questionBodyLayout);
 
+
     //question selection
     QVBoxLayout *questionSelectionLayout = new QVBoxLayout();
     questionBodyLayout->addLayout(questionSelectionLayout);
@@ -275,6 +277,7 @@ Controls::Controls() : QWidget(){
     questionSelection = new QComboBox();
     questionSelection->setEditable(true);
     questionSelectionLayout->addWidget(questionSelection);
+
 
     //question selection buttons
     QHBoxLayout *buttonsQuestionSelectionLayout = new QHBoxLayout();
@@ -290,6 +293,7 @@ Controls::Controls() : QWidget(){
 
     connect(relatedPropositions, SIGNAL(clicked()), this, SLOT(slot_relatedPropositions()));
 
+
     //back to theme
     backToThemes = new QPushButton("RETURN");
     questionSelectionLayout->addSpacerItem(new QSpacerItem(0, 200));
@@ -297,6 +301,7 @@ Controls::Controls() : QWidget(){
     backToThemes->setMaximumWidth(200);
 
     connect(backToThemes, SIGNAL(clicked()), this, SLOT(slot_backToThemes()));
+
 
     //question writing
     QVBoxLayout *questionWritingLayout = new QVBoxLayout();
@@ -316,7 +321,7 @@ Controls::Controls() : QWidget(){
 
     QLabel * endOfQuestion = new QLabel(" ou les deux ?");
     questionWritingFieldsLayout->addWidget(endOfQuestion);
-    
+
 
     //question writing buttons
     QHBoxLayout *buttonsQuestionWritingLayout = new QHBoxLayout();
@@ -352,12 +357,9 @@ Controls::Controls() : QWidget(){
     propositionTitle->setFont(propositionFont);
     propositionTitleLayout->addWidget(propositionTitle);
     propositionTitleLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
-    //--------------------------------------------------++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++***************************************
+
     propositionPlaceholderLayout = new QHBoxLayout();
     propositionMainLayout->addLayout(propositionPlaceholderLayout);
-
-    //questionPlaceholderLayout->removeItem(selectedThemeLayout);
-    //propositionPlaceholderLayout->addLayout(selectedThemeLayout);
 
     QHBoxLayout *selectedQuestionLayout = new QHBoxLayout();
     propositionMainLayout->addLayout(selectedQuestionLayout);
@@ -367,10 +369,10 @@ Controls::Controls() : QWidget(){
     selectedQuestionLayout->addWidget(selectedQuestion);
     selectedQuestionLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
 
-
     propositionMainLayout->addSpacerItem(new QSpacerItem(0, 70));
     QHBoxLayout *propositionBodyLayout = new QHBoxLayout();
     propositionMainLayout->addLayout(propositionBodyLayout);
+
 
     //proposition selection
     QVBoxLayout *propositionSelectionLayout = new QVBoxLayout();
@@ -382,6 +384,7 @@ Controls::Controls() : QWidget(){
     propositionSelection->setEditable(true);
     propositionSelectionLayout->addWidget(propositionSelection);
 
+
     //proposition selection buttons
     QHBoxLayout *buttonsPropositionSelectionLayout = new QHBoxLayout();
     propositionSelectionLayout->addLayout(buttonsPropositionSelectionLayout);
@@ -389,6 +392,7 @@ Controls::Controls() : QWidget(){
     deleteProposition = new QPushButton("DELETE");
     buttonsPropositionSelectionLayout->addWidget(deleteProposition);
     deleteProposition->setMaximumWidth(200);
+
 
     //back to question
     backToQuestions = new QPushButton("RETURN");
@@ -398,6 +402,7 @@ Controls::Controls() : QWidget(){
 
     connect(backToQuestions, SIGNAL(clicked()), this, SLOT(slot_backToQuestions()));
 
+
     //proposition writing
     QVBoxLayout *propositionWritingLayout = new QVBoxLayout();
     propositionBodyLayout->addLayout(propositionWritingLayout);
@@ -405,7 +410,6 @@ Controls::Controls() : QWidget(){
     propositionWritingField = new QTextEdit();
     propositionWritingLayout->addWidget(propositionWritingField);
 
-    
 
     //proposition writing buttons
     QHBoxLayout *buttonsPropositionWritingLayout = new QHBoxLayout();
@@ -420,10 +424,6 @@ Controls::Controls() : QWidget(){
     addProposition->setMaximumWidth(200);
 
     propositionWritingLayout->addSpacerItem(new QSpacerItem(0, 300, QSizePolicy::Expanding, QSizePolicy::Expanding));
-
-
-
-
 
     mainLayout->addSpacerItem(new QSpacerItem(6000, 6000, QSizePolicy::Expanding, QSizePolicy::Expanding));
 

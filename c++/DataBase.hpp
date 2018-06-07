@@ -17,12 +17,11 @@ typedef struct{
 }Question;
 
 
-class GestionBDD{
+class DataBase{
 
 	public :
-		GestionBDD();
-		GestionBDD(std::string ip, std::string user, std::string password, std::string baseName);
-		~GestionBDD();
+		DataBase(std::string ip, std::string user, std::string password, std::string baseName);
+		~DataBase();
 
         std::vector <std::string> getThemes();
 
@@ -37,10 +36,11 @@ class GestionBDD{
 
 
     private :
-        sql::Driver *driver;
-        sql::Connection *connection;
-        sql::Statement *statement;
-        sql::ResultSet *result;
+        sql::Driver* driver;
+        sql::Connection* connection;
+        sql::PreparedStatement* statement = NULL;
+        sql::ResultSet* result = NULL;
+
 
 };
 #endif

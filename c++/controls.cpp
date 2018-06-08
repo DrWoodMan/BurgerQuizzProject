@@ -15,6 +15,8 @@ Controls::Controls() : QWidget(){
     headerLayout->addWidget(logout);
     logout->hide();
 
+    //errorsSpecificationsLabel = new QLabel();
+
     connect(logout, SIGNAL(clicked()), this, SLOT(slot_logout()));
 
     
@@ -106,8 +108,6 @@ Controls::Controls() : QWidget(){
     validateConnectionLayout->addWidget(validateConnection);
     validateConnectionLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
 
-    connect(validateConnection, SIGNAL(clicked()), this, SLOT(slot_validateConnection()));
-
 
 //LOADING
 
@@ -131,7 +131,7 @@ Controls::Controls() : QWidget(){
     movie->start();
 
 //ERRORS
-
+/*
     errorsWidget = new QWidget();
     mainLayout->addWidget(errorsWidget);
     errorsWidget->hide();
@@ -157,7 +157,7 @@ Controls::Controls() : QWidget(){
     errorsSpecificationsLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
     errorsSpecificationsLayout->addWidget(errorsSpecificationsLabel);
     errorsSpecificationsLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
-
+*/
 
 //THEMES
 
@@ -427,16 +427,15 @@ Controls::Controls() : QWidget(){
 
     mainLayout->addSpacerItem(new QSpacerItem(6000, 6000, QSizePolicy::Expanding, QSizePolicy::Expanding));
 
+    serverIP->setEditText("127.0.0.1:3306");
+    login->setEditText("saladeQuiz");
+    password->setText("saladeQuiz");
 }
 
 Controls::~Controls(){}
 
 QCheckBox *Controls::getFullscreen(){
     return fullscreen;
-}
-
-void Controls::setErrorsSpecifications(QString str){
-    errorsSpecificationsLabel->setText(str);
 }
 
 void Controls::slot_showPassword(int state){
@@ -451,25 +450,49 @@ void Controls::slot_showPassword(int state){
         break;
     }
 }
+QPushButton *Controls::getLogout(){
+    return logout;
+}
+/*
+QWidget *Controls::getErrorsWidget(){
+    return errorsWidget;
+}
+*/
+QWidget *Controls::getAuthenticationWidget(){
+    return authenticationWidget;
+}
 
 QComboBox *Controls::getServerIP(){
-
     return serverIP;
 }
 
 QComboBox *Controls::getLogin(){
-
     return login;
 }
 
 QLineEdit *Controls::getPassword(){
-
     return password;
+}
+
+QPushButton *Controls::getValidateConnection(){
+    return validateConnection;
+}
+
+
+QWidget *Controls::getThemeWidget(){
+    return themeWidget;
+}
+
+QWidget *Controls::getQuestionWidget(){
+    return questionWidget;
+}
+
+QWidget *Controls::getPropositionWidget(){
+    return propositionWidget;
 }
 
 void Controls::slot_validateConnection(){
 
-    qDebug()<<"validate Connection";
     authenticationWidget->hide();
     themeWidget->show();
     logout->show();
@@ -483,7 +506,6 @@ void Controls::slot_logout(){
 
 void Controls::slot_relatedQuestions(){
 
-    qDebug()<<"related Questions";
     themeWidget->hide();
     questionWidget->show();
 
@@ -491,14 +513,11 @@ void Controls::slot_relatedQuestions(){
 
 void Controls::slot_backToThemes(){
 
-    qDebug()<<"back to theme";
     questionWidget->hide();
     themeWidget->show();
 }
 
 void Controls::slot_relatedPropositions(){
-
-    qDebug()<<"related Propositions";
 
     questionPlaceholderLayout->removeItem(selectedThemeLayout);
     propositionPlaceholderLayout->addLayout(selectedThemeLayout);
@@ -509,8 +528,6 @@ void Controls::slot_relatedPropositions(){
 }
 
 void Controls::slot_backToQuestions(){
-
-    qDebug()<<"back to questions";
 
     propositionPlaceholderLayout->removeItem(selectedThemeLayout);
     questionPlaceholderLayout->addLayout(selectedThemeLayout);

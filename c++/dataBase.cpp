@@ -1,4 +1,6 @@
-DataBase::DataBase(std::string url, std::string user, std::string password, std::string baseName,){
+#include "DataBase.hpp"
+
+DataBase::DataBase(std::string url, std::string user, std::string password, std::string baseName){
 
 //toStdString()
     try{
@@ -6,19 +8,19 @@ DataBase::DataBase(std::string url, std::string user, std::string password, std:
         connection = driver->connect("tcp://"+url, user, password);
         connection->setSchema(baseName);
 
-        statement = connection->prepareStatement();
-        statement->executeQuery();
+        statement = connection->createStatement();
+        //statement->executeQuery();
+        std::cout<<"connection OK"<<std::endl;
     }
     catch(sql::SQLException &e){
-        std::cout << "# ERR: SQLException in " << __FILE__;
-        std::cout << "(" << __FUNCTION__<< ") on line " <<__LINE__<< std::endl;
-        std::cout << "# ERR: " << e.what();
-        std::cout << "(MySQL error code: " << e.getErrorCode();
-        std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+        error = "";
+        error += "# ERR: " + std::string(e.what());
+        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
+        error += ", SQLState: " + e.getSQLState() + " )";
     }
 }
 
-DataBase::~GestionBDD(){
+DataBase::~DataBase(){
 
     try{
         delete result;
@@ -26,10 +28,18 @@ DataBase::~GestionBDD(){
         delete connection;
     }
     catch(sql::SQLException &e){
-        std::cout << "# ERR: SQLException in " << __FILE__;
-        std::cout << "(" << __FUNCTION__<< ") on line " <<__LINE__<< std::endl;
-        std::cout << "# ERR: " << e.what();
-        std::cout << "(MySQL error code: " << e.getErrorCode();
-        std::cout << ", SQLState: " << e.getSQLState() << " )" << std::endl;
+        error = "";
+        error += "# ERR: " + std::string(e.what());
+        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
+        error += ", SQLState: " + e.getSQLState() + " )";
     }
+    std::cout<<"DECONNEXION"<<std::endl;
 }
+
+ sql::Connection *DataBase::getConnection(){
+     return connection;
+ }
+
+ std::string DataBase::getError(){
+     return error;
+ }

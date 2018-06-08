@@ -14,10 +14,18 @@ class Controls : public QWidget{
         QCheckBox *getFullscreen();
         void setErrorsSpecifications(QString str);
 
+        QPushButton *getLogout();
+        //QWidget *getErrorsWidget();
+        QWidget *getAuthenticationWidget();
         QComboBox *getServerIP();
         QComboBox *getLogin();
         QLineEdit *getPassword();
+        QPushButton *getValidateConnection();
+        QWidget *getThemeWidget();
+        QWidget *getQuestionWidget();
+        QWidget *getPropositionWidget();
 
+        //void setError();
 
     public slots:
         void slot_logout();
@@ -37,8 +45,8 @@ class Controls : public QWidget{
 
         QWidget *loadingWidget;
 
-        QWidget *errorsWidget;
-        QLabel *errorsSpecificationsLabel;
+        //QWidget *errorsWidget;
+        //QLabel *errorsSpecificationsLabel;
 
         QWidget *authenticationWidget;
         QComboBox *serverIP;

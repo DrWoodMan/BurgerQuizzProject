@@ -4,6 +4,7 @@
 
 #include "includes.hpp"
 #include "Controls.hpp"
+#include "DataBase.hpp"
 
 class MainWindow : public QMainWindow {
 
@@ -15,12 +16,16 @@ class MainWindow : public QMainWindow {
 
     public slots:
         void slot_windowSize(int state);
+        void slot_connection();
+        void slot_logout();
 
     private:
     
-        //QWidget *mainWidget;
         QVBoxLayout *mainLayout;
+        //QWidget *previousPage;
         Controls *controls;
+        DataBase *dataBase;
+
     
 };
 #endif

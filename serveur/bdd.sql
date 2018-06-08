@@ -15,7 +15,7 @@ DROP TABLE IF EXISTS user;
 CREATE TABLE user(
     login           Varchar (50) NOT NULL,
     passwordHash    Varchar (32) NOT NULL,
-    token           Varchar (50) NOT NULL,
+    token           Varchar (50),
     mailAddress     Varchar (50) NOT NULL,
 	CONSTRAINT user_PK PRIMARY KEY (login)
 )
@@ -43,7 +43,7 @@ ENGINE=InnoDB;
 
 CREATE TABLE proposition(
     idProposition Int  Auto_increment  NOT NULL,
-    proposition   Varchar (50) NOT NULL,
+    proposition   Varchar (200) NOT NULL,
     solution      Int NOT NULL,
     idQuestion    Int NOT NULL,
     CONSTRAINT proposition_PK PRIMARY KEY (idProposition),

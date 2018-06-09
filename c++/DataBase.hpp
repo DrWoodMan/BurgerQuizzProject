@@ -4,6 +4,17 @@
 #include "includes.hpp"
 
 
+typedef struct{
+    unsigned int idTheme;
+    std::string theme;
+}Theme;
+
+typedef struct{
+    unsigned int idQuestion;
+    std::string field1;
+    std::string field2;
+}Question;
+
 class DataBase{
 
 	public :
@@ -12,10 +23,13 @@ class DataBase{
 
         sql::Connection *getConnection();
         std::string getError();
-        //std::vector <std::string> getThemes();
-
-        /*
+        std::vector <Theme> getThemes();
         void addTheme(std::string theme);
+        void deleteTheme(unsigned int idTheme);
+        void modifyTheme(unsigned int idTheme, std::string theme);
+
+        
+        /*
         void addQuestion(unsigned int idTheme, std::string field1, std::string field2);
         void addProposition(unsigned int idQuestion, std::string propositon, unsigned int solution);
 
@@ -30,8 +44,13 @@ class DataBase{
         sql::Driver *driver;
         sql::Connection *connection = NULL;
         sql::Statement *statement = NULL;
+        sql::PreparedStatement *preparedStatement = NULL;
         sql::ResultSet *result = NULL;
         std::string error;
+
+        
+
+
 
 
 };

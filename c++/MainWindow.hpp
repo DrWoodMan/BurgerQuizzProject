@@ -14,10 +14,16 @@ class MainWindow : public QMainWindow {
         MainWindow();
         ~MainWindow();
 
+        bool dbErrorPopup();
+        void getThemes();
+
     public slots:
         void slot_windowSize(int state);
         void slot_connection();
         void slot_logout();
+        void slot_addTheme();
+        void slot_modifyTheme();
+        void slot_deleteTheme();
 
     private:
     
@@ -25,6 +31,8 @@ class MainWindow : public QMainWindow {
         //QWidget *previousPage;
         Controls *controls;
         DataBase *dataBase;
+
+        std::vector<Theme> themes;
 
     
 };

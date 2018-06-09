@@ -18,6 +18,12 @@ MainWindow::MainWindow() : QMainWindow(){
     connect(controls->getValidateConnection(), SIGNAL(clicked()), this, SLOT(slot_connection()));
     //action de rompre la connexion avec la base de données
     connect(controls->getLogout(), SIGNAL(clicked()), this, SLOT(slot_logout()));
+    //action d'ajouter un theme à la base de données
+    connect(controls->getAddTheme(), SIGNAL(clicked()), this, SLOT(slot_addTheme()));
+    //action de modifier un thème dans la base de données
+    connect(controls->getModifyTheme(), SIGNAL(clicked()), this, SLOT(slot_modifyTheme()));
+    //action de supprimer un theme de la base de données
+    connect(controls->getDeleteTheme(), SIGNAL(clicked()), this, SLOT(slot_deleteTheme()));
 
 /*
     //action de création d'une scene de la taille renseignée à l'appui sur le bouton START
@@ -42,35 +48,103 @@ void MainWindow::slot_windowSize(int state){
     }
 }
 
-void MainWindow::slot_connection(){
+bool MainWindow::dbErrorPopup(){
 
-    dataBase = new DataBase(controls->getServerIP()->currentText().toStdString(), controls->getLogin()->currentText().toStdString(), controls->getPassword()->text().toStdString(), "saladeQuiz");
+    std::string error = dataBase->getError();
 
-    if(!dataBase->getConnection()){
-        
+    if(error != ""){
         QErrorMessage *popup = new QErrorMessage();
         popup->setWindowTitle("ERROR");
         popup->showMessage(QString::fromStdString(dataBase->getError()));
-        qDebug() << QString::fromStdString(dataBase->getError());
+        return true;
     }
-    else if(dataBase->getConnection()){
+    else{
+        return false;
+    }
+
+}
+
+void MainWindow::getThemes(){
+
+    themes = dataBase->getThemes();
+    controls->getThemeSelection()->clear();
+
+    if(!dbErrorPopup()){
+        for(auto &theme : themes){
+            controls->getThemeSelection()->addItem(QString::fromStdString(theme.theme));
+        }
+    }
+}
+
+void MainWindow::slot_connection(){
+    
+    dataBase = new DataBase(controls->getServerIP()->currentText().toStdString(), controls->getLogin()->currentText().toStdString(), controls->getPassword()->text().toStdString(), "saladeQuiz");
+
+    if(!dbErrorPopup()){
         controls->getAuthenticationWidget()->hide();
         controls->getThemeWidget()->show();
         controls->getLogout()->show();
     }
+
+    getThemes();
 }
 
 void MainWindow::slot_logout(){
 
     dataBase->~DataBase();
-    QErrorMessage *popup = new QErrorMessage();
-    popup->setWindowTitle("ERROR");
-    popup->showMessage(QString::fromStdString(dataBase->getError()));
 
-    controls->getThemeWidget()->hide();
-    controls->getQuestionWidget()->hide();
-    controls->getPropositionWidget()->hide();
-    controls->getAuthenticationWidget()->show();
-    controls->getLogout()->hide();
-
+    if(!dbErrorPopup()){
+        controls->getThemeWritingField()->clear();
+        controls->getThemeWidget()->hide();
+        controls->getQuestionWidget()->hide();
+        controls->getPropositionWidget()->hide();
+        controls->getAuthenticationWidget()->show();
+        controls->getLogout()->hide();
+    }
 }
+
+void MainWindow::slot_addTheme(){
+
+    dataBase->addTheme(controls->getThemeWritingField()->toPlainText().toStdString());
+
+    if(!dbErrorPopup()){
+        getThemes();
+        controls->getThemeWritingField()->clear();
+    }
+}
+
+void MainWindow::slot_modifyTheme(){
+
+    std::string themeToModify = controls->getThemeSelection()->currentText().toStdString();
+    std::string newTheme = controls->getThemeWritingField()->toPlainText().toStdString();
+
+    for(auto &theme : themes){
+
+        if(themeToModify == theme.theme){
+            dataBase->modifyTheme(theme.idTheme, newTheme);
+            break;
+        }
+    }
+    if(!dbErrorPopup()){
+        getThemes();
+        controls->getThemeWritingField()->clear();
+    }
+}
+
+void MainWindow::slot_deleteTheme(){
+
+    std::string themeToDelete = controls->getThemeSelection()->currentText().toStdString();
+
+    for(auto &theme : themes){
+
+        if(themeToDelete == theme.theme){
+            dataBase->deleteTheme(theme.idTheme);
+            break;
+        }
+    }
+    if(!dbErrorPopup()){
+        getThemes();
+    }
+}
+
+

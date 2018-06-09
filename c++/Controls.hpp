@@ -21,16 +21,31 @@ class Controls : public QWidget{
         QComboBox *getLogin();
         QLineEdit *getPassword();
         QPushButton *getValidateConnection();
+
         QWidget *getThemeWidget();
+        QComboBox *getThemeSelection();
+        QTextEdit *getThemeWritingField();
+        QPushButton *getAddTheme();
+        QPushButton *getModifyTheme();
+        QPushButton *getDeleteTheme();
+        QPushButton *getRelatedQuestions();
+
         QWidget *getQuestionWidget();
+        QComboBox *getQuestionSelection();
+        QLineEdit *getquestionWritingField1();
+        QLineEdit *getquestionWritingField2();
+        QPushButton *getAddQuestion();
+        QPushButton *getModifyQuestion();
+        QPushButton *getDeleteQuestion();
+        QPushButton *getRelatedPropositions();
+
         QWidget *getPropositionWidget();
 
         //void setError();
 
     public slots:
-        void slot_logout();
         void slot_showPassword(int state);
-        void slot_validateConnection();
+        void slot_copyInWritingField(QString str);
         void slot_relatedQuestions();
         void slot_backToThemes();
         void slot_relatedPropositions();

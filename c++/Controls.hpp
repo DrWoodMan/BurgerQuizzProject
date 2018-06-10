@@ -31,24 +31,30 @@ class Controls : public QWidget{
         QPushButton *getRelatedQuestions();
 
         QWidget *getQuestionWidget();
+        QLabel *getSelectedTheme();
         QComboBox *getQuestionSelection();
-        QLineEdit *getquestionWritingField1();
-        QLineEdit *getquestionWritingField2();
+        QLineEdit *getQuestionWritingField1();
+        QLineEdit *getQuestionWritingField2();
         QPushButton *getAddQuestion();
         QPushButton *getModifyQuestion();
         QPushButton *getDeleteQuestion();
         QPushButton *getRelatedPropositions();
 
         QWidget *getPropositionWidget();
+        QComboBox *getPropositionSelection();
+        QTextEdit *getPropositionWritingField();
+        QPushButton *getAddProposition();
+        QPushButton *getModifyProposition();
+        QPushButton *getDeleteProposition();
 
         //void setError();
 
     public slots:
         void slot_showPassword(int state);
-        void slot_copyInWritingField(QString str);
-        void slot_relatedQuestions();
+        void slot_copyThemeInWritingField(QString str);
         void slot_backToThemes();
         void slot_relatedPropositions();
+        void slot_copyPropositionInWritingField(QString str);
         void slot_backToQuestions();
 
     private:

@@ -189,7 +189,7 @@ Controls::Controls() : QWidget(){
     themeSelection = new QComboBox();
     themeSelectionLayout->addWidget(themeSelection);
 
-    connect(themeSelection, SIGNAL(activated(QString)), this, SLOT(slot_copyInWritingField(QString)));
+    connect(themeSelection, SIGNAL(activated(QString)), this, SLOT(slot_copyThemeInWritingField(QString)));
 
 
     //theme selection buttons
@@ -203,8 +203,6 @@ Controls::Controls() : QWidget(){
     relatedQuestions = new QPushButton("QUESTIONS");
     buttonsThemeSelectionLayout->addWidget(relatedQuestions);
     relatedQuestions->setMaximumWidth(200);
-
-    connect(relatedQuestions, SIGNAL(clicked()), this, SLOT(slot_relatedQuestions()));
 
 
     //theme writing
@@ -379,6 +377,8 @@ Controls::Controls() : QWidget(){
     propositionSelection = new QComboBox();
     propositionSelectionLayout->addWidget(propositionSelection);
 
+    connect(propositionSelection, SIGNAL(activated(QString)), this, SLOT(slot_copyPropositionInWritingField(QString)));
+
 
     //proposition selection buttons
     QHBoxLayout *buttonsPropositionSelectionLayout = new QHBoxLayout();
@@ -433,18 +433,6 @@ QCheckBox *Controls::getFullscreen(){
     return fullscreen;
 }
 
-void Controls::slot_showPassword(int state){
-
-    switch(state){
-        case 0:
-        password->setEchoMode(QLineEdit::Password);
-        break;
-
-        case 2:
-        password->setEchoMode(QLineEdit::Normal);
-        break;
-    }
-}
 QPushButton *Controls::getLogout(){
     return logout;
 }
@@ -506,15 +494,18 @@ QWidget *Controls::getQuestionWidget(){
     return questionWidget;
 }
 
+QLabel *Controls::getSelectedTheme(){
+    return selectedTheme;
+}
 QComboBox *Controls::getQuestionSelection(){
     return questionSelection;
 }
 
-QLineEdit *Controls::getquestionWritingField1(){
+QLineEdit *Controls::getQuestionWritingField1(){
     return questionWritingField1;
 }
 
-QLineEdit *Controls::getquestionWritingField2(){
+QLineEdit *Controls::getQuestionWritingField2(){
     return questionWritingField2;
 }
 
@@ -538,21 +529,48 @@ QWidget *Controls::getPropositionWidget(){
     return propositionWidget;
 }
 
+QComboBox *Controls::getPropositionSelection(){
+    return propositionSelection;
+}
 
+QTextEdit *Controls::getPropositionWritingField(){
+    return propositionWritingField;
+}
 
-void Controls::slot_relatedQuestions(){
+QPushButton *Controls::getAddProposition(){
+    return addProposition;
+}
 
-    selectedTheme->setText(themeSelection->currentText());
+QPushButton *Controls::getModifyProposition(){
+    return modifyProposition;
+}
 
-    themeWidget->hide();
-    questionWidget->show();
+QPushButton *Controls::getDeleteProposition(){
+    return deleteProposition;
+}
 
+void Controls::slot_showPassword(int state){
+
+    switch(state){
+        case 0:
+        password->setEchoMode(QLineEdit::Password);
+        break;
+
+        case 2:
+        password->setEchoMode(QLineEdit::Normal);
+        break;
+    }
+}
+
+void Controls::slot_copyThemeInWritingField(QString str){
+
+    themeWritingField->setPlainText(str);
 }
 
 void Controls::slot_backToThemes(){
 
     selectedQuestion->setText(questionSelection->currentText());
-    
+
     questionWidget->hide();
     themeWidget->show();
 }
@@ -567,9 +585,9 @@ void Controls::slot_relatedPropositions(){
 
 }
 
-void Controls::slot_copyInWritingField(QString str){
+void Controls::slot_copyPropositionInWritingField(QString str){
 
-    themeWritingField->setPlainText(str);
+    propositionWritingField->setPlainText(str);
 }
 
 void Controls::slot_backToQuestions(){
@@ -580,4 +598,3 @@ void Controls::slot_backToQuestions(){
     propositionWidget->hide();
     questionWidget->show();
 }
-

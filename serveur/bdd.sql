@@ -23,8 +23,8 @@ ENGINE=InnoDB;
 
 
 CREATE TABLE theme(
-    idTheme Int  Auto_increment  NOT NULL,
-    theme   Varchar (50) NOT NULL,
+    idTheme Int  Auto_increment NOT NULL,
+    theme   Varchar (50) UNIQUE NOT NULL,
     CONSTRAINT theme_PK PRIMARY KEY (idTheme)
 )
 ENGINE=InnoDB;
@@ -35,6 +35,7 @@ CREATE TABLE question(
     field1     Varchar (50) NOT NULL,
     field2     Varchar (50) NOT NULL,
     idTheme    Int NOT NULL,
+    CONSTRAINT uniqueQuestion UNIQUE (field1, field2),
     CONSTRAINT question_PK PRIMARY KEY (idQuestion),
     CONSTRAINT question_theme_FK FOREIGN KEY (idTheme) REFERENCES theme(idTheme)
 )

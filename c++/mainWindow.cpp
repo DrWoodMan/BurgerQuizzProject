@@ -14,7 +14,7 @@ MainWindow::MainWindow() : QMainWindow(){
 
     //action de basculement entre la taille d'origine et le plein écran
     connect(controls->getFullscreen(), SIGNAL(stateChanged(int)), this, SLOT(slot_windowSize(int)));
-    //action d'initier la connexion avec la base de données
+    //action d'initier la connexion avec la base de données et d'afficher les themes
     connect(controls->getValidateConnection(), SIGNAL(clicked()), this, SLOT(slot_connection()));
     //action de rompre la connexion avec la base de données
     connect(controls->getLogout(), SIGNAL(clicked()), this, SLOT(slot_logout()));
@@ -24,6 +24,16 @@ MainWindow::MainWindow() : QMainWindow(){
     connect(controls->getModifyTheme(), SIGNAL(clicked()), this, SLOT(slot_modifyTheme()));
     //action de supprimer un theme de la base de données
     connect(controls->getDeleteTheme(), SIGNAL(clicked()), this, SLOT(slot_deleteTheme()));
+    //action d'afficher la page des questions avec les questions du thème selectionné
+    connect(controls->getRelatedQuestions(), SIGNAL(clicked()), this, SLOT(slot_relatedQuestions()));
+    //actin d'afficher la question selctionnée dans les champs de modification
+    connect(controls->getQuestionSelection(), SIGNAL(currentIndexChanged(int)), this, SLOT(slot_copyQuestionInWritingFields(int)));
+    //action d'ajouter une question à la bdd
+    connect(controls->getAddQuestion(), SIGNAL(clicked()), this, SLOT(slot_addQuestion()));
+
+    connect(controls->getModifyQuestion(), SIGNAL(clicked()), this, SLOT(slot_modifyQuestion()));
+
+    connect(controls->getDeleteQuestion(), SIGNAL(clicked()), this, SLOT(slot_deleteQuestion()));
 
 /*
     //action de création d'une scene de la taille renseignée à l'appui sur le bouton START
@@ -76,6 +86,20 @@ void MainWindow::getThemes(){
     }
 }
 
+void MainWindow::getQuestions(){
+
+    questions = dataBase->getQuestions(idSelectedTheme);
+    controls->getQuestionSelection()->clear();
+    controls->getQuestionWritingField1()->clear();
+    controls->getQuestionWritingField2()->clear();
+
+    if(!dbErrorPopup()){
+        for(auto &question : questions){
+            controls->getQuestionSelection()->addItem(QString::fromStdString(question.field1 + ", " + question.field2 + " ou les deux ?"));
+        }
+    }
+}
+
 void MainWindow::slot_connection(){
     
     dataBase = new DataBase(controls->getServerIP()->currentText().toStdString(), controls->getLogin()->currentText().toStdString(), controls->getPassword()->text().toStdString(), "saladeQuiz");
@@ -115,16 +139,12 @@ void MainWindow::slot_addTheme(){
 
 void MainWindow::slot_modifyTheme(){
 
-    std::string themeToModify = controls->getThemeSelection()->currentText().toStdString();
-    std::string newTheme = controls->getThemeWritingField()->toPlainText().toStdString();
+    Theme theme;
+    theme.theme = controls->getThemeWritingField()->toPlainText().toStdString();
+    theme.idTheme = themes[controls->getThemeSelection()->currentIndex()].idTheme;
 
-    for(auto &theme : themes){
+    dataBase->modifyTheme(theme);
 
-        if(themeToModify == theme.theme){
-            dataBase->modifyTheme(theme.idTheme, newTheme);
-            break;
-        }
-    }
     if(!dbErrorPopup()){
         getThemes();
         controls->getThemeWritingField()->clear();
@@ -133,17 +153,81 @@ void MainWindow::slot_modifyTheme(){
 
 void MainWindow::slot_deleteTheme(){
 
-    std::string themeToDelete = controls->getThemeSelection()->currentText().toStdString();
+    dataBase->deleteTheme(themes[controls->getThemeSelection()->currentIndex()].idTheme);
+
+    if(!dbErrorPopup()){
+        getThemes();
+    }
+}
+
+void MainWindow::slot_relatedQuestions(){
+
+    QString qSelectedTheme = controls->getThemeSelection()->currentText();
+
+    controls->getSelectedTheme()->setText("Selected theme : " + qSelectedTheme);
+    std::string selectedTheme = qSelectedTheme.toStdString();
 
     for(auto &theme : themes){
 
-        if(themeToDelete == theme.theme){
-            dataBase->deleteTheme(theme.idTheme);
-            break;
+        if(selectedTheme == theme.theme){
+            controls->getThemeWidget()->hide();
+            controls->getQuestionWidget()->show();
+            idSelectedTheme = theme.idTheme;
+            getQuestions();
         }
     }
+}
+
+void MainWindow::slot_copyQuestionInWritingFields(int index){
+
+    if(index >= 0){
+        controls->getQuestionWritingField1()->setText(QString::fromStdString(questions[index].field1));
+        controls->getQuestionWritingField2()->setText(QString::fromStdString(questions[index].field2));
+    }
+}
+
+void MainWindow::slot_addQuestion(){
+
+    Question question;
+    question.field1 = controls->getQuestionWritingField1()->text().toStdString();
+    question.field2 = controls->getQuestionWritingField2()->text().toStdString();
+    question.idTheme = idSelectedTheme;
+
+    dataBase->addQuestion(question);
+
     if(!dbErrorPopup()){
-        getThemes();
+        getQuestions();
+        controls->getQuestionWritingField1()->clear();
+        controls->getQuestionWritingField2()->clear();
+    }
+}
+
+void MainWindow::slot_modifyQuestion(){
+
+    Question question;
+
+    question.field1 = controls->getQuestionWritingField1()->text().toStdString();
+    question.field2 = controls->getQuestionWritingField2()->text().toStdString();
+
+    question.idQuestion = questions[controls->getQuestionSelection()->currentIndex()].idQuestion;
+    question.idTheme = idSelectedTheme;
+
+
+    dataBase->modifyQuestion(question);
+
+    if(!dbErrorPopup()){
+        getQuestions();
+        controls->getQuestionWritingField1()->clear();
+        controls->getQuestionWritingField2()->clear();
+    }
+}
+
+void MainWindow::slot_deleteQuestion(){
+
+    dataBase->deleteQuestion(questions[controls->getQuestionSelection()->currentIndex()].idQuestion);
+
+    if(!dbErrorPopup()){
+        getQuestions();
     }
 }
 

@@ -13,7 +13,14 @@ typedef struct{
     unsigned int idQuestion;
     std::string field1;
     std::string field2;
+    unsigned int idTheme;
 }Question;
+
+typedef struct{
+    unsigned int idProposition;
+    std::string proposition;
+    unsigned int solution;
+}Proposition;
 
 class DataBase{
 
@@ -23,11 +30,16 @@ class DataBase{
 
         sql::Connection *getConnection();
         std::string getError();
+
         std::vector <Theme> getThemes();
         void addTheme(std::string theme);
+        void modifyTheme(Theme theme);
         void deleteTheme(unsigned int idTheme);
-        void modifyTheme(unsigned int idTheme, std::string theme);
 
+        std::vector<Question> getQuestions(unsigned int idTheme);
+        void addQuestion(Question question);
+        void modifyQuestion(Question question);
+        void deleteQuestion(unsigned int idQuestion);
         
         /*
         void addQuestion(unsigned int idTheme, std::string field1, std::string field2);

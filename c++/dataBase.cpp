@@ -61,7 +61,6 @@ std::vector<Theme> DataBase::getThemes(){
         error += "(MySQL error code: " + std::to_string(e.getErrorCode());
         error += ", SQLState: " + e.getSQLState() + " )";
     }
-
     return themes;
 }
 
@@ -81,10 +80,27 @@ void DataBase::addTheme(std::string theme){
     }
 }
 
+void DataBase::modifyTheme(Theme theme){
+
+    try{
+        preparedStatement = connection->prepareStatement("UPDATE theme SET theme = (?) WHERE idTheme = (?)");
+        preparedStatement->setString(1, theme.theme);
+        preparedStatement->setInt(2, theme.idTheme);
+        result = preparedStatement->executeQuery();
+
+        error = "";
+    }
+    catch(sql::SQLException &e){
+        error += "# ERR: " + std::string(e.what());
+        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
+        error += ", SQLState: " + e.getSQLState() + " )";
+    }
+}
+
 void DataBase::deleteTheme(unsigned int idTheme){
 
     try{
-        preparedStatement = connection->prepareStatement("DELETE FROM theme WHERE (?)");
+        preparedStatement = connection->prepareStatement("DELETE FROM theme WHERE idTheme = (?)");
         preparedStatement->setInt(1, idTheme);
         result = preparedStatement->executeQuery();
 
@@ -97,12 +113,74 @@ void DataBase::deleteTheme(unsigned int idTheme){
     }
 }
 
-void DataBase::modifyTheme(unsigned int idTheme, std::string theme){
+
+std::vector<Question> DataBase::getQuestions(unsigned int idTheme){
+
+    std::vector <Question> questions;
+    try{
+        preparedStatement = connection->prepareStatement("SELECT idQuestion, field1, field2 FROM question WHERE idTheme = (?)");
+        preparedStatement->setInt(1, idTheme);
+        result = preparedStatement->executeQuery();
+
+        while(result->next()){
+            Question tempQuestion;
+            tempQuestion.idQuestion = result->getInt(1);
+            tempQuestion.field1 = result->getString(2);
+            tempQuestion.field2 = result->getString(3);
+            questions.push_back(tempQuestion);
+        }
+        error = "";
+    }
+    catch(sql::SQLException &e){
+        error += "# ERR: " + std::string(e.what());
+        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
+        error += ", SQLState: " + e.getSQLState() + " )";
+    }
+    return questions;
+}
+
+void DataBase::addQuestion(Question question){
 
     try{
-        preparedStatement = connection->prepareStatement("UPDATE theme SET theme = (?) WHERE idTheme = (?)");
-        preparedStatement->setString(1, theme);
-        preparedStatement->setInt(2, idTheme);
+        preparedStatement = connection->prepareStatement("INSERT INTO question(field1, field2, idtheme) VALUES (?, ?, ?)");
+        preparedStatement->setString(1, question.field1);
+        preparedStatement->setString(2, question.field2);
+        preparedStatement->setInt(3, question.idTheme);
+        result = preparedStatement->executeQuery();
+
+        error = "";
+    }
+    catch(sql::SQLException &e){
+        error += "# ERR: " + std::string(e.what());
+        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
+        error += ", SQLState: " + e.getSQLState() + " )";
+    }
+}
+
+void DataBase::modifyQuestion(Question question){
+
+    try{
+        preparedStatement = connection->prepareStatement("UPDATE question SET field1 = (?), field2 = (?), idTheme = (?) WHERE idQuestion = (?)");
+        preparedStatement->setString(1, question.field1);
+        preparedStatement->setString(2, question.field2);
+        preparedStatement->setInt(3, question.idTheme);
+        preparedStatement->setInt(4, question.idQuestion);
+        result = preparedStatement->executeQuery();
+
+        error = "";
+    }
+    catch(sql::SQLException &e){
+        error += "# ERR: " + std::string(e.what());
+        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
+        error += ", SQLState: " + e.getSQLState() + " )";
+    }
+}
+
+void DataBase::deleteQuestion(unsigned int idQuestion){
+
+    try{
+        preparedStatement = connection->prepareStatement("DELETE FROM question WHERE idQuestion = (?)");
+        preparedStatement->setInt(1, idQuestion);
         result = preparedStatement->executeQuery();
 
         error = "";

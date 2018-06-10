@@ -420,6 +420,19 @@ Controls::Controls() : QWidget(){
 
     propositionWritingLayout->addSpacerItem(new QSpacerItem(0, 300, QSizePolicy::Expanding, QSizePolicy::Expanding));
 
+    //solution radio buttons
+    QLabel *propositionSolutionLabel = new QLabel("Solution :");
+    propositionWritingLayout->addWidget(propositionSolutionLabel);
+
+    theOne = new QRadioButton();
+    propositionWritingLayout->addWidget(theOne);
+
+    theOther = new QRadioButton();
+    propositionWritingLayout->addWidget(theOther);
+
+    both = new QRadioButton();
+    propositionWritingLayout->addWidget(both);
+
     mainLayout->addSpacerItem(new QSpacerItem(6000, 6000, QSizePolicy::Expanding, QSizePolicy::Expanding));
 
     serverIP->setEditText("127.0.0.1:3306");

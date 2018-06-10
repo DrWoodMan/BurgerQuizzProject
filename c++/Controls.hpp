@@ -46,8 +46,9 @@ class Controls : public QWidget{
         QPushButton *getAddProposition();
         QPushButton *getModifyProposition();
         QPushButton *getDeleteProposition();
+        QRadioButton *getTheOne();
+        QRadioButton *getTheOther();
 
-        //void setError();
 
     public slots:
         void slot_showPassword(int state);
@@ -106,6 +107,9 @@ class Controls : public QWidget{
         QPushButton *modifyProposition;
         QPushButton *addProposition;
         QPushButton *backToQuestions;
+        QRadioButton *theOne;
+        QRadioButton *theOther;
+        QRadioButton *both;
 
 
 

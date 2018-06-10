@@ -163,19 +163,13 @@ void MainWindow::slot_deleteTheme(){
 void MainWindow::slot_relatedQuestions(){
 
     QString qSelectedTheme = controls->getThemeSelection()->currentText();
-
     controls->getSelectedTheme()->setText("Selected theme : " + qSelectedTheme);
-    std::string selectedTheme = qSelectedTheme.toStdString();
 
-    for(auto &theme : themes){
-
-        if(selectedTheme == theme.theme){
-            controls->getThemeWidget()->hide();
-            controls->getQuestionWidget()->show();
-            idSelectedTheme = theme.idTheme;
-            getQuestions();
-        }
-    }
+    idSelectedTheme = themes[controls->getThemeSelection()->currentIndex()].idTheme;
+    qDebug() << idSelectedTheme;
+    controls->getThemeWidget()->hide();
+    controls->getQuestionWidget()->show();
+    getQuestions();
 }
 
 void MainWindow::slot_copyQuestionInWritingFields(int index){
@@ -230,5 +224,23 @@ void MainWindow::slot_deleteQuestion(){
         getQuestions();
     }
 }
+/*
+void MainWindow::slot_relatedQuestions(){
 
+    QString qSelectedTheme = controls->getThemeSelection()->currentText();
+
+    controls->getSelectedTheme()->setText("Selected theme : " + qSelectedTheme);
+    std::string selectedTheme = qSelectedTheme.toStdString();
+
+    for(auto &theme : themes){
+
+        if(selectedTheme == theme.theme){
+            controls->getThemeWidget()->hide();
+            controls->getQuestionWidget()->show();
+            idSelectedTheme = theme.idTheme;
+            getQuestions();
+        }
+    }
+}
+*/
 

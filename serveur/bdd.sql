@@ -62,11 +62,15 @@ ENGINE=InnoDB;
 
 
 CREATE TABLE has(
-    idGame     Int NOT NULL,
-    idQuestion Int NOT NULL,
-    CONSTRAINT has_PK PRIMARY KEY (idGame,idQuestion),
-	CONSTRAINT has_game_FK FOREIGN KEY (idGame) REFERENCES game(idGame),
-	CONSTRAINT has_question0_FK FOREIGN KEY (idQuestion) REFERENCES question(idQuestion)
+    idGame           Int NOT NULL,
+    idQuestion       Int NOT NULL,
+    idProposition    Int NOT NULL,
+    questionOrder    Int NOT NULL,
+    propositionOrder Int NOT NULL,
+    CONSTRAINT has_PK PRIMARY KEY (idGame, idQuestion, idProposition),
+	CONSTRAINT has_game0_FK FOREIGN KEY (idGame) REFERENCES game(idGame),
+	CONSTRAINT has_question_FK FOREIGN KEY (idQuestion) REFERENCES question(idQuestion),
+    CONSTRAINT has_proposition1_FK FOREIGN KEY (idProposition) REFERENCES proposition(idProposition)
 )
 ENGINE=InnoDB;
 

@@ -113,6 +113,7 @@ void MainWindow::getPropositions(){
 
     propositions = dataBase->getPropositions(idSelectedQuestion);
     controls->getPropositionSelection()->clear();
+    controls->getPropositionWritingField()->clear();
 
     if(!dbErrorPopup()){
         for(auto &proposition : propositions){

@@ -32,6 +32,7 @@ class Controls : public QWidget{
 
         QWidget *getQuestionWidget();
         QLabel *getSelectedTheme();
+        QHBoxLayout *getQuestionPlaceHolderLayout();
         QComboBox *getQuestionSelection();
         QLineEdit *getQuestionWritingField1();
         QLineEdit *getQuestionWritingField2();
@@ -41,8 +42,8 @@ class Controls : public QWidget{
         QPushButton *getRelatedPropositions();
 
         QWidget *getPropositionWidget();
+        QHBoxLayout *getPropositionPlaceholderLayout();
         QComboBox *getPropositionSelection();
-        
         QTextEdit *getPropositionWritingField();
         QPushButton *getAddProposition();
         QPushButton *getModifyProposition();

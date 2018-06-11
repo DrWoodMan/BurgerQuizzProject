@@ -74,7 +74,7 @@ CREATE TABLE score(
     idGame Int NOT NULL,
     login  Varchar (50) NOT NULL,
     score  Int NOT NULL,
-    time TIMESTAMP NOT NULL,
+    time Int NOT NULL,
     CONSTRAINT score_PK PRIMARY KEY (idGame,login),
 	CONSTRAINT score_game_FK FOREIGN KEY (idGame) REFERENCES game(idGame),
 	CONSTRAINT score_user0_FK FOREIGN KEY (login) REFERENCES user(login)

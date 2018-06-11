@@ -510,6 +510,11 @@ QWidget *Controls::getQuestionWidget(){
 QLabel *Controls::getSelectedTheme(){
     return selectedTheme;
 }
+
+QHBoxLayout *Controls::getQuestionPlaceHolderLayout(){
+    return questionPlaceholderLayout;
+}
+
 QComboBox *Controls::getQuestionSelection(){
     return questionSelection;
 }
@@ -540,6 +545,10 @@ QPushButton *Controls::getRelatedPropositions(){
 
 QWidget *Controls::getPropositionWidget(){
     return propositionWidget;
+}
+
+QHBoxLayout *Controls::getPropositionPlaceholderLayout(){
+    return propositionPlaceholderLayout;
 }
 
 QComboBox *Controls::getPropositionSelection(){

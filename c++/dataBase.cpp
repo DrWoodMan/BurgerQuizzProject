@@ -191,3 +191,28 @@ void DataBase::deleteQuestion(unsigned int idQuestion){
         error += ", SQLState: " + e.getSQLState() + " )";
     }
 }
+
+std::vector<Proposition> DataBase::getPropositions(unsigned int idQuestion){
+
+    std::vector <Proposition> propositions;
+    try{
+        preparedStatement = connection->prepareStatement("SELECT idProposition, proposition, solution FROM proposition WHERE idquestion = (?)");
+        preparedStatement->setInt(1, idQuestion);
+        result = preparedStatement->executeQuery();
+
+        while(result->next()){
+            Proposition tempProposition;
+            tempProposition.idProposition = result->getInt(1);
+            tempProposition.proposition = result->getString(2);
+            tempProposition.solution = result->getInt(3);
+            propositions.push_back(tempProposition);
+        }
+        error = "";
+    }
+    catch(sql::SQLException &e){
+        error += "# ERR: " + std::string(e.what());
+        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
+        error += ", SQLState: " + e.getSQLState() + " )";
+    }
+    return propositions;
+}

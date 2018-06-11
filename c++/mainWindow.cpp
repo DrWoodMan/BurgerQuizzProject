@@ -35,6 +35,7 @@ MainWindow::MainWindow() : QMainWindow(){
 
     connect(controls->getDeleteQuestion(), SIGNAL(clicked()), this, SLOT(slot_deleteQuestion()));
 
+    connect(controls->getRelatedPropositions(), SIGNAL(cliked()), this, SLOT(slot_relatedPropositions()));
 /*
     //action de création d'une scene de la taille renseignée à l'appui sur le bouton START
     connect(controls->getStartButton(), SIGNAL(clicked()), this, SLOT(slot_startScene()));
@@ -96,6 +97,18 @@ void MainWindow::getQuestions(){
     if(!dbErrorPopup()){
         for(auto &question : questions){
             controls->getQuestionSelection()->addItem(QString::fromStdString(question.field1 + ", " + question.field2 + " ou les deux ?"));
+        }
+    }
+}
+
+void MainWindow::getPropositions(){
+
+    propositions = dataBase->getPropositions(idSelectedQuestion);
+    controls->getPropositionSelection()->clear();
+
+    if(!dbErrorPopup()){
+        for(auto &proposition : propositions){
+            controls->getPropositionSelection()->addItem(QString::fromStdString(proposition.proposition));
         }
     }
 }
@@ -162,11 +175,10 @@ void MainWindow::slot_deleteTheme(){
 
 void MainWindow::slot_relatedQuestions(){
 
-    QString qSelectedTheme = controls->getThemeSelection()->currentText();
-    controls->getSelectedTheme()->setText("Selected theme : " + qSelectedTheme);
+    QString selectedTheme = controls->getThemeSelection()->currentText();
+    controls->getSelectedTheme()->setText("Selected theme : " + selectedTheme);
 
     idSelectedTheme = themes[controls->getThemeSelection()->currentIndex()].idTheme;
-    qDebug() << idSelectedTheme;
     controls->getThemeWidget()->hide();
     controls->getQuestionWidget()->show();
     getQuestions();
@@ -224,23 +236,26 @@ void MainWindow::slot_deleteQuestion(){
         getQuestions();
     }
 }
-/*
-void MainWindow::slot_relatedQuestions(){
 
-    QString qSelectedTheme = controls->getThemeSelection()->currentText();
+void MainWindow::slot_relatedPropositions(){
 
-    controls->getSelectedTheme()->setText("Selected theme : " + qSelectedTheme);
-    std::string selectedTheme = qSelectedTheme.toStdString();
+    QString selectedQuestion = controls->getQuestionSelection()->currentText();
+    controls->getSelectedQuestion()->setText("Selected question : " + selectedQuestion);
 
-    for(auto &theme : themes){
+    unsigned int index  = controls->getQuestionSelection()->currentIndex();
 
-        if(selectedTheme == theme.theme){
-            controls->getThemeWidget()->hide();
-            controls->getQuestionWidget()->show();
-            idSelectedTheme = theme.idTheme;
-            getQuestions();
-        }
-    }
+    controls->getTheOne()->setText(QString::fromStdString(questions[index].field1));
+    controls->getTheOther()->setText(QString::fromStdString(questions[index].field2));
+    
+    idSelectedQuestion = questions.[index].idQuestion
+
+    controls->getQuestionPlaceholderLayout()->removeItem(selectedThemeLayout);
+    propositionPlaceholderLayout->addLayout(selectedThemeLayout);
+
+    controls->getQuestionWidget->hide();
+    controls->getPropositionWidget->show();
+    getPropositions();
+
 }
-*/
+
 

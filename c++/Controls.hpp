@@ -42,6 +42,7 @@ class Controls : public QWidget{
 
         QWidget *getPropositionWidget();
         QComboBox *getPropositionSelection();
+        
         QTextEdit *getPropositionWritingField();
         QPushButton *getAddProposition();
         QPushButton *getModifyProposition();
@@ -54,7 +55,7 @@ class Controls : public QWidget{
         void slot_showPassword(int state);
         void slot_copyThemeInWritingField(QString str);
         void slot_backToThemes();
-        void slot_relatedPropositions();
+
         void slot_copyPropositionInWritingField(QString str);
         void slot_backToQuestions();
 

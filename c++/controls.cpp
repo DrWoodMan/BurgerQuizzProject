@@ -430,7 +430,7 @@ Controls::Controls() : QWidget(){
     theOther = new QRadioButton();
     propositionWritingLayout->addWidget(theOther);
 
-    both = new QRadioButton();
+    both = new QRadioButton("both");
     propositionWritingLayout->addWidget(both);
 
     mainLayout->addSpacerItem(new QSpacerItem(6000, 6000, QSizePolicy::Expanding, QSizePolicy::Expanding));
@@ -560,6 +560,14 @@ QPushButton *Controls::getModifyProposition(){
 
 QPushButton *Controls::getDeleteProposition(){
     return deleteProposition;
+}
+
+QRadioButton *Controls::getTheOne(){
+    return theOne;
+}
+
+QRadioButton *Controls::getTheOther(){
+    return theOther;
 }
 
 void Controls::slot_showPassword(int state){

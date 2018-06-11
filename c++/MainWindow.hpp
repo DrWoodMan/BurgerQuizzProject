@@ -17,6 +17,7 @@ class MainWindow : public QMainWindow {
         bool dbErrorPopup();
         void getThemes();
         void getQuestions();
+        void getPropositions();
 
     public slots:
         void slot_windowSize(int state);
@@ -31,6 +32,7 @@ class MainWindow : public QMainWindow {
         void slot_addQuestion();
         void slot_modifyQuestion();
         void slot_deleteQuestion();
+        void slot_relatedPropositions();
 
     private:
     
@@ -42,6 +44,7 @@ class MainWindow : public QMainWindow {
         std::vector<Theme> themes;
         unsigned int idSelectedTheme;
         std::vector<Question> questions;
+        unsigned int idSelectedQuestion;
         std::vector<Proposition> propositions;
 
     

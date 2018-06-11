@@ -40,6 +40,8 @@ class DataBase{
         void addQuestion(Question question);
         void modifyQuestion(Question question);
         void deleteQuestion(unsigned int idQuestion);
+
+        std::vector<Proposition> getPropositions(unsigned int idQuestion);
         
         /*
         void addQuestion(unsigned int idTheme, std::string field1, std::string field2);

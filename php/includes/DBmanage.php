@@ -2,10 +2,8 @@
 
 require_once('includes/Game.php');
 require_once('includes/User.php');
-require_once('includes/Theme.php');
 require_once('includes/Score.php');
-require_once('includes/Question.php');
-require_once('includes/Proposition.php');
+
 
 
 

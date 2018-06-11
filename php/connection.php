@@ -2,36 +2,46 @@
 <?php
 require_once('includes/functions.php');
 
+$alert=NULL;
 
-
+ if(isset($_POST['pwd'])&& isset($_POST['login'])){
 	$validation=true;
 	$content=new User;
 	$dbh = new DBmanage;
 	//on se connecte à la BDD, puis on vérifie si le login fourni est dans la base de données
 
 	$dbh->connection();
-	$content=loadUser($_POST['login'],$dbh->getDb());
+	$content=loadUserFromLogin($_POST['login'],$dbh->getDb());
 	var_dump($dbh);
 
 	print_r($content);
 
-	if(count($content) == 0){
+	if(count($content[0]) == NULL){
 		$validation=false;
+		echo"coucou la narines";
+
 	}else if($content[0]->getPassword() != $_POST['pwd']){// on vérifie si le mdp associé au login est le bon
 		$validation=false;
 	}else{
 		$content=createToken($content, $dbh->getDb());
+		  header('Location: http://www.salade-quiz.fr/php/user.php?token='.$content[0]->getToken());
+
+		if(checkToken($content, $dbh->getDb())==true ){
+			echo "token valide";
+		}else{
+			echo "token invalide";
+		}
 	}
 
-	if(checkToken($content, $dbh->getDb())==true){
-		echo "token valide";
-	}else{
-		echo "token invalide";
-	}
+  if($validation == false){
+    $alert ="<div class='alert alert-danger' role='alert' style='width: 195px;' >Identifiants incorrects</div>";
+
+
+  }
 
 	$dbh=NULL;
 	$_POST['pwd']=NULL;
-
+}
 ?>
 
 <html>
@@ -88,7 +98,7 @@ require_once('includes/functions.php');
 
 				<div class=" col-lg-3">
 					<label>Pseudonyme</label>
-					<input  type="text" placeholder="..." class="form-control" name="login" value="<?= @$_POST['login'];?>"></input>
+					<input  type="text" placeholder="..." class="form-control" name="login"  value="<?= @$_POST['login'];?>"></input>
 				</div>
 
 			</div>
@@ -107,6 +117,7 @@ require_once('includes/functions.php');
 
 				</div>
 
+
 			</div>
 		</br>
 
@@ -121,6 +132,8 @@ require_once('includes/functions.php');
       <div class=" form-check  col-lg">
         <input id="show-pwd" type="checkbox" class="form-check-input " onclick="hide();"></input>
       </div>
+
+
     </div>
 
 
@@ -135,13 +148,28 @@ require_once('includes/functions.php');
 				<div class=" col-lg-1">
 					<button type="submit" class="btn btn-primary">Valider</button>
 				</div>
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-4">
+  				<?php echo($alert);?>
+  			</div>
 			</div>
+
+			<div class="col-lg-2">
+			</div>
+
+
+			</div>
+
+      <div class="col-lg-3">
+        <img src="../resources/salade.jpg" style=" max-width: 125%; max-height: 125%;">
+      </div>
+
+
 	</div>
 </form>
 
-<div class="col-sm">
-  <img src="../resources/salade.jpg" style=" max-width: 125%; max-height: 125%;">
-</div>
+
 </div>
 </div>
 

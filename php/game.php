@@ -1,5 +1,28 @@
 
-<?php?>
+<?php
+require_once('includes/functions.php');
+
+
+$token=$_GET['token'];
+$idGame=$_GET['idGame'];
+$idQuestion=$_GET['idQuestion'];
+$idProposition=$_GET['idProp'];
+$time=$_GET['time'];
+$content=new User;
+$dbh = new DBmanage;
+$game= new Game;
+$score = new Score;
+//on se connecte à la BDD, puis on vérifie si le login fourni est dans la base de données
+
+$dbh->connection();
+$content=loadUserFromToken($token,$dbh->getDb());
+
+
+
+
+
+
+?>
 
 <html>
 
@@ -10,7 +33,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 		<!-- Title -->
-		<title>Salade Quiz - Partie</title>
+		<title>Salade Quiz - Partie n° <?php echo $idGame;?></title>
 
     <!-- Css Styles -->
     <link href="../css\bootstrap.min.css" rel="stylesheet">
@@ -36,10 +59,10 @@
     <div class="row" style="margin-left:10px;">
       <div class="col-lg-5">
       </div>
-      <h4 class =" col-lg-2 " >Jeu n°44100</h4>
+      <h4 class =" col-lg-2 " >Partie n°<?php echo $idGame;?></h4>
       <div class="col-lg-3">
       </div>
-      <button type="submit" class="btn btn-primary">Quitter</button>
+      <button type="button" class="btn btn-primary" onclick="window.Location='leave.php'">Quitter</button>
 
     </div>
 

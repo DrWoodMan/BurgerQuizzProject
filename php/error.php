@@ -1,6 +1,15 @@
 
-<?php?>
+<?php
+$idError=$_GET['idError'];
 
+
+
+
+
+
+
+
+ ?>
 <html>
 
 	<head>
@@ -32,11 +41,11 @@
 		</header>
 
   </br>
-
+<div id="centerPart">
     <div class="row" style="margin-left:80px;">
       <div class="col-lg-4">
       </div>
-      <h4 class =" col-lg-4 " >Erreur 404: Page introuvable</h4>
+      <h4 class =" col-lg-4 " >Erreur <?php echo $idError;?>: Page introuvable</h4>
     </div>
 
 
@@ -56,7 +65,7 @@
   </div>
 
   <p class =" col-lg-4 " style="text-align: center;">Oh non, il semblerait que votre lien ne soit pas valide! Mais ne vous en faites pas,
-     retournez sur la page d'où vous venez, et mangez un peu de salade pour la route! ;)</p>
+     retournez sur la page d'accueil, et mangez un peu de salade pour la route! ;)</p>
 </div>
 
 
@@ -67,7 +76,7 @@
   <div class="col-lg-5" style="margin-left:80px;">
   </div>
 
-  <button type="submit" class="btn btn-primary" onclick="history.go(-1)">Retour</button>
+  <button type="button" class="btn btn-primary" onclick=locateToAnywhere("..")>Retour</button>
 </div>
 
 
@@ -76,7 +85,7 @@
 
 
 
-
+</div>
 	<footer>
 	</footer>
 

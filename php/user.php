@@ -1,5 +1,47 @@
 
-<?php?>
+<?php
+
+require_once('includes/functions.php');
+
+$token=$_GET['token'];
+$content=new User;
+$dbh = new DBmanage;
+//on se connecte à la BDD, puis on vérifie si le login fourni est dans la base de données
+
+$dbh->connection();
+$content=loadUserFromToken($token,$dbh->getDb());
+
+$globalScore=getScoreForGlobalPodium($dbh->getDb());
+$specificScore=getScoreForPersonalList($content[0]->getLogin(), $dbh->getDb());
+
+
+for($i=0;$i<sizeof($globalScore);$i++){
+	$globalScore[$i] = generateGlobalGamesPodium($globalScore, $i, $content);
+}
+
+if(sizeof($globalScore)<5){
+	for($i=sizeof($globalScore);$i<5;$i++){
+		$globalScore[$i]=NULL;
+	}
+}
+
+for($i=0;$i<sizeof($specificScore);$i++){
+	$specificScore[$i] = generatePersonalHistory($specificScore, $i, $content);
+}
+echo"salut";
+
+if(sizeof($specificScore)<5){
+	for($i=sizeof($specificScore);$i<5;$i++){
+		$specificScore[$i]=NULL;
+	}
+}
+echo "aled";
+	$generate= "<button type='button' class='btn btn-primary' onclick=window.location='generate.php?token=".$content[0]->getToken()."'>C'est parti!</button>";
+echo "voici le bouton:";
+
+
+//var_dump($dbh);
+?>
 
 <html>
 
@@ -42,7 +84,10 @@
       </div>
       <h4 class =" col-lg-2 " i>Mon historique</h4>
 
+			<div class="col-lg-2">
+			</div>
 
+			<p class =" col-lg-2 " i>Bonjour, <?php echo $content[0]->getLogin();?></p>
 
     </div>
   	</br>
@@ -65,11 +110,7 @@
 				<div class=" col-lg-2"> <!-- Palmares-->
           <div class="row">
             <div>
-              <a id="id-user">User</a><a> | </a> <a id="score">score</a>
-              </br>
-              <a id="id-game-1">Partie 44100</a>
-              </br>
-              <button type="submit" class="btn btn-primary">Jouer</button>
+							<?php echo $globalScore[0];?>
             </div>
           </div>
         </div>
@@ -77,14 +118,10 @@
 				<div class="col-lg-2">
 				</div>
 
-        <div class=" col-lg-2" style="margin-left:50px;">
+        <div class=" col-lg-2" style="margin-left:50px;"> <!-- Historique personnel-->
           <div class="row">
             <div>
-              <a id="score" >score</a>
-              </br>
-              <a id="id-game">Partie 44100</a>
-              </br>
-              <button type="submit" class="btn btn-primary">Jouer</button>
+              <?php echo $specificScore[0];?>
             </div>
           </div>
         </div>
@@ -104,11 +141,8 @@
         <div class=" col-lg-2"> <!-- Palmares-->
           <div class="row">
             <div>
-              <a id="id-user">User</a><a> | </a> <a id="score">score</a>
-              </br>
-              <a id="id-game-2">Partie 44100</a>
-              </br>
-              <button type="submit" class="btn btn-primary">Jouer</button>
+							<?php echo $globalScore[1];?>
+
             </div>
           </div>
 
@@ -117,14 +151,11 @@
         <div class="col-lg-2">
         </div>
 
-				<div class=" col-lg-2" style="margin-left:50px;">
+				<div class=" col-lg-2" style="margin-left:50px;"> <!-- Historique personnel-->
           <div class="row">
             <div>
-              <a id="score">score</a>
-              </br>
-              <a id="id-game">Partie 44100</a>
-              </br>
-              <button type="submit" class="btn btn-primary">Jouer</button>
+							<?php echo $specificScore[1];?>
+
             </div>
           </div>
         </div>
@@ -148,11 +179,8 @@
         <div class=" col-lg-2"> <!-- Palmares-->
           <div class="row">
             <div>
-              <a id="id-user">User</a><a> | </a> <a id="score">score</a>
-              </br>
-              <a id="id-game-3">Partie 44100</a>
-              </br>
-              <button type="submit" class="btn btn-primary">Jouer</button>
+							<?php echo $globalScore[2];?>
+
             </div>
           </div>
         </div>
@@ -160,21 +188,18 @@
 				<div class="col-lg-2">
 				</div>
 
-				<div class=" col-lg-2" style="margin-left:50px;">
+				<div class=" col-lg-2" style="margin-left:50px;">  <!-- Historique personnel-->
           <div class="row">
             <div>
-              <a id="score">score</a>
-              </br>
-              <a id="id-game">Partie 44100</a>
-              </br>
-              <button type="submit" class="btn btn-primary">Jouer</button>
+							<?php echo $specificScore[2];?>
+
             </div>
           </div>
 
         </div>
         <div class="col-lg-2" style="margin-left:40px;">
         </div>
-        <button type="submit" class="btn btn-primary">C'est parti!</button>
+				<?php echo $generate; ?>
 			</div>
 
 
@@ -190,11 +215,8 @@
       <div class=" col-lg-2"> <!-- Palmares-->
         <div class="row">
           <div>
-            <a id="id-user">User</a><a> | </a> <a id="score">score</a>
-            </br>
-            <a id="id-game-4">Partie 44100</a>
-            </br>
-            <button type="submit" class="btn btn-primary">Jouer</button>
+						<?php echo $globalScore[3];?>
+
           </div>
         </div>
       </div>
@@ -202,14 +224,11 @@
       <div class="col-lg-2">
       </div>
 
-			<div class=" col-lg-2" style="margin-left:50px;">
+			<div class=" col-lg-2" style="margin-left:50px;">   <!-- Historique personnel-->
         <div class="row">
           <div>
-            <a id="score">score</a>
-            </br>
-            <a id="id-game">Partie 44100</a>
-            </br>
-            <button type="submit" class="btn btn-primary">Jouer</button>
+						<?php echo $specificScore[3];?>
+
           </div>
         </div>
       </div>
@@ -229,11 +248,8 @@
       <div class=" col-lg-2"> <!-- Palmares-->
         <div class="row">
           <div>
-            <a id="id-user">User</a><a> | </a> <a id="score">score</a>
-            </br>
-            <a id="id-partie-5">Partie 44100</a>
-            </br>
-            <button type="submit" class="btn btn-primary">Jouer</button>
+						<?php echo $globalScore[4];?>
+
           </div>
         </div>
       </div>
@@ -241,14 +257,11 @@
       <div class="col-lg-2">
       </div>
 
-			<div class=" col-lg-2" style="margin-left:50px;">
+			<div class=" col-lg-2" style="margin-left:50px;">  <!-- Historique personnel-->
         <div class="row">
           <div>
-            <a id="score">score</a>
-            </br>
-            <a id="id-partie">Partie 44100</a>
-            </br>
-            <button type="submit" class="btn btn-primary">Jouer</button>
+						<?php echo $specificScore[4];?>
+
           </div>
         </div>
       </div>

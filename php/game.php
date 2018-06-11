@@ -19,6 +19,7 @@ $content=loadUserFromToken($token,$dbh->getDb());
 
 
 
+$leave="<button type='button' class='btn btn-primary' onclick=window.Location='leave.php?idGame=".$idGame."&login=".$content[0]->getToken()."'>Quitter</button>";
 
 
 
@@ -62,8 +63,7 @@ $content=loadUserFromToken($token,$dbh->getDb());
       <h4 class =" col-lg-2 " >Partie n°<?php echo $idGame;?></h4>
       <div class="col-lg-3">
       </div>
-      <button type="button" class="btn btn-primary" onclick="window.Location='leave.php'">Quitter</button>
-
+				<?php echo $leave;?>
     </div>
 
 

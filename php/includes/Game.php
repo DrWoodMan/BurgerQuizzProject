@@ -1,7 +1,8 @@
 <?php
-require_once('includes/Question.php');
-require_once('includes/Proposition.php');
-require_once('includes/Theme.php');
+require_once('Question.php');
+require_once('Proposition.php');
+require_once('Theme.php');
+require_once('LinkGameQuestion.php');
 
   class Game
   {

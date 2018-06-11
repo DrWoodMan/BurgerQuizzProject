@@ -21,8 +21,8 @@ function loadUserFromToken($token, $db ){
   $prep_fetch = $db->prepare("SELECT * FROM user WHERE token=:token");
   $prep_fetch->execute(array(':token'=>$token));
   $user = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'User');
-  if($user[0]==NULL){
-    header('Location: http://www.salade-quiz.fr/php/error.php');
+  if(!isset($user)){
+    header('Location: http://www.salade-quiz.fr/php/error.php&idError=403');
   }
   return $user;
 
@@ -47,7 +47,6 @@ function loadGameFromId($id, $db ){
 
 function createToken($user, $db ){
 
-  //echo $user->getToken();
   $token = base_convert(hash('sha256', time() . mt_rand()), 16, 36);
   $user[0]->setToken($token);
   $update = $db->prepare("UPDATE user SET token=:token WHERE login=:login");
@@ -100,7 +99,6 @@ function checkEmail($email, $db){
 
 function createUser($login, $pwd, $email, $db){
 
-
   $insertion = $db->prepare("INSERT INTO user (login, passwordHash, mailAddress ) VALUES (:login, :passwordHash, :mailAddress)");
   $insertion->execute(array(':login'=>$login,':passwordHash'=>$pwd, ':mailAddress'=>$email ));
   $user = loadUserFromLogin($login, $db);
@@ -123,7 +121,7 @@ function getScoreForGlobalPodium($db){
 
 function getScoreForPersonalList($login, $db){
 
-  $prep_fetch = $db->prepare("SELECT * FROM score WHERE login=:login ORDER BY timestamp DESC LIMIT 5");
+  $prep_fetch = $db->prepare("SELECT * FROM score WHERE login=:login ORDER BY time DESC LIMIT 5");
   $prep_fetch->execute(array(':login' =>$login));
   $score = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'Score');
   return $score;
@@ -140,7 +138,7 @@ function generateGlobalGamesPodium($globalScore, $i, $user){
   </br>
   <a id='id-game'>Partie ". $globalScore[$i]->getIdGame()." </a>
   </br>
-  <button type='button' class='btn btn-primary' onclick=window.location='game.php?token=".$user[0]->getToken()."&idGame=".$globalScore[$i]->getIdGame()."'>Jouer</button>";
+  <button type='button' class='btn btn-primary' onclick=window.location='loadGame.php?token=".$user[0]->getToken()."&idGame=".$globalScore[$i]->getIdGame()."'>Jouer</button>";
 
   return $global;
 }
@@ -150,13 +148,108 @@ function generateGlobalGamesPodium($globalScore, $i, $user){
 
 function generatePersonalHistory($specificScore, $i, $user){
 
-
   $specific="<a id='score' >".$specificScore[$i]->getScore()." pts</a>
   </br>
   <a id='id-game'>Partie ".$specificScore[$i]->getIdGame()."</a>
   </br>
-  <button type='button' class='btn btn-primary' onclick=window.location='game.php?token=".$user[0]->getToken()."&idGame=".$specificScore[$i]->getIdGame()."'>Jouer</button>";
-
-
+  <button type='button' class='btn btn-primary' onclick=window.location='loadGame.php?token=".$user[0]->getToken()."&idGame=".$specificScore[$i]->getIdGame()."'>Jouer</button>";
   return $specific;
+}
+
+
+
+
+
+function getScoreSpecific($login, $idGame, $db){
+
+  $prep_fetch = $db->prepare("SELECT * FROM score WHERE login=:login AND idGame=:idGame");
+  $prep_fetch->execute(array(':login' =>$login, ':idGame' => $idGame));
+  $score = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'Score');
+  return $score;
+
+}
+
+
+
+
+
+
+
+
+function checkScore($login, $idGame, $db){
+
+  $prep_fetch = $db->prepare("SELECT * FROM score WHERE login=:login AND idGame=:idGame");
+  $prep_fetch->execute(array(':login'=>$login, ':idGame' => $idGame));
+  $score = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'Score');
+  if(isset($score[0])){
+    echo("partie déja jouée par l'utilisateur");
+    return true;
+  }
+  echo("partie jamais jouée par l'utilisateur");
+  return false;
+
+}
+
+
+
+
+function createScore($login, $idGame, $db){
+
+
+  $insertion = $db->prepare("INSERT INTO score (idGame, login, score ) VALUES (:idGame, :login, :score)");
+  $insertion->execute(array(':idGame'=>$idGame,':login'=>$login, ':score'=>0 ));
+  $score = new Score;
+  $score = $insertion->fetchAll(PDO::FETCH_CLASS,'Score');
+  return $score;
+}
+
+
+
+
+function updateScore($score, $newScore, $db ){
+
+  echo ("</br></br></br>".$score[0]->getLogin()."</br>");
+  echo ($score[0]->getIdGame()."</br>");
+  $update = $db->prepare("UPDATE score SET score=:score  WHERE login=:login AND  idGame=:idGame");
+  $update->execute(array(':score' => $newScore, ':login'=>$score[0]->getLogin(), ':idGame' => $score[0]->getIdGame()));
+
+
+}
+
+
+
+function selectRandomQuestions($db){
+
+
+  $prep_fetch = $db->prepare("SELECT * FROM question  ORDER BY RAND() LIMIT 3");
+  $prep_fetch->execute(array());
+  $questions = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'Question');
+  return $questions;
+
+}
+
+
+
+function associateQuestionsWithGame($idGame, $idQuestion ,$db){
+
+  $insertion = $db->prepare("INSERT INTO has (idGame, idQuestion) VALUES (:idGame, :idQuestion)");
+  $insertion->execute(array(':idGame'=>$idGame,':idQuestion'=>$idQuestion));
+  $LinkGameQuestion = new LinkGameQuestion;
+  $LinkGameQuestion = $insertion->fetchAll(PDO::FETCH_CLASS,'LinkGameQuestion');
+
+}
+
+
+
+
+function createNewGame($db){
+
+  $insertion = $db->prepare("INSERT INTO game(idGame) VALUES (NULL)");
+  $insertion->execute();
+  $prep_fetch = $db->prepare("SELECT * FROM game  ORDER BY idGame DESC LIMIT 1");
+  $prep_fetch->execute();
+  $newId = $prep_fetch->fetchAll();
+
+  return $newId[0];
+
 }

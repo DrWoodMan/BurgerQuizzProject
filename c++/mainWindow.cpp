@@ -27,7 +27,7 @@ MainWindow::MainWindow() : QMainWindow(){
     //action d'afficher la page des questions avec les questions du thème selectionné
     connect(controls->getRelatedQuestions(), SIGNAL(clicked()), this, SLOT(slot_relatedQuestions()));
     //actin d'afficher la question selctionnée dans les champs de modification
-    connect(controls->getQuestionSelection(), SIGNAL(currentIndexChanged(int)), this, SLOT(slot_copyQuestionInWritingFields(int)));
+    connect(controls->getQuestionSelection(), SIGNAL(activated(int)), this, SLOT(slot_copyQuestionInWritingFields(int)));
     //action d'ajouter une question à la bdd
     connect(controls->getAddQuestion(), SIGNAL(clicked()), this, SLOT(slot_addQuestion()));
 
@@ -37,7 +37,7 @@ MainWindow::MainWindow() : QMainWindow(){
 
     connect(controls->getRelatedPropositions(), SIGNAL(clicked()), this, SLOT(slot_relatedPropositions()));
 
-    connect(controls->getPropositionSelection(), SIGNAL(currentIndexChanged(int)), this, SLOT(slot_copyPropositionInWritingField(int)));
+    connect(controls->getPropositionSelection(), SIGNAL(activated(int)), this, SLOT(slot_copyPropositionInWritingField(int)));
 
     connect(controls->getAddProposition(), SIGNAL(clicked()), this, SLOT(slot_addProposition()));
 
@@ -178,6 +178,7 @@ void MainWindow::slot_deleteTheme(){
 
     if(!dbErrorPopup()){
         getThemes();
+        controls->getThemeWritingField()->clear();
     }
 }
 

@@ -126,34 +126,6 @@ Controls::Controls() : QWidget(){
     loadingLayout->addWidget(animationLabel);
     movie->start();
 
-//ERRORS
-/*
-    errorsWidget = new QWidget();
-    mainLayout->addWidget(errorsWidget);
-    errorsWidget->hide();
-
-    QVBoxLayout *errorsLayout = new QVBoxLayout;
-    errorsWidget->setLayout(errorsLayout);
-
-    QLabel *errorLabel = new QLabel("ERROR");
-    QFont errorFont;
-    errorFont.setPointSize(30);
-    errorLabel->setFont(errorFont);
-
-    QHBoxLayout *errorLabelLayout = new QHBoxLayout();
-    errorsLayout->addLayout(errorLabelLayout);
-    errorLabelLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
-    errorLabelLayout->addWidget(errorLabel);
-    errorLabelLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
-
-    QHBoxLayout *errorsSpecificationsLayout = new QHBoxLayout();
-    errorsLayout->addLayout(errorsSpecificationsLayout);
-
-    errorsSpecificationsLabel = new QLabel("...");
-    errorsSpecificationsLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
-    errorsSpecificationsLayout->addWidget(errorsSpecificationsLabel);
-    errorsSpecificationsLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
-*/
 
 //THEMES
 
@@ -189,7 +161,7 @@ Controls::Controls() : QWidget(){
     themeSelection = new QComboBox();
     themeSelectionLayout->addWidget(themeSelection);
 
-    connect(themeSelection, SIGNAL(currentIndexChanged(QString)), this, SLOT(slot_copyThemeInWritingField(QString)));
+    connect(themeSelection, SIGNAL(activated(QString)), this, SLOT(slot_copyThemeInWritingField(QString)));
 
 
     //theme selection buttons

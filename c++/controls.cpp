@@ -189,7 +189,7 @@ Controls::Controls() : QWidget(){
     themeSelection = new QComboBox();
     themeSelectionLayout->addWidget(themeSelection);
 
-    connect(themeSelection, SIGNAL(activated(QString)), this, SLOT(slot_copyThemeInWritingField(QString)));
+    connect(themeSelection, SIGNAL(currentIndexChanged(QString)), this, SLOT(slot_copyThemeInWritingField(QString)));
 
 
     //theme selection buttons
@@ -285,7 +285,7 @@ Controls::Controls() : QWidget(){
     buttonsQuestionSelectionLayout->addWidget(relatedPropositions);
     relatedPropositions->setMaximumWidth(200);
 
-    connect(relatedPropositions, SIGNAL(clicked()), this, SLOT(slot_relatedPropositions()));
+    //connect(relatedPropositions, SIGNAL(clicked()), this, SLOT(slot_relatedPropositions()));
 
 
     //back to theme
@@ -377,7 +377,7 @@ Controls::Controls() : QWidget(){
     propositionSelection = new QComboBox();
     propositionSelectionLayout->addWidget(propositionSelection);
 
-    connect(propositionSelection, SIGNAL(activated(QString)), this, SLOT(slot_copyPropositionInWritingField(QString)));
+    //connect(propositionSelection, SIGNAL(currentTextChanged(QString)), this, SLOT(slot_copyPropositionInWritingField(QString)));
 
 
     //proposition selection buttons
@@ -511,7 +511,11 @@ QLabel *Controls::getSelectedTheme(){
     return selectedTheme;
 }
 
-QHBoxLayout *Controls::getQuestionPlaceHolderLayout(){
+QHBoxLayout *Controls::getSelectedThemeLayout(){
+    return selectedThemeLayout;
+}
+
+QHBoxLayout *Controls::getQuestionPlaceholderLayout(){
     return questionPlaceholderLayout;
 }
 
@@ -551,6 +555,9 @@ QHBoxLayout *Controls::getPropositionPlaceholderLayout(){
     return propositionPlaceholderLayout;
 }
 
+QLabel *Controls::getSelectedQuestion(){
+    return selectedQuestion;
+}
 QComboBox *Controls::getPropositionSelection(){
     return propositionSelection;
 }
@@ -579,6 +586,9 @@ QRadioButton *Controls::getTheOther(){
     return theOther;
 }
 
+QRadioButton *Controls::getBoth(){
+    return both;
+}
 void Controls::slot_showPassword(int state){
 
     switch(state){
@@ -604,7 +614,7 @@ void Controls::slot_backToThemes(){
     questionWidget->hide();
     themeWidget->show();
 }
-
+/*
 void Controls::slot_relatedPropositions(){
 
     questionPlaceholderLayout->removeItem(selectedThemeLayout);
@@ -614,12 +624,13 @@ void Controls::slot_relatedPropositions(){
     propositionWidget->show();
 
 }
-
+*/
+/*
 void Controls::slot_copyPropositionInWritingField(QString str){
 
     propositionWritingField->setPlainText(str);
 }
-
+*/
 void Controls::slot_backToQuestions(){
 
     propositionPlaceholderLayout->removeItem(selectedThemeLayout);

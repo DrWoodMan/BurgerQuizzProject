@@ -32,7 +32,8 @@ class Controls : public QWidget{
 
         QWidget *getQuestionWidget();
         QLabel *getSelectedTheme();
-        QHBoxLayout *getQuestionPlaceHolderLayout();
+        QHBoxLayout *getSelectedThemeLayout();
+        QHBoxLayout *getQuestionPlaceholderLayout();
         QComboBox *getQuestionSelection();
         QLineEdit *getQuestionWritingField1();
         QLineEdit *getQuestionWritingField2();
@@ -43,6 +44,7 @@ class Controls : public QWidget{
 
         QWidget *getPropositionWidget();
         QHBoxLayout *getPropositionPlaceholderLayout();
+        QLabel *getSelectedQuestion();
         QComboBox *getPropositionSelection();
         QTextEdit *getPropositionWritingField();
         QPushButton *getAddProposition();
@@ -50,14 +52,14 @@ class Controls : public QWidget{
         QPushButton *getDeleteProposition();
         QRadioButton *getTheOne();
         QRadioButton *getTheOther();
+        QRadioButton *getBoth();
 
 
     public slots:
         void slot_showPassword(int state);
         void slot_copyThemeInWritingField(QString str);
         void slot_backToThemes();
-
-        void slot_copyPropositionInWritingField(QString str);
+        //void slot_copyPropositionInWritingField(QString str);
         void slot_backToQuestions();
 
     private:

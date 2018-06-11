@@ -216,3 +216,21 @@ std::vector<Proposition> DataBase::getPropositions(unsigned int idQuestion){
     }
     return propositions;
 }
+
+void DataBase::addProposition(Proposition proposition){
+
+    try{
+        preparedStatement = connection->prepareStatement("INSERT INTO proposition(proposition, solution, idQuestion) VALUES (?, ?, ?)");
+        preparedStatement->setString(1, proposition.proposition);
+        preparedStatement->setInt(2, proposition.solution);
+        preparedStatement->setInt(3, proposition.idQuestion);
+        result = preparedStatement->executeQuery();
+
+        error = "";
+    }
+    catch(sql::SQLException &e){
+        error += "# ERR: " + std::string(e.what());
+        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
+        error += ", SQLState: " + e.getSQLState() + " )";
+    }
+}

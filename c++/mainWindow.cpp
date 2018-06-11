@@ -35,7 +35,11 @@ MainWindow::MainWindow() : QMainWindow(){
 
     connect(controls->getDeleteQuestion(), SIGNAL(clicked()), this, SLOT(slot_deleteQuestion()));
 
-    connect(controls->getRelatedPropositions(), SIGNAL(cliked()), this, SLOT(slot_relatedPropositions()));
+    connect(controls->getRelatedPropositions(), SIGNAL(clicked()), this, SLOT(slot_relatedPropositions()));
+
+    connect(controls->getPropositionSelection(), SIGNAL(currentIndexChanged(int)), this, SLOT(slot_copyPropositionInWritingField(int)));
+
+    connect(controls->getAddProposition(), SIGNAL(clicked()), this, SLOT(slot_addProposition()));
 /*
     //action de création d'une scene de la taille renseignée à l'appui sur le bouton START
     connect(controls->getStartButton(), SIGNAL(clicked()), this, SLOT(slot_startScene()));
@@ -121,9 +125,8 @@ void MainWindow::slot_connection(){
         controls->getAuthenticationWidget()->hide();
         controls->getThemeWidget()->show();
         controls->getLogout()->show();
+        getThemes();
     }
-
-    getThemes();
 }
 
 void MainWindow::slot_logout(){
@@ -247,15 +250,59 @@ void MainWindow::slot_relatedPropositions(){
     controls->getTheOne()->setText(QString::fromStdString(questions[index].field1));
     controls->getTheOther()->setText(QString::fromStdString(questions[index].field2));
     
-    idSelectedQuestion = questions.[index].idQuestion
+    idSelectedQuestion = questions[index].idQuestion;
 
-    controls->getQuestionPlaceholderLayout()->removeItem(selectedThemeLayout);
-    propositionPlaceholderLayout->addLayout(selectedThemeLayout);
+    controls->getQuestionPlaceholderLayout()->removeItem(controls->getSelectedThemeLayout());
+    controls->getPropositionPlaceholderLayout()->addLayout(controls->getSelectedThemeLayout());
 
-    controls->getQuestionWidget->hide();
-    controls->getPropositionWidget->show();
+    controls->getQuestionWidget()->hide();
+    controls->getPropositionWidget()->show();
     getPropositions();
 
 }
 
+void MainWindow::slot_copyPropositionInWritingField(int index){
 
+    if(index >= 0){
+        controls->getPropositionWritingField()->setText(QString::fromStdString(propositions[index].proposition));
+
+        switch(propositions[index].solution){
+
+            case 0:
+                controls->getTheOne()->setChecked(true);
+                break;
+
+            case 1:
+                controls->getTheOther()->setChecked(true);
+                break;
+
+            case 2:
+                controls->getBoth()->setChecked(true);
+                break;
+        }
+    }
+}
+
+void MainWindow::slot_addProposition(){
+
+    Proposition proposition;
+    proposition.proposition = controls->getPropositionWritingField()->toPlainText().toStdString();
+    proposition.idQuestion = idSelectedQuestion;
+    
+    if(controls->getTheOne()->isChecked()){
+        proposition.solution = 0;
+    }
+    else if(controls->getTheOther()->isChecked()){
+        proposition.solution = 1;
+    }
+    else if(controls->getBoth()->isChecked()){
+        proposition.solution = 2;
+    }
+
+    dataBase->addProposition(proposition);
+
+    if(!dbErrorPopup()){
+        getPropositions();
+        controls->getPropositionWritingField()->clear();
+    }
+}

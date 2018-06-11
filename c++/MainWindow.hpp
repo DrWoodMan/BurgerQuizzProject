@@ -34,6 +34,9 @@ class MainWindow : public QMainWindow {
         void slot_deleteQuestion();
         void slot_relatedPropositions();
 
+        void slot_copyPropositionInWritingField(int index);
+        void slot_addProposition();
+
     private:
     
         QVBoxLayout *mainLayout;

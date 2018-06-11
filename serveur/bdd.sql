@@ -47,6 +47,7 @@ CREATE TABLE proposition(
     proposition   Varchar (200) NOT NULL,
     solution      Int NOT NULL,
     idQuestion    Int NOT NULL,
+    CONSTRAINT uniquePropositionPerQuestion UNIQUE (proposition, idQuestion),
     CONSTRAINT proposition_PK PRIMARY KEY (idProposition),
     CONSTRAINT proposition_question_FK FOREIGN KEY (idQuestion) REFERENCES question(idQuestion)
 )

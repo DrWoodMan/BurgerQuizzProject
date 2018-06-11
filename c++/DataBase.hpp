@@ -20,6 +20,7 @@ typedef struct{
     unsigned int idProposition;
     std::string proposition;
     unsigned int solution;
+    unsigned int idQuestion;
 }Proposition;
 
 class DataBase{
@@ -42,6 +43,7 @@ class DataBase{
         void deleteQuestion(unsigned int idQuestion);
 
         std::vector<Proposition> getPropositions(unsigned int idQuestion);
+        void addProposition(Proposition proposition);
         
         /*
         void addQuestion(unsigned int idTheme, std::string field1, std::string field2);

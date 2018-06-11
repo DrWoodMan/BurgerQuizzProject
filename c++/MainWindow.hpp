@@ -36,6 +36,8 @@ class MainWindow : public QMainWindow {
 
         void slot_copyPropositionInWritingField(int index);
         void slot_addProposition();
+        void slot_modifyProposition();
+        void slot_deleteProposition();
 
     private:
     

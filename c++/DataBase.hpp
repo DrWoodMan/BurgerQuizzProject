@@ -44,6 +44,8 @@ class DataBase{
 
         std::vector<Proposition> getPropositions(unsigned int idQuestion);
         void addProposition(Proposition proposition);
+        void modifyProposition(Proposition proposition);
+        void deleteProposition(unsigned int idProposition);
         
         /*
         void addQuestion(unsigned int idTheme, std::string field1, std::string field2);

@@ -100,6 +100,14 @@ void DataBase::modifyTheme(Theme theme){
 void DataBase::deleteTheme(unsigned int idTheme){
 
     try{
+        preparedStatement = connection->prepareStatement("DELETE FROM proposition WHERE idQuestion = (SELECT idQuestion FROM question WHERE idTheme = (?))");
+        preparedStatement->setInt(1, idTheme);
+        result = preparedStatement->executeQuery();
+
+        preparedStatement = connection->prepareStatement("DELETE FROM question WHERE idTheme = (?)");
+        preparedStatement->setInt(1, idTheme);
+        result = preparedStatement->executeQuery();
+
         preparedStatement = connection->prepareStatement("DELETE FROM theme WHERE idTheme = (?)");
         preparedStatement->setInt(1, idTheme);
         result = preparedStatement->executeQuery();
@@ -160,11 +168,10 @@ void DataBase::addQuestion(Question question){
 void DataBase::modifyQuestion(Question question){
 
     try{
-        preparedStatement = connection->prepareStatement("UPDATE question SET field1 = (?), field2 = (?), idTheme = (?) WHERE idQuestion = (?)");
+        preparedStatement = connection->prepareStatement("UPDATE question SET field1 = (?), field2 = (?) WHERE idQuestion = (?)");
         preparedStatement->setString(1, question.field1);
         preparedStatement->setString(2, question.field2);
-        preparedStatement->setInt(3, question.idTheme);
-        preparedStatement->setInt(4, question.idQuestion);
+        preparedStatement->setInt(3, question.idQuestion);
         result = preparedStatement->executeQuery();
 
         error = "";
@@ -179,6 +186,10 @@ void DataBase::modifyQuestion(Question question){
 void DataBase::deleteQuestion(unsigned int idQuestion){
 
     try{
+        preparedStatement = connection->prepareStatement("DELETE FROM proposition WHERE idQuestion = (?)");
+        preparedStatement->setInt(1, idQuestion);
+        result = preparedStatement->executeQuery();
+
         preparedStatement = connection->prepareStatement("DELETE FROM question WHERE idQuestion = (?)");
         preparedStatement->setInt(1, idQuestion);
         result = preparedStatement->executeQuery();
@@ -224,6 +235,40 @@ void DataBase::addProposition(Proposition proposition){
         preparedStatement->setString(1, proposition.proposition);
         preparedStatement->setInt(2, proposition.solution);
         preparedStatement->setInt(3, proposition.idQuestion);
+        result = preparedStatement->executeQuery();
+
+        error = "";
+    }
+    catch(sql::SQLException &e){
+        error += "# ERR: " + std::string(e.what());
+        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
+        error += ", SQLState: " + e.getSQLState() + " )";
+    }
+}
+
+void DataBase::modifyProposition(Proposition proposition){
+
+    try{
+        preparedStatement = connection->prepareStatement("UPDATE proposition SET proposition = (?), solution = (?) WHERE idProposition = (?)");
+        preparedStatement->setString(1, proposition.proposition);
+        preparedStatement->setInt(2, proposition.solution);
+        preparedStatement->setInt(3, proposition.idProposition);
+        result = preparedStatement->executeQuery();
+
+        error = "";
+    }
+    catch(sql::SQLException &e){
+        error += "# ERR: " + std::string(e.what());
+        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
+        error += ", SQLState: " + e.getSQLState() + " )";
+    }
+}
+
+void DataBase::deleteProposition(unsigned int idProposition){
+
+    try{
+        preparedStatement = connection->prepareStatement("DELETE FROM proposition WHERE idProposition = (?)");
+        preparedStatement->setInt(1, idProposition);
         result = preparedStatement->executeQuery();
 
         error = "";

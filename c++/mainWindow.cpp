@@ -40,6 +40,10 @@ MainWindow::MainWindow() : QMainWindow(){
     connect(controls->getPropositionSelection(), SIGNAL(currentIndexChanged(int)), this, SLOT(slot_copyPropositionInWritingField(int)));
 
     connect(controls->getAddProposition(), SIGNAL(clicked()), this, SLOT(slot_addProposition()));
+
+    connect(controls->getModifyProposition(), SIGNAL(clicked()), this, SLOT(slot_modifyProposition()));
+
+    connect(controls->getDeleteProposition(), SIGNAL(clicked()), this, SLOT(slot_deleteProposition()));
 /*
     //action de création d'une scene de la taille renseignée à l'appui sur le bouton START
     connect(controls->getStartButton(), SIGNAL(clicked()), this, SLOT(slot_startScene()));
@@ -219,8 +223,6 @@ void MainWindow::slot_modifyQuestion(){
     question.field2 = controls->getQuestionWritingField2()->text().toStdString();
 
     question.idQuestion = questions[controls->getQuestionSelection()->currentIndex()].idQuestion;
-    question.idTheme = idSelectedTheme;
-
 
     dataBase->modifyQuestion(question);
 
@@ -304,5 +306,40 @@ void MainWindow::slot_addProposition(){
     if(!dbErrorPopup()){
         getPropositions();
         controls->getPropositionWritingField()->clear();
+    }
+}
+
+void MainWindow::slot_modifyProposition(){
+
+    Proposition proposition;
+
+    proposition.proposition = controls->getPropositionWritingField()->toPlainText().toStdString();
+    proposition.idProposition = propositions[controls->getPropositionSelection()->currentIndex()].idProposition;
+
+    
+    if(controls->getTheOne()->isChecked()){
+        proposition.solution = 0;
+    }
+    else if(controls->getTheOther()->isChecked()){
+        proposition.solution = 1;
+    }
+    else if(controls->getBoth()->isChecked()){
+        proposition.solution = 2;
+    }
+
+    dataBase->modifyProposition(proposition);
+
+    if(!dbErrorPopup()){
+        getPropositions();
+        controls->getPropositionWritingField()->clear();
+    }
+}
+
+void MainWindow::slot_deleteProposition(){
+
+    dataBase->deleteProposition(propositions[controls->getPropositionSelection()->currentIndex()].idProposition);
+
+    if(!dbErrorPopup()){
+        getPropositions();
     }
 }

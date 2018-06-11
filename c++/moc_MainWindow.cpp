@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[18];
-    char stringdata0[308];
+    QByteArrayData data[20];
+    char stringdata0[354];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -46,7 +46,9 @@ QT_MOC_LITERAL(13, 188, 19), // "slot_modifyQuestion"
 QT_MOC_LITERAL(14, 208, 19), // "slot_deleteQuestion"
 QT_MOC_LITERAL(15, 228, 24), // "slot_relatedPropositions"
 QT_MOC_LITERAL(16, 253, 34), // "slot_copyPropositionInWriting..."
-QT_MOC_LITERAL(17, 288, 19) // "slot_addProposition"
+QT_MOC_LITERAL(17, 288, 19), // "slot_addProposition"
+QT_MOC_LITERAL(18, 308, 22), // "slot_modifyProposition"
+QT_MOC_LITERAL(19, 331, 22) // "slot_deleteProposition"
 
     },
     "MainWindow\0slot_windowSize\0\0state\0"
@@ -57,7 +59,8 @@ QT_MOC_LITERAL(17, 288, 19) // "slot_addProposition"
     "slot_addQuestion\0slot_modifyQuestion\0"
     "slot_deleteQuestion\0slot_relatedPropositions\0"
     "slot_copyPropositionInWritingField\0"
-    "slot_addProposition"
+    "slot_addProposition\0slot_modifyProposition\0"
+    "slot_deleteProposition"
 };
 #undef QT_MOC_LITERAL
 
@@ -67,7 +70,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      14,   14, // methods
+      16,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -75,20 +78,22 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    1,   84,    2, 0x0a /* Public */,
-       4,    0,   87,    2, 0x0a /* Public */,
-       5,    0,   88,    2, 0x0a /* Public */,
-       6,    0,   89,    2, 0x0a /* Public */,
-       7,    0,   90,    2, 0x0a /* Public */,
-       8,    0,   91,    2, 0x0a /* Public */,
-       9,    0,   92,    2, 0x0a /* Public */,
-      10,    1,   93,    2, 0x0a /* Public */,
-      12,    0,   96,    2, 0x0a /* Public */,
-      13,    0,   97,    2, 0x0a /* Public */,
-      14,    0,   98,    2, 0x0a /* Public */,
-      15,    0,   99,    2, 0x0a /* Public */,
-      16,    1,  100,    2, 0x0a /* Public */,
-      17,    0,  103,    2, 0x0a /* Public */,
+       1,    1,   94,    2, 0x0a /* Public */,
+       4,    0,   97,    2, 0x0a /* Public */,
+       5,    0,   98,    2, 0x0a /* Public */,
+       6,    0,   99,    2, 0x0a /* Public */,
+       7,    0,  100,    2, 0x0a /* Public */,
+       8,    0,  101,    2, 0x0a /* Public */,
+       9,    0,  102,    2, 0x0a /* Public */,
+      10,    1,  103,    2, 0x0a /* Public */,
+      12,    0,  106,    2, 0x0a /* Public */,
+      13,    0,  107,    2, 0x0a /* Public */,
+      14,    0,  108,    2, 0x0a /* Public */,
+      15,    0,  109,    2, 0x0a /* Public */,
+      16,    1,  110,    2, 0x0a /* Public */,
+      17,    0,  113,    2, 0x0a /* Public */,
+      18,    0,  114,    2, 0x0a /* Public */,
+      19,    0,  115,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
@@ -104,6 +109,8 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,   11,
+    QMetaType::Void,
+    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -129,6 +136,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 11: _t->slot_relatedPropositions(); break;
         case 12: _t->slot_copyPropositionInWritingField((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 13: _t->slot_addProposition(); break;
+        case 14: _t->slot_modifyProposition(); break;
+        case 15: _t->slot_deleteProposition(); break;
         default: ;
         }
     }
@@ -159,13 +168,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 14)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 14;
+        _id -= 16;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 14)
+        if (_id < 16)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 14;
+        _id -= 16;
     }
     return _id;
 }

@@ -5,21 +5,52 @@ require_once('includes/functions.php');
 
 $token=$_GET['token'];
 $idGame=$_GET['idGame'];
-$idQuestion=$_GET['idQuestion'];
-$idProposition=$_GET['idProp'];
-$time=$_GET['time'];
+$propositionNumber=$_GET['propositionNumber'];
+
+$totalPropositions=PROPOSITION_NUMBER*QUESTION_NUMBER;
+
 $content=new User;
 $dbh = new DBmanage;
-$game= new Game;
-$score = new Score;
-//on se connecte à la BDD, puis on vérifie si le login fourni est dans la base de données
+
+$substract= NULL;
+
+
+//on se connecte à la BDD, puis on vérifie si le token fourni est dans la base de données
 
 $dbh->connection();
 $content=loadUserFromToken($token,$dbh->getDb());
 
 
+for($i=1;$i<=QUESTION_NUMBER; $i++){
+	if($propositionNumber<=$totalPropositions){
 
-$leave="<button type='button' class='btn btn-primary' onclick=window.Location='leave.php?idGame=".$idGame."&login=".$content[0]->getToken()."'>Quitter</button>";
+		if($propositionNumber>PROPOSITION_NUMBER*($i-1) && $propositionNumber<=PROPOSITION_NUMBER*$i){
+
+			$substract= $propositionNumber-(PROPOSITION_NUMBER*($i-1));
+		//	echo("ceci est la question ".$i.", à la proposition ".$substract ."</br></br>");
+			$game = getAllInformationsOfTheProposition($idGame, $i-1, $substract -1, $dbh->getDb());
+
+		}
+
+	}else{
+		header('Location: http://www.salade-quiz.fr/php/error.php&idError=404');
+	}
+}
+
+
+
+
+$leave="<button type='button' class='btn btn-primary' onclick=window.location='leave.php?idGame=".$idGame."&token=".$content[0]->getToken()."'>Quitter</button>";
+$answer1 = "<button type='button' class='btn btn-primary' value='0' onclick=window.location='answerAnalyse.php?token=".$content[0]->getToken().
+			"&value=0&propositionNumber=".$propositionNumber."&answer=".$game->getProposition()->getSolution()."&idGame=".$idGame."'> ".
+			 ucfirst($game->getQuestion()->getField1())." </button>";
+
+$answer2 = "<button type='button' class='btn btn-primary' value='1' onclick=window.location='answerAnalyse.php?token=".$content[0]->getToken().
+			"&value=1&propositionNumber=".$propositionNumber."&answer=".$game->getProposition()->getSolution()."&idGame=".$idGame."'> ".
+			 ucfirst($game->getQuestion()->getField2())." </button>";
+
+$answer3 = "<button type='button' class='btn btn-primary' value='2' onclick=window.location='answerAnalyse.php?token=".$content[0]->getToken().
+			"&value=2&propositionNumber=".$propositionNumber."&answer=".$game->getProposition()->getSolution()."&idGame=".$idGame."'> Les deux </button>";
 
 
 
@@ -76,7 +107,7 @@ $leave="<button type='button' class='btn btn-primary' onclick=window.Location='l
     <div class="row" style="margin-left:10px;">
       <div class="col-lg-1">
       </div>
-      <h4 class =" col-lg-2 " >Question n°x/X</h4>
+      <h4 class =" col-lg-2 " >Question n°<?php echo ($propositionNumber."/".$totalPropositions);?></h4>
     </div>
 
 
@@ -94,7 +125,7 @@ $leave="<button type='button' class='btn btn-primary' onclick=window.Location='l
     <div class="row" style="margin-left:10px;">
       <div class="col-lg-1">
       </div>
-      <h4 class =" col-lg-4 " >Thème: Obichouvine</h4>
+      <h4 class =" col-lg-4 " >Thème: <?php echo $game->getTheme()->getTheme();?> </h4>
     </div>
 
 
@@ -102,15 +133,11 @@ $leave="<button type='button' class='btn btn-primary' onclick=window.Location='l
 
   	</br>
     </br>
-    </br>
-    </br>
-    </br>
-    </br>
 
     <div class="row" style="margin-left:30px;">
       <div class="col-lg-4">
       </div>
-      <h5 class =" col-lg-4 " >Edouard baladur ou un matelas bien dur?</h5>
+      <h5 class =" col-lg-4 " ><?php echo(ucfirst($game->getQuestion()->getField1()).", ".$game->getQuestion()->getField2().", ou les deux?"); ?></h5>
     </div>
 
 		<form method="post">
@@ -124,7 +151,7 @@ $leave="<button type='button' class='btn btn-primary' onclick=window.Location='l
   <div class="col-lg-4" style="margin-left:80px;">
   </div>
 
-  <p class =" col-lg-3 " >Il a été au sein du gouvernement</p>
+  <p class =" col-lg-3 " ><?php echo(ucfirst($game->getProposition()->getProposition())); ?></p>
 </div>
 
 </br>
@@ -136,15 +163,15 @@ $leave="<button type='button' class='btn btn-primary' onclick=window.Location='l
   <div class="col-lg-2" style="margin-left:20px;">
   </div>
 
-  <button type="submit" class="btn btn-primary" value="1">Edouard baladur</button>
+	<?php echo $answer1; ?>
   <div class="col-lg-1"  style="margin-left:80px;">
   </div>
-  <button type="submit" class="btn btn-primary" value="2">un matelas bien dur</button>
+	<?php echo $answer2; ?>
 
   <div class="col-lg-1"  style="margin-left:80px;">
   </div>
 
-  <button type="submit" class="btn btn-primary" value="3">Les deux</button>
+	<?php echo $answer3; ?>
 
 </div>
 

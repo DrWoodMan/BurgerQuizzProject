@@ -36,7 +36,7 @@ function loadGameFromId($id, $db ){
   $prep_fetch->execute(array(':id'=>$id));
   $game = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'Game');
   if($game[0]==NULL){
-    header('Location: http://www.salade-quiz.fr/php/error.php');
+    header('Location: http://www.salade-quiz.fr/php/error.php&idError=404');
   }
   return $game;
 
@@ -172,10 +172,6 @@ function getScoreSpecific($login, $idGame, $db){
 
 
 
-
-
-
-
 function checkScore($login, $idGame, $db){
 
   $prep_fetch = $db->prepare("SELECT * FROM score WHERE login=:login AND idGame=:idGame");
@@ -208,20 +204,19 @@ function createScore($login, $idGame, $db){
 
 function updateScore($score, $newScore, $db ){
 
-  echo ("</br></br></br>".$score[0]->getLogin()."</br>");
-  echo ($score[0]->getIdGame()."</br>");
+
   $update = $db->prepare("UPDATE score SET score=:score  WHERE login=:login AND  idGame=:idGame");
   $update->execute(array(':score' => $newScore, ':login'=>$score[0]->getLogin(), ':idGame' => $score[0]->getIdGame()));
-
-
+  $update=$update->fetchAll(PDO::FETCH_CLASS, 'Score');
+  return $update;
 }
 
 
 
 function selectRandomQuestions($db){
 
-
-  $prep_fetch = $db->prepare("SELECT * FROM question  ORDER BY RAND() LIMIT 3");
+  $myRequest = "SELECT * FROM question  ORDER BY RAND() LIMIT ". QUESTION_NUMBER;
+  $prep_fetch = $db->prepare($myRequest);
   $prep_fetch->execute(array());
   $questions = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'Question');
   return $questions;
@@ -229,15 +224,6 @@ function selectRandomQuestions($db){
 }
 
 
-
-function associateQuestionsWithGame($idGame, $idQuestion ,$db){
-
-  $insertion = $db->prepare("INSERT INTO has (idGame, idQuestion) VALUES (:idGame, :idQuestion)");
-  $insertion->execute(array(':idGame'=>$idGame,':idQuestion'=>$idQuestion));
-  $LinkGameQuestion = new LinkGameQuestion;
-  $LinkGameQuestion = $insertion->fetchAll(PDO::FETCH_CLASS,'LinkGameQuestion');
-
-}
 
 
 
@@ -251,5 +237,100 @@ function createNewGame($db){
   $newId = $prep_fetch->fetchAll();
 
   return $newId[0];
+
+}
+
+
+
+
+function selectRandomPropositions($i , $db){
+
+  $myRequest="SELECT * FROM proposition WHERE idQuestion =:idQuestion  ORDER BY RAND() LIMIT ".PROPOSITION_NUMBER;
+  $prep_fetch = $db->prepare($myRequest);
+  $prep_fetch->execute(array(':idQuestion'=> $i));
+  $propositions = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'Proposition');
+  return $propositions;
+
+}
+
+
+
+
+function associatePropositionsWithGame($idGame, $idQuestion, $idProposition ,$i ,$j ,$db){
+
+  $insertion = $db->prepare("INSERT INTO has (idGame, idQuestion, idProposition, questionOrder, propositionOrder )
+                                VALUES (:idGame, :idQuestion, :idProposition, :questionOrder, :propositionOrder)");
+  $insertion->execute(array(':idGame'=>$idGame,':idQuestion'=>$idQuestion, 'idProposition'=>$idProposition, ':questionOrder' => $i, ':propositionOrder'=>$j));
+  $LinkGameQuestion = $insertion->fetchAll(PDO::FETCH_CLASS,'LinkGameQuestion');
+  return $LinkGameQuestion;
+}
+
+
+
+
+
+function getAllInformationsOfTheProposition($idGame, $i, $j , $db){
+
+  $link=selectTargetedLinks($idGame, $i, $j , $db);
+  $question=selectTargetedQuestions($link[0]->getIdQuestion(), $db);
+  $proposition=selectTargetedPropositions($link[0]->getIdProposition(),$db);
+  $theme= selectTargetedTheme($question[0]->getIdTheme(), $db);
+
+  $content=new Game($question[0],$proposition[0],$theme[0]);
+  return $content;
+}
+
+
+
+
+
+function selectTargetedLinks($idGame, $i, $j , $db){
+
+
+  $prep_fetch = $db->prepare("SELECT * FROM has WHERE idGame =:idGame AND questionOrder=:questionOrder AND propositionOrder=:propositionOrder");
+  $prep_fetch->execute(array(':idGame'=> $idGame, ':questionOrder'=>$i , ':propositionOrder'=>$j));
+  $link = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'LinkGameQuestion');
+  print_r($link);
+
+  return $link;
+
+}
+
+
+
+function selectTargetedQuestions($idQuestion, $db){
+
+
+  $prep_fetch = $db->prepare("SELECT * FROM question  WHERE idQuestion=:idQuestion");
+  $prep_fetch->execute(array(':idQuestion'=>$idQuestion));
+  $questions = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'Question');
+  return $questions;
+
+}
+
+
+
+
+function selectTargetedPropositions($idProposition, $db){
+
+
+  $prep_fetch = $db->prepare("SELECT * FROM proposition  WHERE idProposition=:idProposition");
+  $prep_fetch->execute(array(':idProposition'=>$idProposition));
+  $propositions = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'Proposition');
+  return $propositions;
+
+}
+
+
+
+
+
+function selectTargetedTheme($idTheme, $db){
+
+
+  $prep_fetch = $db->prepare("SELECT * FROM theme  WHERE idTheme=:idTheme");
+  $prep_fetch->execute(array(':idTheme'=>$idTheme));
+  $themes = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'Theme');
+  return $themes;
 
 }

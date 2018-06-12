@@ -1,8 +1,9 @@
 <?php
 
-require_once('includes/Game.php');
-require_once('includes/User.php');
-require_once('includes/Score.php');
+require_once('Game.php');
+require_once('User.php');
+require_once('Score.php');
+require_once('Constants.php');
 
 
 

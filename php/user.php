@@ -28,16 +28,13 @@ if(sizeof($globalScore)<5){
 for($i=0;$i<sizeof($specificScore);$i++){
 	$specificScore[$i] = generatePersonalHistory($specificScore, $i, $content);
 }
-echo"salut";
 
 if(sizeof($specificScore)<5){
 	for($i=sizeof($specificScore);$i<5;$i++){
 		$specificScore[$i]=NULL;
 	}
 }
-echo "aled";
 	$generate= "<button type='button' class='btn btn-primary' onclick=window.location='generate.php?token=".$content[0]->getToken()."'>C'est parti!</button>";
-echo "voici le bouton:";
 
 
 //var_dump($dbh);

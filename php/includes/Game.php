@@ -7,12 +7,28 @@ require_once('LinkGameQuestion.php');
   class Game
   {
 
-    private $idGame;
 
+    private $question ;
+    private $proposition ;
+    private $theme;
 
-    public function getIdGame(){
-      return $this->idGame;
+    public function __construct($myQuestion, $myProposition, $myTheme){
+
+    	$this->question = $myQuestion;
+    	$this->proposition = $myProposition;
+    	$this->theme = $myTheme;
+
     }
 
 
+    public function getQuestion(){
+      return $this->question;
+    }
+    public function getProposition(){
+      return $this->proposition;
+    }
+    public function getTheme(){
+      return $this->theme;
+    }
+    
   }

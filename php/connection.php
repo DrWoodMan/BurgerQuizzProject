@@ -26,11 +26,7 @@ $alert=NULL;
 		$content=createToken($content, $dbh->getDb());
 		  header('Location: http://www.salade-quiz.fr/php/user.php?token='.$content[0]->getToken());
 
-		if(checkToken($content, $dbh->getDb())==true ){
-			echo "token valide";
-		}else{
-			echo "token invalide";
-		}
+
 	}
 
   if($validation == false){

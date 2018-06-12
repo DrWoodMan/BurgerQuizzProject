@@ -18,4 +18,6 @@
 #include <cppconn/statement.h>
 #include <cppconn/prepared_statement.h>
 
+#include "dataStructs.hpp"
+
 #endif

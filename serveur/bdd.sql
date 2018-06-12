@@ -19,7 +19,7 @@ CREATE TABLE user(
     mailAddress     Varchar (50) NOT NULL,
 	CONSTRAINT user_PK PRIMARY KEY (login)
 )
-ENGINE=InnoDB DEFAULT CHARSET=utf8_general_ci;
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE theme(
@@ -27,7 +27,7 @@ CREATE TABLE theme(
     theme   Varchar (50) UNIQUE NOT NULL,
     CONSTRAINT theme_PK PRIMARY KEY (idTheme)
 )
-ENGINE=InnoDB DEFAULT CHARSET=utf8_general_ci;
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE question(
@@ -39,7 +39,7 @@ CREATE TABLE question(
     CONSTRAINT question_PK PRIMARY KEY (idQuestion),
     CONSTRAINT question_theme_FK FOREIGN KEY (idTheme) REFERENCES theme(idTheme)
 )
-ENGINE=InnoDB DEFAULT CHARSET=utf8_general_ci;
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE proposition(
@@ -51,14 +51,14 @@ CREATE TABLE proposition(
     CONSTRAINT proposition_PK PRIMARY KEY (idProposition),
     CONSTRAINT proposition_question_FK FOREIGN KEY (idQuestion) REFERENCES question(idQuestion)
 )
-ENGINE=InnoDB DEFAULT CHARSET=utf8_general_ci;
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE game(
     idGame Int  Auto_increment  NOT NULL,
 	CONSTRAINT game_PK PRIMARY KEY (idGame)
 )
-ENGINE=InnoDB DEFAULT CHARSET=utf8_general_ci;
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE has(
@@ -72,17 +72,17 @@ CREATE TABLE has(
 	CONSTRAINT has_question_FK FOREIGN KEY (idQuestion) REFERENCES question(idQuestion),
     CONSTRAINT has_proposition1_FK FOREIGN KEY (idProposition) REFERENCES proposition(idProposition)
 )
-ENGINE=InnoDB DEFAULT CHARSET=utf8_general_ci;
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE score(
     idGame Int NOT NULL,
     login  Varchar (50) NOT NULL,
     score  Int NOT NULL,
-    time TIMESTAMP NOT NULL,
+    time Int NOT NULL,
     CONSTRAINT score_PK PRIMARY KEY (idGame,login),
 	CONSTRAINT score_game_FK FOREIGN KEY (idGame) REFERENCES game(idGame),
 	CONSTRAINT score_user0_FK FOREIGN KEY (login) REFERENCES user(login)
 )
-ENGINE=InnoDB DEFAULT CHARSET=utf8_general_ci;
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

@@ -1,5 +1,5 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef MAINWINDOW_HHP
+#define MAINWINDOW_HHP
 
 
 #include "includes.hpp"

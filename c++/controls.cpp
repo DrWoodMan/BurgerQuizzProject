@@ -104,28 +104,6 @@ Controls::Controls() : QWidget(){
     validateConnectionLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
 
 
-//LOADING
-
-    loadingWidget = new QWidget();
-    mainLayout->addWidget(loadingWidget);
-    loadingWidget->hide();
-
-    QHBoxLayout *loadingBodyLayout = new QHBoxLayout;
-    loadingWidget->setLayout(loadingBodyLayout);
-
-    loadingBodyLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
-    QVBoxLayout *loadingLayout = new QVBoxLayout();
-    loadingBodyLayout->addLayout(loadingLayout);
-    loadingBodyLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
-
-    QMovie *movie = new QMovie("loadingAnimation.gif");
-    movie->setScaledSize(QSize(300, 300));
-    QLabel *animationLabel = new QLabel();
-    animationLabel->setMovie(movie);
-    loadingLayout->addWidget(animationLabel);
-    movie->start();
-
-
 //THEMES
 
     themeWidget = new QWidget();
@@ -350,7 +328,6 @@ Controls::Controls() : QWidget(){
     propositionSelection = new QComboBox();
     propositionSelectionLayout->addWidget(propositionSelection);
 
-    //connect(propositionSelection, SIGNAL(currentTextChanged(QString)), this, SLOT(slot_copyPropositionInWritingField(QString)));
 
 
     //proposition selection buttons
@@ -398,6 +375,7 @@ Controls::Controls() : QWidget(){
     propositionWritingLayout->addWidget(propositionSolutionLabel);
 
     theOne = new QRadioButton();
+    theOne->setChecked(true);
     propositionWritingLayout->addWidget(theOne);
 
     theOther = new QRadioButton();
@@ -421,10 +399,6 @@ QCheckBox *Controls::getFullscreen(){
 
 QPushButton *Controls::getLogout(){
     return logout;
-}
-
-QWidget *Controls::getLoadingWidget(){
-    return loadingWidget;
 }
 
 QWidget *Controls::getAuthenticationWidget(){
@@ -587,23 +561,7 @@ void Controls::slot_backToThemes(){
     questionWidget->hide();
     themeWidget->show();
 }
-/*
-void Controls::slot_relatedPropositions(){
 
-    questionPlaceholderLayout->removeItem(selectedThemeLayout);
-    propositionPlaceholderLayout->addLayout(selectedThemeLayout);
-    
-    questionWidget->hide();
-    propositionWidget->show();
-
-}
-*/
-/*
-void Controls::slot_copyPropositionInWritingField(QString str){
-
-    propositionWritingField->setPlainText(str);
-}
-*/
 void Controls::slot_backToQuestions(){
 
     propositionPlaceholderLayout->removeItem(selectedThemeLayout);

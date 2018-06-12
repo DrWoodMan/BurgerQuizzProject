@@ -94,6 +94,9 @@ void MainWindow::getThemes(){
             controls->getThemeSelection()->addItem(QString::fromStdString(theme.theme));
         }
     }
+    else if(themes.size() == 0){
+        controls->getRelatedQuestions()->hide();
+    }
 }
 
 void MainWindow::getQuestions(){
@@ -108,6 +111,9 @@ void MainWindow::getQuestions(){
         for(auto &question : questions){
             controls->getQuestionSelection()->addItem(QString::fromStdString(question.field1 + ", " + question.field2 + " ou les deux ?"));
         }
+    }
+    else if(questions.size() == 0){
+        controls->getRelatedPropositions()->hide();
     }
 }
 
@@ -200,18 +206,13 @@ void MainWindow::slot_deleteTheme(){
 
 void MainWindow::slot_relatedQuestions(){
 
-    qDebug() << "1";
     QString selectedTheme = controls->getThemeSelection()->currentText();
     controls->getSelectedTheme()->setText("Selected theme : " + selectedTheme);
-    qDebug() << "2";
 
     idSelectedTheme = themes[controls->getThemeSelection()->currentIndex()].idTheme;
-    qDebug() << "3";
     controls->getThemeWidget()->hide();
     controls->getQuestionWidget()->show();
-    qDebug() << "4";
     getQuestions();
-    qDebug() << "5";
 }
 
 void MainWindow::slot_copyQuestionInWritingFields(int index){

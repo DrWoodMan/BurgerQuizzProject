@@ -1,27 +1,9 @@
-#ifndef GESTIONBDD_H
-#define GESTIONBDD_H
+#ifndef DATABASE_HHP
+#define DATABASE_HHP
 
 #include "includes.hpp"
 
 
-typedef struct{
-    unsigned int idTheme;
-    std::string theme;
-}Theme;
-
-typedef struct{
-    unsigned int idQuestion;
-    std::string field1;
-    std::string field2;
-    unsigned int idTheme;
-}Question;
-
-typedef struct{
-    unsigned int idProposition;
-    std::string proposition;
-    unsigned int solution;
-    unsigned int idQuestion;
-}Proposition;
 
 class DataBase{
 

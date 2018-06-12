@@ -46,7 +46,6 @@ Controls::Controls() : QWidget(){
     //fields connection general layout
     QVBoxLayout *connectionFieldsLayout = new QVBoxLayout;
     authenticationLayout->addLayout(connectionFieldsLayout);
-    
 
     //server IP label
     QHBoxLayout *serverIPLabelLayout = new QHBoxLayout;
@@ -173,6 +172,7 @@ Controls::Controls() : QWidget(){
     deleteTheme->setMaximumWidth(200);
 
     relatedQuestions = new QPushButton("QUESTIONS");
+    relatedQuestions->hide();
     buttonsThemeSelectionLayout->addWidget(relatedQuestions);
     relatedQuestions->setMaximumWidth(200);
 
@@ -254,6 +254,7 @@ Controls::Controls() : QWidget(){
     deleteQuestion->setMaximumWidth(200);
 
     relatedPropositions = new QPushButton("PROPOSITIONS");
+    relatedPropositions->hide();
     buttonsQuestionSelectionLayout->addWidget(relatedPropositions);
     relatedPropositions->setMaximumWidth(200);
 
@@ -407,8 +408,8 @@ Controls::Controls() : QWidget(){
 
     mainLayout->addSpacerItem(new QSpacerItem(6000, 6000, QSizePolicy::Expanding, QSizePolicy::Expanding));
 
-    serverIP->setEditText("127.0.0.1:3306");
-    login->setEditText("saladeQuiz");
+    serverIP->setEditText(settings.value("serverIP").toString());
+    login->setEditText(settings.value("login").toString());
     password->setText("saladeQuiz");
 }
 
@@ -421,11 +422,11 @@ QCheckBox *Controls::getFullscreen(){
 QPushButton *Controls::getLogout(){
     return logout;
 }
-/*
-QWidget *Controls::getErrorsWidget(){
-    return errorsWidget;
+
+QWidget *Controls::getLoadingWidget(){
+    return loadingWidget;
 }
-*/
+
 QWidget *Controls::getAuthenticationWidget(){
     return authenticationWidget;
 }

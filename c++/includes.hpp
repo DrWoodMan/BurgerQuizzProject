@@ -9,6 +9,7 @@
 
 #include <QtWidgets>
 #include <QBoxLayout>
+#include <QSettings>
 
 
 #include <cppconn/driver.h>
@@ -16,6 +17,5 @@
 #include <cppconn/exception.h>
 #include <cppconn/statement.h>
 #include <cppconn/prepared_statement.h>
-
 
 #endif

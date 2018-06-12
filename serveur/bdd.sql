@@ -19,7 +19,7 @@ CREATE TABLE user(
     mailAddress     Varchar (50) NOT NULL,
 	CONSTRAINT user_PK PRIMARY KEY (login)
 )
-ENGINE=InnoDB;
+ENGINE=InnoDB DEFAULT CHARSET=utf8_general_ci;
 
 
 CREATE TABLE theme(
@@ -27,7 +27,7 @@ CREATE TABLE theme(
     theme   Varchar (50) UNIQUE NOT NULL,
     CONSTRAINT theme_PK PRIMARY KEY (idTheme)
 )
-ENGINE=InnoDB;
+ENGINE=InnoDB DEFAULT CHARSET=utf8_general_ci;
 
 
 CREATE TABLE question(
@@ -39,7 +39,7 @@ CREATE TABLE question(
     CONSTRAINT question_PK PRIMARY KEY (idQuestion),
     CONSTRAINT question_theme_FK FOREIGN KEY (idTheme) REFERENCES theme(idTheme)
 )
-ENGINE=InnoDB;
+ENGINE=InnoDB DEFAULT CHARSET=utf8_general_ci;
 
 
 CREATE TABLE proposition(
@@ -51,14 +51,14 @@ CREATE TABLE proposition(
     CONSTRAINT proposition_PK PRIMARY KEY (idProposition),
     CONSTRAINT proposition_question_FK FOREIGN KEY (idQuestion) REFERENCES question(idQuestion)
 )
-ENGINE=InnoDB;
+ENGINE=InnoDB DEFAULT CHARSET=utf8_general_ci;
 
 
 CREATE TABLE game(
     idGame Int  Auto_increment  NOT NULL,
 	CONSTRAINT game_PK PRIMARY KEY (idGame)
 )
-ENGINE=InnoDB;
+ENGINE=InnoDB DEFAULT CHARSET=utf8_general_ci;
 
 
 CREATE TABLE has(
@@ -72,7 +72,7 @@ CREATE TABLE has(
 	CONSTRAINT has_question_FK FOREIGN KEY (idQuestion) REFERENCES question(idQuestion),
     CONSTRAINT has_proposition1_FK FOREIGN KEY (idProposition) REFERENCES proposition(idProposition)
 )
-ENGINE=InnoDB;
+ENGINE=InnoDB DEFAULT CHARSET=utf8_general_ci;
 
 
 CREATE TABLE score(
@@ -84,5 +84,5 @@ CREATE TABLE score(
 	CONSTRAINT score_game_FK FOREIGN KEY (idGame) REFERENCES game(idGame),
 	CONSTRAINT score_user0_FK FOREIGN KEY (login) REFERENCES user(login)
 )
-ENGINE=InnoDB;
+ENGINE=InnoDB DEFAULT CHARSET=utf8_general_ci;
 

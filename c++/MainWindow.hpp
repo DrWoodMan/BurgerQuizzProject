@@ -41,6 +41,7 @@ class MainWindow : public QMainWindow {
 
     private:
     
+        QSettings settings;
         QVBoxLayout *mainLayout;
         //QWidget *previousPage;
         Controls *controls;

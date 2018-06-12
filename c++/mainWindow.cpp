@@ -5,7 +5,7 @@ MainWindow::MainWindow() : QMainWindow(){
 
     setWindowTitle("Salade Quiz - Administration interface");
     //setWindowIcon(QIcon(QPixmap("salade.jpg")));
-    setMinimumWidth(400);
+    setMinimumWidth(500);
     setMinimumHeight(400);
     show();
 
@@ -88,7 +88,8 @@ void MainWindow::getThemes(){
     themes = dataBase->getThemes();
     controls->getThemeSelection()->clear();
 
-    if(!dbErrorPopup()){
+    if(!dbErrorPopup() && (themes.size() > 0)){
+        controls->getRelatedQuestions()->show();
         for(auto &theme : themes){
             controls->getThemeSelection()->addItem(QString::fromStdString(theme.theme));
         }
@@ -102,7 +103,8 @@ void MainWindow::getQuestions(){
     controls->getQuestionWritingField1()->clear();
     controls->getQuestionWritingField2()->clear();
 
-    if(!dbErrorPopup()){
+    if(!dbErrorPopup() && (questions.size() > 0)){
+        controls->getRelatedPropositions()->show();
         for(auto &question : questions){
             controls->getQuestionSelection()->addItem(QString::fromStdString(question.field1 + ", " + question.field2 + " ou les deux ?"));
         }
@@ -127,11 +129,14 @@ void MainWindow::slot_connection(){
     dataBase = new DataBase(controls->getServerIP()->currentText().toStdString(), controls->getLogin()->currentText().toStdString(), controls->getPassword()->text().toStdString(), "saladeQuiz");
 
     if(!dbErrorPopup()){
+        settings.setValue("serverIP", controls->getServerIP()->currentText());
+        settings.setValue("login", controls->getLogin()->currentText());
         controls->getAuthenticationWidget()->hide();
         controls->getThemeWidget()->show();
         controls->getLogout()->show();
         getThemes();
     }
+    
 }
 
 void MainWindow::slot_logout(){
@@ -174,7 +179,18 @@ void MainWindow::slot_modifyTheme(){
 
 void MainWindow::slot_deleteTheme(){
 
-    dataBase->deleteTheme(themes[controls->getThemeSelection()->currentIndex()].idTheme);
+    QMessageBox msgBox;
+    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.setText("Are you sure ?");
+    msgBox.setInformativeText("The deleting of this theme will delete all associated content (questions and propositions).");
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Cancel);
+
+    int choice = msgBox.exec();
+
+    if(choice == QMessageBox::Yes){
+        dataBase->deleteTheme(themes[controls->getThemeSelection()->currentIndex()].idTheme);
+    }
 
     if(!dbErrorPopup()){
         getThemes();
@@ -184,13 +200,18 @@ void MainWindow::slot_deleteTheme(){
 
 void MainWindow::slot_relatedQuestions(){
 
+    qDebug() << "1";
     QString selectedTheme = controls->getThemeSelection()->currentText();
     controls->getSelectedTheme()->setText("Selected theme : " + selectedTheme);
+    qDebug() << "2";
 
     idSelectedTheme = themes[controls->getThemeSelection()->currentIndex()].idTheme;
+    qDebug() << "3";
     controls->getThemeWidget()->hide();
     controls->getQuestionWidget()->show();
+    qDebug() << "4";
     getQuestions();
+    qDebug() << "5";
 }
 
 void MainWindow::slot_copyQuestionInWritingFields(int index){
@@ -237,7 +258,18 @@ void MainWindow::slot_modifyQuestion(){
 
 void MainWindow::slot_deleteQuestion(){
 
-    dataBase->deleteQuestion(questions[controls->getQuestionSelection()->currentIndex()].idQuestion);
+    QMessageBox msgBox;
+    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.setText("Are you sure ?");
+    msgBox.setInformativeText("The deleting of this question will delete all associated content (propositions).");
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Cancel);
+
+    int choice = msgBox.exec();
+
+    if(choice == QMessageBox::Yes){
+        dataBase->deleteQuestion(questions[controls->getQuestionSelection()->currentIndex()].idQuestion);
+    }
 
     if(!dbErrorPopup()){
         getQuestions();
@@ -339,7 +371,18 @@ void MainWindow::slot_modifyProposition(){
 
 void MainWindow::slot_deleteProposition(){
 
-    dataBase->deleteProposition(propositions[controls->getPropositionSelection()->currentIndex()].idProposition);
+    QMessageBox msgBox;
+    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.setText("Are you sure ?");
+    msgBox.setInformativeText("Delete this proposition.");
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
+    msgBox.setDefaultButton(QMessageBox::Cancel);
+
+    int choice = msgBox.exec();
+
+    if(choice == QMessageBox::Yes){
+        dataBase->deleteProposition(propositions[controls->getPropositionSelection()->currentIndex()].idProposition);
+    }
 
     if(!dbErrorPopup()){
         getPropositions();

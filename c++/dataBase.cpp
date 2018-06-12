@@ -100,7 +100,7 @@ void DataBase::modifyTheme(Theme theme){
 void DataBase::deleteTheme(unsigned int idTheme){
 
     try{
-        preparedStatement = connection->prepareStatement("DELETE FROM proposition WHERE idQuestion = (SELECT idQuestion FROM question WHERE idTheme = (?))");
+        preparedStatement = connection->prepareStatement("DELETE FROM proposition WHERE idQuestion IN (SELECT idQuestion FROM question WHERE idTheme = (?))");
         preparedStatement->setInt(1, idTheme);
         result = preparedStatement->executeQuery();
 

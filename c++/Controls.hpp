@@ -12,10 +12,9 @@ class Controls : public QWidget{
         ~Controls();
 
         QCheckBox *getFullscreen();
-        void setErrorsSpecifications(QString str);
-
         QPushButton *getLogout();
-        //QWidget *getErrorsWidget();
+        QWidget *getLoadingWidget();
+        
         QWidget *getAuthenticationWidget();
         QComboBox *getServerIP();
         QComboBox *getLogin();
@@ -63,16 +62,13 @@ class Controls : public QWidget{
         void slot_backToQuestions();
 
     private:
+        QSettings settings;
         QVBoxLayout *mainLayout;
 
         QCheckBox *fullscreen;
         QPushButton *logout;
 
-
         QWidget *loadingWidget;
-
-        //QWidget *errorsWidget;
-        //QLabel *errorsSpecificationsLabel;
 
         QWidget *authenticationWidget;
         QComboBox *serverIP;

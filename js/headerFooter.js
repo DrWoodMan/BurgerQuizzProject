@@ -27,7 +27,7 @@ function winLoad(){
         else {
           part2Url = myUrl[4].split('?');
 
-          if(part2Url[0]!='conncection.php' && part2Url[0]!='register.php')
+          if(part2Url[0]!='connection.php' && part2Url[0]!='register.php')
           token=part2Url[1].split('&');
 
 

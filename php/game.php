@@ -39,7 +39,7 @@ for($i=1;$i<=QUESTION_NUMBER; $i++){
 
 
 
-
+$id="";
 $leave="<button type='button' class='btn btn-primary' onclick=window.location='leave.php?idGame=".$idGame."&token=".$content[0]->getToken()."'>Quitter</button>";
 $answer1 = "<button type='button' class='btn btn-primary' value='0' onclick=window.location='answerAnalyse.php?token=".$content[0]->getToken().
 			"&value=0&propositionNumber=".$propositionNumber."&answer=".$game->getProposition()->getSolution()."&idGame=".$idGame."'> ".
@@ -116,7 +116,7 @@ $answer3 = "<button type='button' class='btn btn-primary' value='2' onclick=wind
     <div class="row" style="margin-left:10px;">
       <div class="col-lg-10">
       </div>
-      <h4 class =" col-lg-2 " >01:23</h4>
+      <h4 class =" col-lg-2 " id="time">01:23</h4>
     </div>
 
 

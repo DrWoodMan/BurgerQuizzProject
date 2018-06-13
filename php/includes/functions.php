@@ -207,8 +207,7 @@ function updateScore($score, $newScore, $db ){
 
   $update = $db->prepare("UPDATE score SET score=:score  WHERE login=:login AND  idGame=:idGame");
   $update->execute(array(':score' => $newScore, ':login'=>$score[0]->getLogin(), ':idGame' => $score[0]->getIdGame()));
-  $update=$update->fetchAll(PDO::FETCH_CLASS, 'Score');
-  return $update;
+
 }
 
 
@@ -290,7 +289,6 @@ function selectTargetedLinks($idGame, $i, $j , $db){
   $prep_fetch = $db->prepare("SELECT * FROM has WHERE idGame =:idGame AND questionOrder=:questionOrder AND propositionOrder=:propositionOrder");
   $prep_fetch->execute(array(':idGame'=> $idGame, ':questionOrder'=>$i , ':propositionOrder'=>$j));
   $link = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'LinkGameQuestion');
-  print_r($link);
 
   return $link;
 

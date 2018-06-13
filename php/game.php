@@ -7,7 +7,6 @@ $token=$_GET['token'];
 $idGame=$_GET['idGame'];
 $propositionNumber=$_GET['propositionNumber'];
 
-$totalPropositions=PROPOSITION_NUMBER*QUESTION_NUMBER;
 
 $content=new User;
 $dbh = new DBmanage;
@@ -22,7 +21,7 @@ $content=loadUserFromToken($token,$dbh->getDb());
 
 
 for($i=1;$i<=QUESTION_NUMBER; $i++){
-	if($propositionNumber<=$totalPropositions){
+	if($propositionNumber<=TOTAL_PROPOSITIONS){
 
 		if($propositionNumber>PROPOSITION_NUMBER*($i-1) && $propositionNumber<=PROPOSITION_NUMBER*$i){
 
@@ -33,7 +32,8 @@ for($i=1;$i<=QUESTION_NUMBER; $i++){
 		}
 
 	}else{
-		header('Location: http://www.salade-quiz.fr/php/error.php&idError=404');
+		header('Location: http://www.salade-quiz.fr/php/answerAnalyse.php?token='.$content[0]->getToken().
+					"&value=12&propositionNumber=".$propositionNumber."&answer=noAnswer&idGame=".$idGame);
 	}
 }
 
@@ -107,7 +107,7 @@ $answer3 = "<button type='button' class='btn btn-primary' value='2' onclick=wind
     <div class="row" style="margin-left:10px;">
       <div class="col-lg-1">
       </div>
-      <h4 class =" col-lg-2 " >Question n°<?php echo ($propositionNumber."/".$totalPropositions);?></h4>
+      <h4 class =" col-lg-2 " >Question n°<?php echo ($propositionNumber."/".TOTAL_PROPOSITIONS);?></h4>
     </div>
 
 

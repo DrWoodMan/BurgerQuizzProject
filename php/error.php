@@ -19,7 +19,7 @@ $idError=$_GET['idError'];
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 		<!-- Title -->
-		<title>Salade Quiz - Erreur</title>
+		<title>Salade Quiz - Erreur <?php echo $idError; ?></title>
 
     <!-- Css Styles -->
     <link href="../css\bootstrap.min.css" rel="stylesheet">

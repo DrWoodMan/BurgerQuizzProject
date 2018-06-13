@@ -136,7 +136,7 @@ function generateGlobalGamesPodium($globalScore, $i, $user){
 
   $global="<a id='id-user'>". $globalScore[$i]->getLogin()."</a><a> | </a> <a id='score'>". $globalScore[$i]->getScore()." pts</a>
   </br>
-  <a id='id-game'>Partie ". $globalScore[$i]->getIdGame()." </a>
+  <a id='id-game'>Partie n°". $globalScore[$i]->getIdGame()." </a>
   </br>
   <button type='button' class='btn btn-primary' onclick=window.location='loadGame.php?token=".$user[0]->getToken()."&idGame=".$globalScore[$i]->getIdGame()."'>Jouer</button>";
 
@@ -150,7 +150,7 @@ function generatePersonalHistory($specificScore, $i, $user){
 
   $specific="<a id='score' >".$specificScore[$i]->getScore()." pts</a>
   </br>
-  <a id='id-game'>Partie ".$specificScore[$i]->getIdGame()."</a>
+  <a id='id-game'>Partie n°".$specificScore[$i]->getIdGame()."</a>
   </br>
   <button type='button' class='btn btn-primary' onclick=window.location='loadGame.php?token=".$user[0]->getToken()."&idGame=".$specificScore[$i]->getIdGame()."'>Jouer</button>";
   return $specific;
@@ -192,8 +192,8 @@ function checkScore($login, $idGame, $db){
 function createScore($login, $idGame, $db){
 
 
-  $insertion = $db->prepare("INSERT INTO score (idGame, login, score ) VALUES (:idGame, :login, :score)");
-  $insertion->execute(array(':idGame'=>$idGame,':login'=>$login, ':score'=>0 ));
+  $insertion = $db->prepare("INSERT INTO score (idGame, login, score, time ) VALUES (:idGame, :login, :score, :time)");
+  $insertion->execute(array(':idGame'=>$idGame,':login'=>$login, ':score'=>0 , ':time'=>time() ));
   $score = new Score;
   $score = $insertion->fetchAll(PDO::FETCH_CLASS,'Score');
   return $score;

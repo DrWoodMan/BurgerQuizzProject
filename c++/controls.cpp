@@ -56,9 +56,19 @@ Controls::Controls() : QWidget(){
 
 
     //server IP field
-    serverIP = new QComboBox;
-    serverIP->setEditable(true);
+    serverIP = new QLineEdit;
     connectionFieldsLayout->addWidget(serverIP);
+
+    //data base name label
+    QHBoxLayout *dataBaseNameLayout = new QHBoxLayout;
+    QLabel *dataBaseNameLabel = new QLabel("Data base name");
+    dataBaseNameLayout->addWidget(dataBaseNameLabel);
+    dataBaseNameLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
+    connectionFieldsLayout->addLayout(dataBaseNameLayout);
+
+    //data base name field
+    dataBaseName = new QLineEdit;
+    connectionFieldsLayout->addWidget(dataBaseName);
 
 
     //login label
@@ -70,8 +80,7 @@ Controls::Controls() : QWidget(){
 
 
     //login field
-    login = new QComboBox;
-    login->setEditable(true);
+    login = new QLineEdit;
     connectionFieldsLayout->addWidget(login);
 
 
@@ -103,6 +112,10 @@ Controls::Controls() : QWidget(){
     validateConnectionLayout->addWidget(validateConnection);
     validateConnectionLayout->addSpacerItem(new QSpacerItem(0, 0, QSizePolicy::Expanding, QSizePolicy::Expanding));
 
+    serverIP->setText(settings.value("serverIP").toString());
+    login->setText(settings.value("login").toString());
+    dataBaseName->setText(settings.value("dataBaseName").toString());
+    password->setText("saladeQuiz");
 
 //THEMES
 
@@ -385,9 +398,6 @@ Controls::Controls() : QWidget(){
 
     mainLayout->addSpacerItem(new QSpacerItem(6000, 6000, QSizePolicy::Expanding, QSizePolicy::Expanding));
 
-    serverIP->setEditText(settings.value("serverIP").toString());
-    login->setEditText(settings.value("login").toString());
-    password->setText("saladeQuiz");
 }
 
 Controls::~Controls(){}
@@ -404,11 +414,15 @@ QWidget *Controls::getAuthenticationWidget(){
     return authenticationWidget;
 }
 
-QComboBox *Controls::getServerIP(){
+QLineEdit *Controls::getServerIP(){
     return serverIP;
 }
 
-QComboBox *Controls::getLogin(){
+QLineEdit *Controls::getDataBaseName(){
+    return dataBaseName;
+}
+
+QLineEdit *Controls::getLogin(){
     return login;
 }
 

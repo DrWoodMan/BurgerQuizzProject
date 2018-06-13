@@ -6,7 +6,7 @@ MainWindow::MainWindow() : QMainWindow(){
     setWindowTitle("Salade Quiz - Administration interface");
     //setWindowIcon(QIcon(QPixmap("salade.jpg")));
     setMinimumWidth(500);
-    setMinimumHeight(400);
+    setMinimumHeight(500);
     show();
 
     controls = new Controls();
@@ -30,11 +30,11 @@ MainWindow::MainWindow() : QMainWindow(){
     connect(controls->getQuestionSelection(), SIGNAL(activated(int)), this, SLOT(slot_copyQuestionInWritingFields(int)));
     //action d'ajouter une question à la bdd
     connect(controls->getAddQuestion(), SIGNAL(clicked()), this, SLOT(slot_addQuestion()));
-
+    //action de modifier une question en bdd
     connect(controls->getModifyQuestion(), SIGNAL(clicked()), this, SLOT(slot_modifyQuestion()));
-
+    //action de supprimer une question de la bdd
     connect(controls->getDeleteQuestion(), SIGNAL(clicked()), this, SLOT(slot_deleteQuestion()));
-
+    //action d'aff
     connect(controls->getRelatedPropositions(), SIGNAL(clicked()), this, SLOT(slot_relatedPropositions()));
 
     connect(controls->getPropositionSelection(), SIGNAL(activated(int)), this, SLOT(slot_copyPropositionInWritingField(int)));
@@ -132,11 +132,12 @@ void MainWindow::getPropositions(){
 
 void MainWindow::slot_connection(){
     
-    dataBase = new DataBase(controls->getServerIP()->currentText().toStdString(), controls->getLogin()->currentText().toStdString(), controls->getPassword()->text().toStdString(), "saladeQuiz");
+    dataBase = new DataBase(controls->getServerIP()->text().toStdString(), controls->getLogin()->text().toStdString(), controls->getPassword()->text().toStdString(), controls->getDataBaseName()->text().toStdString());
 
     if(!dbErrorPopup()){
-        settings.setValue("serverIP", controls->getServerIP()->currentText());
-        settings.setValue("login", controls->getLogin()->currentText());
+        settings.setValue("serverIP", controls->getServerIP()->text());
+        settings.setValue("dataBaseName", controls->getDataBaseName()->text());
+        settings.setValue("login", controls->getLogin()->text());
         controls->getAuthenticationWidget()->hide();
         controls->getThemeWidget()->show();
         controls->getLogout()->show();

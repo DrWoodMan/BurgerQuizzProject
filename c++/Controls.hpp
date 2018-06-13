@@ -45,15 +45,20 @@ class Controls : public QWidget{
 
         /**
         * \brief Getter du champ de saisie de l'IP du serveur. 
-        * \return Pointeur de QComboBox.
+        * \return Pointeur de QLineEdit.
         */
-        QComboBox *getServerIP();
+        QLineEdit *getServerIP();
 
         /**
-        * \brief Getter du champ de saisie de l'identifiant. 
-        * \return Pointeur de QComboBox.
+        * \brief Getter du champ de saisie du nom de la base de données. 
+        * \return Pointeur de QLineEdit.
         */
-        QComboBox *getLogin();
+        QLineEdit *getDataBaseName();
+        /**
+        * \brief Getter du champ de saisie de l'identifiant. 
+        * \return Pointeur de QLineEdit.
+        */
+        QLineEdit *getLogin();
 
         /**
         * \brief Getter du champ de saisie de du mot de passe. 
@@ -277,8 +282,10 @@ class Controls : public QWidget{
         QPushButton *logout;
 
         QWidget *authenticationWidget;
-        QComboBox *serverIP;
-        QComboBox *login;
+        QLineEdit *serverIP;
+        QLineEdit *dataBaseName;
+        QLineEdit *login;
+
         QLineEdit *password;
         QCheckBox *showPassword;
         QPushButton *validateConnection;

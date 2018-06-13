@@ -17,7 +17,6 @@ $score= new Score;
 $dbh->connection();
 $content=loadUserFromToken($token, $dbh->getDb());
 
-print_r($content);
 $score= getScoreSpecific($content[0]->getLogin(), $idGame, $dbh->getDb());
 
 $userScore= round($score[0]->getScore()*TOTAL_PROPOSITIONS/(/*TODO: timestamp*3    /*/ 2),0);

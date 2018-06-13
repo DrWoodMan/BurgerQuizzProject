@@ -36,8 +36,8 @@ if($value === $answer){
 $oui="j'ai pas encore géré cette page";
 
 if($propositionNumber<=TOTAL_PROPOSITIONS){
-  header("Location: http://www.salade-quiz.fr/php/game.php?token=".$token."&idGame=".$idGame."&propositionNumber=".$newPropositionNumber);
+  header("Location: /php/game.php?token=".$token."&idGame=".$idGame."&propositionNumber=".$newPropositionNumber);
 }else if($value== 12){
-  header("Location: http://www.salade-quiz.fr/php/end.php?token=".$token."&idGame=".$idGame);
+  header("Location: /php/end.php?token=".$token."&idGame=".$idGame);
 
 }

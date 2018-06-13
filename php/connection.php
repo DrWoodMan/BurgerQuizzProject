@@ -24,7 +24,7 @@ $alert=NULL;
 		$validation=false;
 	}else{
 		$content=createToken($content, $dbh->getDb());
-		  header('Location: http://www.salade-quiz.fr/php/user.php?token='.$content[0]->getToken());
+		  header('Location: /php/user.php?token='.$content[0]->getToken());
 
 
 	}

@@ -12,7 +12,7 @@ $score=new Score;
 
 $dbh->connection();
 $content=loadUserFromToken($token,$dbh->getDb());
-if(checkScore($content[0]->getLogin(), $idGame, $dbh->getDb())){ 
+if(checkScore($content[0]->getLogin(), $idGame, $dbh->getDb())){
 
   $score=getScoreSpecific($content[0]->getLogin(), $idGame, $dbh->getDb());
 
@@ -22,4 +22,4 @@ if(checkScore($content[0]->getLogin(), $idGame, $dbh->getDb())){
 }
 
 
-header("Location: http://www.salade-quiz.fr/php/game.php?token=".$token."&idGame=".$idGame."&propositionNumber=1");
+header("Location: /php/game.php?token=".$token."&idGame=".$idGame."&propositionNumber=1");

@@ -29,7 +29,7 @@ if(isset($_POST['pwd'])&& isset($_POST['login']) && isset($_POST['confirm-pwd'])
 
 	if($alert_email==NULL && $alert_pwd==NULL && $alert_login==NULL){
 		$content=createUser($_POST['login'], $_POST['pwd'], $_POST['email'], $dbh->getDb());
-		header('Location: http://www.salade-quiz.fr/php/user.php?token='.$content[0]->getToken());
+		header('Location: /php/user.php?token='.$content[0]->getToken());
 
 	}
 

@@ -37,4 +37,4 @@ for($i=0; $i<sizeof($questions) ;$i++){ // on affecte chaque question choisie al
 $score=createScore($content[0]->getLogin(), $idGame[0], $dbh->getDb()); // On crée un score associé à la nouvelle partie et au joueur
 
 
-header("Location: http://www.salade-quiz.fr/php/game.php?token=".$token."&idGame=".$idGame[0]."&propositionNumber=1");
+header("Location: /php/game.php?token=".$token."&idGame=".$idGame[0]."&propositionNumber=1");

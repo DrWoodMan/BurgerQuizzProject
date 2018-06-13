@@ -32,7 +32,7 @@ for($i=1;$i<=QUESTION_NUMBER; $i++){
 		}
 
 	}else{
-		header('Location: http://www.salade-quiz.fr/php/answerAnalyse.php?token='.$content[0]->getToken().
+		header('Location: /php/answerAnalyse.php?token='.$content[0]->getToken().
 					"&value=12&propositionNumber=".$propositionNumber."&answer=noAnswer&idGame=".$idGame);
 	}
 }

@@ -22,7 +22,7 @@ function loadUserFromToken($token, $db ){
   $prep_fetch->execute(array(':token'=>$token));
   $user = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'User');
   if(!isset($user)){
-    header('Location: http://www.salade-quiz.fr/php/error.php&idError=403');
+    header('Location: /php/error.php&idError=403');
   }
   return $user;
 
@@ -36,7 +36,7 @@ function loadGameFromId($id, $db ){
   $prep_fetch->execute(array(':id'=>$id));
   $game = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'Game');
   if($game[0]==NULL){
-    header('Location: http://www.salade-quiz.fr/php/error.php&idError=404');
+    header('Location: /php/error.php&idError=404');
   }
   return $game;
 
@@ -63,7 +63,7 @@ function deconnection($user, $db){
   $update = $db->prepare("UPDATE user SET token=NULL WHERE login=:login");
   $update->execute(array(':login'=>$user[0]->getLogin()));
 
-  header('Location: http://www.salade-quiz.fr');
+  header('Location: ..');
 }
 
 

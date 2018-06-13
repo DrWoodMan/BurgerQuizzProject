@@ -1,3 +1,11 @@
+/**
+* \file MainWindow.hpp
+* \author Adrien LEBOURGEOIS - Arthur MESLIN
+* \date 15 Juin 2018
+* \brief Classe principale.
+* \details Classe principale faisant le lien entre la classe Controls et la classe DataBase
+*/
+
 #ifndef MAINWINDOW_HHP
 #define MAINWINDOW_HHP
 
@@ -43,7 +51,6 @@ class MainWindow : public QMainWindow {
     
         QSettings settings;
         QVBoxLayout *mainLayout;
-        //QWidget *previousPage;
         Controls *controls;
         DataBase *dataBase;
 

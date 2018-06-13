@@ -1,3 +1,10 @@
+/**
+* \file includes.hpp
+* \author Adrien LEBOURGEOIS - Arthur MESLIN
+* \date 15 Juin 2018
+* \brief fichier regroupant les inclusions de bibliothèques externes
+*/
+
 #ifndef INCLUDES_HPP
 #define INCLUDES_HPP
 

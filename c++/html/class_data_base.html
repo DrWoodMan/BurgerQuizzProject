@@ -5,10 +5,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.15"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: DataBase Class Reference</title>
+<title>Salade Quiz: DataBase Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+  $(document).ready(initResizable);
+/* @license-end */</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -21,7 +29,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">Salade Quiz
    </div>
   </td>
  </tr>
@@ -45,6 +53,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_data_base.html','');});
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,7 +84,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -71,62 +95,499 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a60152cf81bd061a3db4bde08c703a0f4"><td class="memItemLeft" align="right" valign="top"><a id="a60152cf81bd061a3db4bde08c703a0f4"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>DataBase</b> (std::string ip, std::string user, std::string password, std::string baseName)</td></tr>
+<tr class="memitem:a60152cf81bd061a3db4bde08c703a0f4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#a60152cf81bd061a3db4bde08c703a0f4">DataBase</a> (std::string ip, std::string user, std::string password, std::string baseName)</td></tr>
+<tr class="memdesc:a60152cf81bd061a3db4bde08c703a0f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur de la classe <a class="el" href="class_data_base.html">DataBase</a>.  <a href="#a60152cf81bd061a3db4bde08c703a0f4">More...</a><br /></td></tr>
 <tr class="separator:a60152cf81bd061a3db4bde08c703a0f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3660ca156a3545e6ba2e27d2271ece96"><td class="memItemLeft" align="right" valign="top"><a id="a3660ca156a3545e6ba2e27d2271ece96"></a>
-sql::Connection *&#160;</td><td class="memItemRight" valign="bottom"><b>getConnection</b> ()</td></tr>
-<tr class="separator:a3660ca156a3545e6ba2e27d2271ece96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a691932af72b7b08d7897d3d93a6a0d26"><td class="memItemLeft" align="right" valign="top"><a id="a691932af72b7b08d7897d3d93a6a0d26"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>getError</b> ()</td></tr>
+<tr class="memitem:a9d4629e705ccaa4897e9650222a2a648"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#a9d4629e705ccaa4897e9650222a2a648">~DataBase</a> ()</td></tr>
+<tr class="memdesc:a9d4629e705ccaa4897e9650222a2a648"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructeur de la classe <a class="el" href="class_data_base.html">DataBase</a>.  <a href="#a9d4629e705ccaa4897e9650222a2a648">More...</a><br /></td></tr>
+<tr class="separator:a9d4629e705ccaa4897e9650222a2a648"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d8dcbb99bdbfe086dce119c94e5209a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#a1d8dcbb99bdbfe086dce119c94e5209a">exception</a> (sql::SQLException &amp;e)</td></tr>
+<tr class="memdesc:a1d8dcbb99bdbfe086dce119c94e5209a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gère les erreurs de MySQL.  <a href="#a1d8dcbb99bdbfe086dce119c94e5209a">More...</a><br /></td></tr>
+<tr class="separator:a1d8dcbb99bdbfe086dce119c94e5209a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a691932af72b7b08d7897d3d93a6a0d26"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#a691932af72b7b08d7897d3d93a6a0d26">getError</a> ()</td></tr>
+<tr class="memdesc:a691932af72b7b08d7897d3d93a6a0d26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne la chaine contenant les erreurs.  <a href="#a691932af72b7b08d7897d3d93a6a0d26">More...</a><br /></td></tr>
 <tr class="separator:a691932af72b7b08d7897d3d93a6a0d26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fcb197afb0f252a494b609ce69aa089"><td class="memItemLeft" align="right" valign="top"><a id="a0fcb197afb0f252a494b609ce69aa089"></a>
-std::vector&lt; <a class="el" href="struct_theme.html">Theme</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getThemes</b> ()</td></tr>
+<tr class="memitem:a0fcb197afb0f252a494b609ce69aa089"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="struct_theme.html">Theme</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#a0fcb197afb0f252a494b609ce69aa089">getThemes</a> ()</td></tr>
+<tr class="memdesc:a0fcb197afb0f252a494b609ce69aa089"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne les thèmes.  <a href="#a0fcb197afb0f252a494b609ce69aa089">More...</a><br /></td></tr>
 <tr class="separator:a0fcb197afb0f252a494b609ce69aa089"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a41469004913f799b6d9068e8956bbcb6"><td class="memItemLeft" align="right" valign="top"><a id="a41469004913f799b6d9068e8956bbcb6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addTheme</b> (std::string theme)</td></tr>
+<tr class="memitem:a41469004913f799b6d9068e8956bbcb6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#a41469004913f799b6d9068e8956bbcb6">addTheme</a> (std::string theme)</td></tr>
+<tr class="memdesc:a41469004913f799b6d9068e8956bbcb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajoute un thème à la base de données.  <a href="#a41469004913f799b6d9068e8956bbcb6">More...</a><br /></td></tr>
 <tr class="separator:a41469004913f799b6d9068e8956bbcb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a261c16517891647ca182697ce88b3f47"><td class="memItemLeft" align="right" valign="top"><a id="a261c16517891647ca182697ce88b3f47"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>modifyTheme</b> (<a class="el" href="struct_theme.html">Theme</a> theme)</td></tr>
+<tr class="memitem:a261c16517891647ca182697ce88b3f47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#a261c16517891647ca182697ce88b3f47">modifyTheme</a> (<a class="el" href="struct_theme.html">Theme</a> theme)</td></tr>
+<tr class="memdesc:a261c16517891647ca182697ce88b3f47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modifie un thème en base de données.  <a href="#a261c16517891647ca182697ce88b3f47">More...</a><br /></td></tr>
 <tr class="separator:a261c16517891647ca182697ce88b3f47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc04581cad7739e24e8ebf6dc248e8d4"><td class="memItemLeft" align="right" valign="top"><a id="afc04581cad7739e24e8ebf6dc248e8d4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>deleteTheme</b> (unsigned int idTheme)</td></tr>
+<tr class="memitem:afc04581cad7739e24e8ebf6dc248e8d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#afc04581cad7739e24e8ebf6dc248e8d4">deleteTheme</a> (unsigned int idTheme)</td></tr>
+<tr class="memdesc:afc04581cad7739e24e8ebf6dc248e8d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Supprime un thème en base de données.  <a href="#afc04581cad7739e24e8ebf6dc248e8d4">More...</a><br /></td></tr>
 <tr class="separator:afc04581cad7739e24e8ebf6dc248e8d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e1f5ab0f68e67b60ff892a5cfbf199a"><td class="memItemLeft" align="right" valign="top"><a id="a2e1f5ab0f68e67b60ff892a5cfbf199a"></a>
-std::vector&lt; <a class="el" href="struct_question.html">Question</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getQuestions</b> (unsigned int idTheme)</td></tr>
+<tr class="memitem:a2e1f5ab0f68e67b60ff892a5cfbf199a"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="struct_question.html">Question</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#a2e1f5ab0f68e67b60ff892a5cfbf199a">getQuestions</a> (unsigned int idTheme)</td></tr>
+<tr class="memdesc:a2e1f5ab0f68e67b60ff892a5cfbf199a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne les questions.  <a href="#a2e1f5ab0f68e67b60ff892a5cfbf199a">More...</a><br /></td></tr>
 <tr class="separator:a2e1f5ab0f68e67b60ff892a5cfbf199a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8121c29ffcaddcf6512c40c463a65088"><td class="memItemLeft" align="right" valign="top"><a id="a8121c29ffcaddcf6512c40c463a65088"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addQuestion</b> (<a class="el" href="struct_question.html">Question</a> question)</td></tr>
+<tr class="memitem:a8121c29ffcaddcf6512c40c463a65088"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#a8121c29ffcaddcf6512c40c463a65088">addQuestion</a> (<a class="el" href="struct_question.html">Question</a> question)</td></tr>
+<tr class="memdesc:a8121c29ffcaddcf6512c40c463a65088"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajoute une question à la base de données.  <a href="#a8121c29ffcaddcf6512c40c463a65088">More...</a><br /></td></tr>
 <tr class="separator:a8121c29ffcaddcf6512c40c463a65088"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02ae42b1588638c1dd7f36fae21eada5"><td class="memItemLeft" align="right" valign="top"><a id="a02ae42b1588638c1dd7f36fae21eada5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>modifyQuestion</b> (<a class="el" href="struct_question.html">Question</a> question)</td></tr>
+<tr class="memitem:a02ae42b1588638c1dd7f36fae21eada5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#a02ae42b1588638c1dd7f36fae21eada5">modifyQuestion</a> (<a class="el" href="struct_question.html">Question</a> question)</td></tr>
+<tr class="memdesc:a02ae42b1588638c1dd7f36fae21eada5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modifie une question en base de données.  <a href="#a02ae42b1588638c1dd7f36fae21eada5">More...</a><br /></td></tr>
 <tr class="separator:a02ae42b1588638c1dd7f36fae21eada5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac23f51d19d4a22215ecc8473d7c28962"><td class="memItemLeft" align="right" valign="top"><a id="ac23f51d19d4a22215ecc8473d7c28962"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>deleteQuestion</b> (unsigned int idQuestion)</td></tr>
+<tr class="memitem:ac23f51d19d4a22215ecc8473d7c28962"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#ac23f51d19d4a22215ecc8473d7c28962">deleteQuestion</a> (unsigned int idQuestion)</td></tr>
+<tr class="memdesc:ac23f51d19d4a22215ecc8473d7c28962"><td class="mdescLeft">&#160;</td><td class="mdescRight">Supprime une question en base de données.  <a href="#ac23f51d19d4a22215ecc8473d7c28962">More...</a><br /></td></tr>
 <tr class="separator:ac23f51d19d4a22215ecc8473d7c28962"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad511523c5162e84bdd9e47da99bae82d"><td class="memItemLeft" align="right" valign="top"><a id="ad511523c5162e84bdd9e47da99bae82d"></a>
-std::vector&lt; <a class="el" href="struct_proposition.html">Proposition</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getPropositions</b> (unsigned int idQuestion)</td></tr>
+<tr class="memitem:ad511523c5162e84bdd9e47da99bae82d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="struct_proposition.html">Proposition</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#ad511523c5162e84bdd9e47da99bae82d">getPropositions</a> (unsigned int idQuestion)</td></tr>
+<tr class="memdesc:ad511523c5162e84bdd9e47da99bae82d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne les proposition.  <a href="#ad511523c5162e84bdd9e47da99bae82d">More...</a><br /></td></tr>
 <tr class="separator:ad511523c5162e84bdd9e47da99bae82d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af79b20e6c095a0c9d2ccc135381aa50f"><td class="memItemLeft" align="right" valign="top"><a id="af79b20e6c095a0c9d2ccc135381aa50f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addProposition</b> (<a class="el" href="struct_proposition.html">Proposition</a> proposition)</td></tr>
+<tr class="memitem:af79b20e6c095a0c9d2ccc135381aa50f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#af79b20e6c095a0c9d2ccc135381aa50f">addProposition</a> (<a class="el" href="struct_proposition.html">Proposition</a> proposition)</td></tr>
+<tr class="memdesc:af79b20e6c095a0c9d2ccc135381aa50f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ajoute une proposition à la base de données.  <a href="#af79b20e6c095a0c9d2ccc135381aa50f">More...</a><br /></td></tr>
 <tr class="separator:af79b20e6c095a0c9d2ccc135381aa50f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdbfee040e0e7e3d1d44208fa7758a8f"><td class="memItemLeft" align="right" valign="top"><a id="afdbfee040e0e7e3d1d44208fa7758a8f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>modifyProposition</b> (<a class="el" href="struct_proposition.html">Proposition</a> proposition)</td></tr>
+<tr class="memitem:afdbfee040e0e7e3d1d44208fa7758a8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#afdbfee040e0e7e3d1d44208fa7758a8f">modifyProposition</a> (<a class="el" href="struct_proposition.html">Proposition</a> proposition)</td></tr>
+<tr class="memdesc:afdbfee040e0e7e3d1d44208fa7758a8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modifie une proposition en base de données.  <a href="#afdbfee040e0e7e3d1d44208fa7758a8f">More...</a><br /></td></tr>
 <tr class="separator:afdbfee040e0e7e3d1d44208fa7758a8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e7d20be947a897f12c4924b835776d5"><td class="memItemLeft" align="right" valign="top"><a id="a4e7d20be947a897f12c4924b835776d5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>deleteProposition</b> (unsigned int idProposition)</td></tr>
+<tr class="memitem:a4e7d20be947a897f12c4924b835776d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_data_base.html#a4e7d20be947a897f12c4924b835776d5">deleteProposition</a> (unsigned int idProposition)</td></tr>
+<tr class="memdesc:a4e7d20be947a897f12c4924b835776d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Supprime une proposition en base de données.  <a href="#a4e7d20be947a897f12c4924b835776d5">More...</a><br /></td></tr>
 <tr class="separator:a4e7d20be947a897f12c4924b835776d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a60152cf81bd061a3db4bde08c703a0f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60152cf81bd061a3db4bde08c703a0f4">&#9670;&nbsp;</a></span>DataBase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DataBase::DataBase </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>ip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>user</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>password</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>baseName</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructeur de la classe <a class="el" href="class_data_base.html">DataBase</a>. </p>
+<p class="">Initialise la connexion avec la base de données. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">std::string</td><td>ip : adresse ip:port du serveur où se trouve la base de données. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">std::string</td><td>user : identifiant de l'utilisateur de la base de données. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">std::string</td><td>password : mot de passe associé à l'utilisateur de la base de données. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">std::string</td><td>baseName : nom de le base de données utilisée. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9d4629e705ccaa4897e9650222a2a648"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d4629e705ccaa4897e9650222a2a648">&#9670;&nbsp;</a></span>~DataBase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">DataBase::~DataBase </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destructeur de la classe <a class="el" href="class_data_base.html">DataBase</a>. </p>
+<p class="">Romp la connexion avec la base de données. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="af79b20e6c095a0c9d2ccc135381aa50f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af79b20e6c095a0c9d2ccc135381aa50f">&#9670;&nbsp;</a></span>addProposition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DataBase::addProposition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_proposition.html">Proposition</a>&#160;</td>
+          <td class="paramname"><em>proposition</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ajoute une proposition à la base de données. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"><a class="el" href="struct_proposition.html">Proposition</a></td><td>: struct <a class="el" href="struct_proposition.html">Proposition</a> contenant la proposition. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8121c29ffcaddcf6512c40c463a65088"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8121c29ffcaddcf6512c40c463a65088">&#9670;&nbsp;</a></span>addQuestion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DataBase::addQuestion </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_question.html">Question</a>&#160;</td>
+          <td class="paramname"><em>question</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ajoute une question à la base de données. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"><a class="el" href="struct_question.html">Question</a></td><td>question : struct <a class="el" href="struct_question.html">Question</a> contenant la question. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a41469004913f799b6d9068e8956bbcb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41469004913f799b6d9068e8956bbcb6">&#9670;&nbsp;</a></span>addTheme()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DataBase::addTheme </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>theme</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Ajoute un thème à la base de données. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">std::string</td><td>theme : nom du thème à ajouter à la base de données. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4e7d20be947a897f12c4924b835776d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e7d20be947a897f12c4924b835776d5">&#9670;&nbsp;</a></span>deleteProposition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DataBase::deleteProposition </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>idProposition</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Supprime une proposition en base de données. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">unsigned</td><td>int idProposition: id en base de de données de la proposition à supprimer. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ac23f51d19d4a22215ecc8473d7c28962"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac23f51d19d4a22215ecc8473d7c28962">&#9670;&nbsp;</a></span>deleteQuestion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DataBase::deleteQuestion </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>idQuestion</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Supprime une question en base de données. </p>
+<p class="">Supprime la question ainsi que les propositions associées. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">unsigned int</td><td>idQuestion: id en base de de données de la question à supprimer. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afc04581cad7739e24e8ebf6dc248e8d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc04581cad7739e24e8ebf6dc248e8d4">&#9670;&nbsp;</a></span>deleteTheme()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DataBase::deleteTheme </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>idTheme</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Supprime un thème en base de données. </p>
+<p class="">Supprime le thème ainsi que les questions et propositions associées. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">unsigned int</td><td>idTheme : id en base de données du thème à supprimer. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1d8dcbb99bdbfe086dce119c94e5209a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d8dcbb99bdbfe086dce119c94e5209a">&#9670;&nbsp;</a></span>exception()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DataBase::exception </td>
+          <td>(</td>
+          <td class="paramtype">sql::SQLException &amp;&#160;</td>
+          <td class="paramname"><em>e</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gère les erreurs de MySQL. </p>
+<p class="">Extrait les erreurs fournies par MySQL et les place dans la std::string <em>error</em>. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">sql::SQLException</td><td>&amp;e : erreur renvoyée par MySQL. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a691932af72b7b08d7897d3d93a6a0d26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a691932af72b7b08d7897d3d93a6a0d26">&#9670;&nbsp;</a></span>getError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string DataBase::getError </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retourne la chaine contenant les erreurs. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::string. </dd></dl>
+
+</div>
+</div>
+<a id="ad511523c5162e84bdd9e47da99bae82d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad511523c5162e84bdd9e47da99bae82d">&#9670;&nbsp;</a></span>getPropositions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="struct_proposition.html">Proposition</a> &gt; DataBase::getPropositions </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>idQuestion</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retourne les proposition. </p>
+<p class="">Récupère les propositions en base de données, les place des des structs <a class="el" href="struct_proposition.html">Proposition</a> et renvoi un std::vector&lt;Proposition&gt;. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">unsigned int</td><td>idQuestion : id de la question correspondante. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;Proposition&gt; : vecteur de <a class="el" href="struct_proposition.html">Proposition</a>. </dd></dl>
+
+</div>
+</div>
+<a id="a2e1f5ab0f68e67b60ff892a5cfbf199a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e1f5ab0f68e67b60ff892a5cfbf199a">&#9670;&nbsp;</a></span>getQuestions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="struct_question.html">Question</a> &gt; DataBase::getQuestions </td>
+          <td>(</td>
+          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramname"><em>idTheme</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retourne les questions. </p>
+<p class="">Récupère les questions en base de données, les place des des structs <a class="el" href="struct_question.html">Question</a> et renvoi un std::vector&lt;Question&gt;.</p><ul>
+<li><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">unsigned int</td><td>idTheme : id du theme correspondant. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;Question&gt; : vecteur de <a class="el" href="struct_question.html">Question</a>. </dd></dl>
+</li>
+</ul>
+
+</div>
+</div>
+<a id="a0fcb197afb0f252a494b609ce69aa089"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fcb197afb0f252a494b609ce69aa089">&#9670;&nbsp;</a></span>getThemes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="struct_theme.html">Theme</a> &gt; DataBase::getThemes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retourne les thèmes. </p>
+<p class="">Récupère les thèmes en base de données, les place des des structs <a class="el" href="struct_theme.html">Theme</a> et renvoi un std::vector&lt;Theme&gt;. </p><dl class="section return"><dt>Returns</dt><dd>std::vector&lt;Theme&gt; : vecteur de <a class="el" href="struct_theme.html">Theme</a>. </dd></dl>
+
+</div>
+</div>
+<a id="afdbfee040e0e7e3d1d44208fa7758a8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdbfee040e0e7e3d1d44208fa7758a8f">&#9670;&nbsp;</a></span>modifyProposition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DataBase::modifyProposition </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_proposition.html">Proposition</a>&#160;</td>
+          <td class="paramname"><em>proposition</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Modifie une proposition en base de données. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"><a class="el" href="struct_proposition.html">Proposition</a></td><td>proposition : proposition à modifier. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a02ae42b1588638c1dd7f36fae21eada5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02ae42b1588638c1dd7f36fae21eada5">&#9670;&nbsp;</a></span>modifyQuestion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DataBase::modifyQuestion </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_question.html">Question</a>&#160;</td>
+          <td class="paramname"><em>question</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Modifie une question en base de données. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"><a class="el" href="struct_question.html">Question</a></td><td>question : question à modifier. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a261c16517891647ca182697ce88b3f47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a261c16517891647ca182697ce88b3f47">&#9670;&nbsp;</a></span>modifyTheme()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DataBase::modifyTheme </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_theme.html">Theme</a>&#160;</td>
+          <td class="paramname"><em>theme</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Modifie un thème en base de données. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname"><a class="el" href="struct_theme.html">Theme</a></td><td>theme : thème à modifier. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_data_base_8hpp_source.html">DataBase.hpp</a></li>
 <li>dataBase.cpp</li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.15
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_data_base.html">DataBase</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.15 </li>
+  </ul>
+</div>
 </body>
 </html>

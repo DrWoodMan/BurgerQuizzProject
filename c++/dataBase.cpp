@@ -1,7 +1,7 @@
 #include "DataBase.hpp"
 
 DataBase::DataBase(std::string url, std::string user, std::string password, std::string baseName){
-//toStdString()
+
     try{
         driver = get_driver_instance();
         connection = driver->connect("tcp://"+url, user, password);
@@ -10,9 +10,7 @@ DataBase::DataBase(std::string url, std::string user, std::string password, std:
         error = "";
     }
     catch(sql::SQLException &e){
-        error += "# ERR: " + std::string(e.what());
-        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
-        error += ", SQLState: " + e.getSQLState() + " )";
+        exception(e);
     }
 }
 
@@ -23,18 +21,18 @@ DataBase::~DataBase(){
         delete statement;
         delete preparedStatement;
         delete connection;
+
         error = "";
     }
     catch(sql::SQLException &e){
-        error += "# ERR: " + std::string(e.what());
-        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
-        error += ", SQLState: " + e.getSQLState() + " )";
+        exception(e);
     }
 }
 
-
-sql::Connection *DataBase::getConnection(){
-    return connection;
+void DataBase::exception(sql::SQLException &e){
+    error += "# ERR: " + std::string(e.what());
+    error += "(MySQL error code: " + std::to_string(e.getErrorCode());
+    error += ", SQLState: " + e.getSQLState() + " )"; 
 }
 
 std::string DataBase::getError(){
@@ -54,12 +52,11 @@ std::vector<Theme> DataBase::getThemes(){
             tempTheme.theme = result->getString(2);
             themes.push_back(tempTheme);
         }
+
         error = "";
     }
     catch(sql::SQLException &e){
-        error += "# ERR: " + std::string(e.what());
-        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
-        error += ", SQLState: " + e.getSQLState() + " )";
+        exception(e);
     }
     return themes;
 }
@@ -74,9 +71,7 @@ void DataBase::addTheme(std::string theme){
         error = "";
     }
     catch(sql::SQLException &e){
-        error += "# ERR: " + std::string(e.what());
-        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
-        error += ", SQLState: " + e.getSQLState() + " )";
+        exception(e);
     }
 }
 
@@ -91,9 +86,7 @@ void DataBase::modifyTheme(Theme theme){
         error = "";
     }
     catch(sql::SQLException &e){
-        error += "# ERR: " + std::string(e.what());
-        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
-        error += ", SQLState: " + e.getSQLState() + " )";
+        exception(e);
     }
 }
 
@@ -115,9 +108,7 @@ void DataBase::deleteTheme(unsigned int idTheme){
         error = "";
     }
     catch(sql::SQLException &e){
-        error += "# ERR: " + std::string(e.what());
-        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
-        error += ", SQLState: " + e.getSQLState() + " )";
+        exception(e);
     }
 }
 
@@ -137,12 +128,11 @@ std::vector<Question> DataBase::getQuestions(unsigned int idTheme){
             tempQuestion.field2 = result->getString(3);
             questions.push_back(tempQuestion);
         }
+
         error = "";
     }
     catch(sql::SQLException &e){
-        error += "# ERR: " + std::string(e.what());
-        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
-        error += ", SQLState: " + e.getSQLState() + " )";
+        exception(e);
     }
     return questions;
 }
@@ -159,9 +149,7 @@ void DataBase::addQuestion(Question question){
         error = "";
     }
     catch(sql::SQLException &e){
-        error += "# ERR: " + std::string(e.what());
-        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
-        error += ", SQLState: " + e.getSQLState() + " )";
+        exception(e);
     }
 }
 
@@ -177,9 +165,7 @@ void DataBase::modifyQuestion(Question question){
         error = "";
     }
     catch(sql::SQLException &e){
-        error += "# ERR: " + std::string(e.what());
-        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
-        error += ", SQLState: " + e.getSQLState() + " )";
+        exception(e);
     }
 }
 
@@ -197,9 +183,7 @@ void DataBase::deleteQuestion(unsigned int idQuestion){
         error = "";
     }
     catch(sql::SQLException &e){
-        error += "# ERR: " + std::string(e.what());
-        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
-        error += ", SQLState: " + e.getSQLState() + " )";
+        exception(e);
     }
 }
 
@@ -218,12 +202,11 @@ std::vector<Proposition> DataBase::getPropositions(unsigned int idQuestion){
             tempProposition.solution = result->getInt(3);
             propositions.push_back(tempProposition);
         }
+
         error = "";
     }
     catch(sql::SQLException &e){
-        error += "# ERR: " + std::string(e.what());
-        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
-        error += ", SQLState: " + e.getSQLState() + " )";
+        exception(e);
     }
     return propositions;
 }
@@ -240,9 +223,7 @@ void DataBase::addProposition(Proposition proposition){
         error = "";
     }
     catch(sql::SQLException &e){
-        error += "# ERR: " + std::string(e.what());
-        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
-        error += ", SQLState: " + e.getSQLState() + " )";
+        exception(e);
     }
 }
 
@@ -258,9 +239,7 @@ void DataBase::modifyProposition(Proposition proposition){
         error = "";
     }
     catch(sql::SQLException &e){
-        error += "# ERR: " + std::string(e.what());
-        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
-        error += ", SQLState: " + e.getSQLState() + " )";
+        exception(e);
     }
 }
 
@@ -274,8 +253,6 @@ void DataBase::deleteProposition(unsigned int idProposition){
         error = "";
     }
     catch(sql::SQLException &e){
-        error += "# ERR: " + std::string(e.what());
-        error += "(MySQL error code: " + std::to_string(e.getErrorCode());
-        error += ", SQLState: " + e.getSQLState() + " )";
+        exception(e);
     }
 }

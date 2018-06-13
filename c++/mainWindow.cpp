@@ -74,7 +74,7 @@ bool MainWindow::dbErrorPopup(){
     if(error != ""){
         QErrorMessage *popup = new QErrorMessage();
         popup->setWindowTitle("ERROR");
-        popup->showMessage(QString::fromStdString(dataBase->getError()));
+        popup->showMessage(QString::fromStdString(error));
         return true;
     }
     else{

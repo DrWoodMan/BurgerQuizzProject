@@ -329,7 +329,6 @@ Controls::Controls() : QWidget(){
     propositionSelectionLayout->addWidget(propositionSelection);
 
 
-
     //proposition selection buttons
     QHBoxLayout *buttonsPropositionSelectionLayout = new QHBoxLayout();
     propositionSelectionLayout->addLayout(buttonsPropositionSelectionLayout);
@@ -556,7 +555,7 @@ void Controls::slot_copyThemeInWritingField(QString str){
 
 void Controls::slot_backToThemes(){
 
-    selectedQuestion->setText(questionSelection->currentText());
+    //selectedQuestion->setText(questionSelection->currentText());
 
     questionWidget->hide();
     themeWidget->show();

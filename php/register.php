@@ -24,7 +24,6 @@
 		}
 
 		$alert_email=checkEmail($_POST['email'], $dbh->getDb());
-
 		if($alert_email==NULL && $alert_pwd==NULL && $alert_login==NULL){
 			$pwd=encryptionPassword($_POST['pwd'], $dbh->getDb());
 			$content=createUser($_POST['login'], $pwd, $_POST['email'], $dbh->getDb());
@@ -32,6 +31,7 @@
 		}
 	}
 	$dbh=NULL;
+	//mail($_POST['email'], "Inscription - Salade Quiz", "Votre inscription à www.salade-quiz.fr a été validée. \r\n A très vite ! \r\n \r\n Ne pas répondre à ce mail envoyé automatiquement.");
 ?>
 
 
@@ -57,7 +57,9 @@
 	<body>
 	<header>
 	</header>
-
+<?php mail("adrien.lebourgeois@protonmail.com", "Inscription - Salade Quiz", "Votre inscription à www.salade-quiz.fr a été validée. \r\n A très vite ! \r\n \r\n Ne pas répondre à ce mail envoyé automatiquement.");
+error_log("##########################################");
+?>
 	<form id="centerPart" method="post" action="">
 		</br>
 

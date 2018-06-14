@@ -57,9 +57,7 @@
 	<body>
 	<header>
 	</header>
-<?php mail("adrien.lebourgeois@protonmail.com", "Inscription - Salade Quiz", "Votre inscription à www.salade-quiz.fr a été validée. \r\n A très vite ! \r\n \r\n Ne pas répondre à ce mail envoyé automatiquement.");
-error_log("##########################################");
-?>
+
 	<form id="centerPart" method="post" action="">
 		</br>
 

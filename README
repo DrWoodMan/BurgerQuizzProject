@@ -1,0 +1,8 @@
+#### INSTRUCTIONS POUR INTERFACE D'ADMINISTRATION ####
+
+    L'application doit d'abord être compilée. Placez vous dans le répertoire administration et saisissez "make" pour compiler.
+    
+    A la première utilisation un fichier contenant les identifiants de connexion sera crée dans le répertoire suivant :
+        ~/.config/ISEN/Salade-Quiz\ Administrator.conf
+
+    

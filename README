@@ -1,6 +1,24 @@
+#### CRÉATION DE LA BASE DE DONNÉES ####
+
+    Ouvrez le fichier "bdd.sql", renseignez le nom de votre base de données à la place de "saladeQuiz" à la ligne 6 puis décommentez cette dernière.
+    Connectez vous à votre base de données avec PHPMyAdmin puis importez le fichier pour monter la base de données.
+
+
+#### MODIFICATION DU VIRTUALHOST ####
+
+    Ouvrez le fichier de configuration du virtualHost associé au site et ajoutez y les lignes suivantes en mettant à la place de "/var/www/salade-quiz", le chemin absolu du répertoire du site.
+
+        <Directory /var/www/salade-quiz>
+            Require all granted
+            php_admin_flag engine on
+            ErrorDocument 403 /php/error.php?idError=403
+            ErrorDocument 404 /php/error.php?idError=404
+        </Directory>
+
+
 #### INSTRUCTIONS POUR INTERFACE D'ADMINISTRATION ####
 
-    L'application doit d'abord être compilée. Placez vous dans le répertoire administration et saisissez "make" pour compiler.
+    L'application doit d'abord être compilée. Placez vous dans le répertoire "administration" et saisissez "make" pour compiler.
     
     A la première utilisation un fichier contenant les identifiants de connexion sera crée dans le répertoire suivant :
         ~/.config/ISEN/Salade-Quiz\ Administrator.conf

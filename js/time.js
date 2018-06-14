@@ -8,7 +8,7 @@ url = url.split('=');
 var idGame = url[1];
 
 //envoi d'un requête ajax contenant l'id de la partie dans la requête
-setInterval(ajaxRequest, 1000, 'GET', '/php/time.php?idGame='+idGame, displayClock);
+setInterval(ajaxRequest, 100, 'GET', '/php/time.php?idGame='+idGame, displayClock);
 
 //récupération de la réponse du serveur et affichage du temps écoulé depuis le début de la partie
 function displayClock(ajaxResponse){

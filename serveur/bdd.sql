@@ -2,7 +2,9 @@
 #        Script MySQL.
 #------------------------------------------------------------
 
-USE saladeQuiz;
+#------------------------------
+# USE saladeQuiz;
+#
 
 DROP TABLE IF EXISTS score;
 DROP TABLE IF EXISTS has;

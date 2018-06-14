@@ -1,6 +1,16 @@
 
 <?php
 
+/**
+* \file functions.php
+* \author Adrien LEBOURGEOIS - Arthur MESLIN
+* \date 15 Juin 2018
+* \brief Fichier regroupant toutes les fonctions nécéssaires au bon fonctionnement du site
+* \details Contient les fonctions de chargement depuis la BDD, de modification de la BDD, et de toute autre action se retrouvant à plusieurs endroits du site
+*/
+
+
+
 require_once('DBmanage.php');
 
 

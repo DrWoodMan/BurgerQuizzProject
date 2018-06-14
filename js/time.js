@@ -15,5 +15,5 @@ function displayClock(ajaxResponse){
   var time;
 
   time = JSON.parse(ajaxResponse);
-  $('#time').html(time.minutes + ":" + time.seconds);
+  $('#time').html("temps écoulé : " + time.minutes + ":" + time.seconds);
 }

@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS user;
 
 CREATE TABLE user(
     login           Varchar (50) NOT NULL,
-    passwordHash    Varchar (32) NOT NULL,
+    passwordHash    Varchar (50) NOT NULL,
     token           Varchar (50),
     mailAddress     Varchar (50) NOT NULL,
 	CONSTRAINT user_PK PRIMARY KEY (login)

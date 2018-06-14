@@ -115,9 +115,9 @@ $answer3 = "<button type='button' class='btn btn-primary' value='2' onclick=wind
 
 
     <div class="row" style="margin-left:10px;">
-      <div class="col-lg-10">
+      <div class="col-lg-9">
       </div>
-      <h4 class =" col-lg-2 " id="time"></h4>
+      <h4 class =" col-lg-3 " id="time"></h4>
     </div>
 
 
@@ -161,18 +161,20 @@ $answer3 = "<button type='button' class='btn btn-primary' value='2' onclick=wind
 </br>
 
 <div class="row" >
-  <div class="col-lg-2" style="margin-left:20px;">
+
+<div class="col-lg-3"></div>
+  <div class="col-lg-3">
+    <?php echo $answer1; ?>
   </div>
 
-	<?php echo $answer1; ?>
-  <div class="col-lg-1"  style="margin-left:80px;">
-  </div>
-	<?php echo $answer2; ?>
-
-  <div class="col-lg-1"  style="margin-left:80px;">
+  <div class="col-lg-3" >
+      <?php echo $answer2; ?>
   </div>
 
-	<?php echo $answer3; ?>
+  <div class="col-lg-3"  >
+    <?php echo $answer3; ?>
+  </div>
+
 
 </div>
 

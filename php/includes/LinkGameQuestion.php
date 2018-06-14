@@ -1,6 +1,5 @@
 <?php
-  class LinkGameQuestion
-  {
+  class LinkGameQuestion{
 
     private $idGame;
     private $idQuestion;
@@ -12,17 +11,20 @@
     public function getIdGame(){
       return $this->idGame;
     }
+
     public function getIdQuestion(){
       return $this->idQuestion;
     }
+
     public function getIdProposition(){
       return $this->idProposition;
     }
+
     public function getQuestionOrder(){
       return $this->questionOrder;
     }
+
     public function getPropositionOrder(){
       return $this->propositionOrder;
     }
-
   }

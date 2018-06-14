@@ -1,6 +1,5 @@
 <?php
-  class Proposition
-  {
+  class Proposition{
 
     private $idProposition;
     private $proposition;
@@ -11,15 +10,16 @@
     public function getIdProposition(){
       return $this->idProposition;
     }
+
     public function getProposition(){
       return $this->proposition;
     }
+
     public function getSolution(){
       return $this->solution;
     }
+
     public function getIdQuestion(){
       return $this->idQuestion;
     }
-
-
   }

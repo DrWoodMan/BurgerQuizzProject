@@ -48,11 +48,21 @@ function loadGameFromId($id, $db ){
 function createToken($user, $db ){
 
   $token = base_convert(hash('sha256', time() . mt_rand()), 16, 36);
+  print_r($user);
   $user[0]->setToken($token);
   $update = $db->prepare("UPDATE user SET token=:token WHERE login=:login");
   $update->execute(array(':token'=>$token,':login'=>$user[0]->getLogin()));
   return $user;
 }
+
+
+
+function encryptionPassword($pwd, $db ){
+
+  $pwdHash = base_convert(hash('sha256', $pwd ), 16, 36);
+  return $pwdHash;
+}
+
 
 
 
@@ -105,6 +115,8 @@ function createUser($login, $pwd, $email, $db){
   $user=createToken($user, $db);
   return $user;
 }
+
+
 
 
 function getScoreForGlobalPodium($db){

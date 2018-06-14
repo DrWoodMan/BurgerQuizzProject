@@ -7,6 +7,7 @@ require_once('Constants.php');
 class DBmanage{
 
     private $db;
+    
     function connection(){
 
         $mysqlDsn = "mysql:host=".MYSQL_SERVER_IP.";port=".MYSQL_SERVER_PORT.";dbname=".MYSQL_DB_NAME.";charset=UTF8;";
@@ -20,6 +21,7 @@ class DBmanage{
         }
         return $this->db;
     }
+
     public function getDb(){
         return $this->db;
     }

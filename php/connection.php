@@ -9,16 +9,13 @@ $alert=NULL;
 	$content=new User;
 	$dbh = new DBmanage;
 	//on se connecte à la BDD, puis on vérifie si le login fourni est dans la base de données
-
 	$dbh->connection();
 	$content=loadUserFromLogin($_POST['login'],$dbh->getDb());
-	var_dump($dbh);
+  $pwd= encryptionPassword($_POST['pwd'], $dbh->getDb());
 
-	print_r($content);
 
 	if(count($content[0]) == NULL){
 		$validation=false;
-		echo"coucou la narines";
 
 	}else if($content[0]->getPassword() != $_POST['pwd']){// on vérifie si le mdp associé au login est le bon
 		$validation=false;

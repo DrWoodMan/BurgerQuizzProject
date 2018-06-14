@@ -28,7 +28,11 @@ if(isset($_POST['pwd'])&& isset($_POST['login']) && isset($_POST['confirm-pwd'])
 	$alert_email=checkEmail($_POST['email'], $dbh->getDb());
 
 	if($alert_email==NULL && $alert_pwd==NULL && $alert_login==NULL){
-		$content=createUser($_POST['login'], $_POST['pwd'], $_POST['email'], $dbh->getDb());
+
+		$pwd=encryptionPassword($_POST['pwd'], $dbh->getDb());
+
+
+		$content=createUser($_POST['login'], $pwd, $_POST['email'], $dbh->getDb());
 		header('Location: /php/user.php?token='.$content[0]->getToken());
 
 	}

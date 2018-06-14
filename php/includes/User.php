@@ -1,6 +1,5 @@
 <?php
-  class User
-  {
+  class User{
 
     private $login;
     private $passwordHash;
@@ -11,17 +10,16 @@
     public function getLogin(){
       return $this->login;
     }
+
     public function getPassword(){
       return $this->passwordHash;
     }
+
     public function getToken(){
       return $this->token;
     }
 
-
-
     public function setToken($newToken){
       $this->token=$newToken;
     }
-
   }

@@ -2,7 +2,7 @@
 
 define('MYSQL_SERVER_IP', "127.0.0.1");
 define('MYSQL_SERVER_PORT', "3306");
-define('MYSQL_DB_NAME', "saladeQuiz");
+define('MYSQL_DB_NAME', "saladeQuiz");// on définit ici les constantes 
 define('MYSQL_DB_USER', 'saladeQuiz');
 define('MYSQL_DB_PASSWORD','saladeQuiz');
 

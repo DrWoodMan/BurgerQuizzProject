@@ -38,7 +38,6 @@ $alert=NULL;
 ?>
 
 <html>
-
 	<head>
 		<!-- Meta tags -->
 		<meta charset="utf-8" />
@@ -56,125 +55,85 @@ $alert=NULL;
     <script src="../js/bootstrap.min.js" defer></script>
     <script src="../js/headerFooter.js" defer></script>
 		<script src="../js/hide.js" defer></script>
-    <script type="text/javascript" src="../js/js.cookie.js" defer></script>
-
-
-
-
-
-
+	</head>
 	<body>
 		<header>
 		</header>
 
-  </br>
+  	</br>
 
 		<div class="row">
-			<div class="col-lg-1">
-			</div>
+			<div class="col-lg-1"></div>
 			<h2 class =" col-lg-1 ">Connexion</h2>
-
-
 		</div>
-	</br>
-	</br>
-	</br>
-		<form method="post" action="">
 
-		<div class="container form-group" id="CenterPart">
-      <div class="row">
-      <div class="col-lg-9">
-			<div class="row">
-
-				<div class="col-lg-1">
-				</div>
-
-				<div class=" col-lg-3">
-					<label>Pseudonyme</label>
-					<input  type="text" placeholder="..." class="form-control" name="login"  value="<?= @$_POST['login'];?>"></input>
-				</div>
-
-			</div>
-
-			</br>
-
-
-			<div class="row">
-
-				<div class="col-lg-1">
-				</div>
-
-				<div class=" col-lg-3">
-					<label>Mot de passe</label>
-					<input id='pwd' type="password" placeholder="..." class="form-control" name='pwd' value=""></input>
-
-				</div>
-
-
-			</div>
+		</br>
+		</br>
 		</br>
 
+		<form method="post" action="">
 
+			<div class="container form-group" id="CenterPart">
 
-    <div class="row">
-      <div class="col-lg-1" style="margin-left:20px;">
-      </div>
-      <div >
-        <label>Afficher le mot de passe    </label>
-      </div>
-      <div class=" form-check  col-lg">
-        <input id="show-pwd" type="checkbox" class="form-check-input " onclick="hide();"></input>
-      </div>
+				<div class="row">
 
+					<div class="col-lg-9">
 
-    </div>
+						<div class="row">
+							<div class="col-lg-1"></div>
+							<div class=" col-lg-3">
+								<label>Pseudonyme</label>
+								<input  type="text" placeholder="..." class="form-control" name="login"  value="<?= @$_POST['login'];?>"></input>
+							</div>
+						</div>
 
+						</br>
 
-  </br>
-			<div class="row">
+						<div class="row">
+							<div class="col-lg-1"></div>
+								<div class=" col-lg-3">
+									<label>Mot de passe</label>
+									<input id='pwd' type="password" placeholder="..." class="form-control" name='pwd' value=""></input>
+								</div>
+							</div>
 
-				<div class="col-lg-1">
+							</br>
+
+							<div class="row">
+								<div class="col-lg-1" style="margin-left:20px;"></div>
+								<div><label>Afficher le mot de passe    </label></div>
+								<div class=" form-check  col-lg">
+									<input id="show-pwd" type="checkbox" class="form-check-input " onclick="hide();"></input>
+								</div>
+							</div>
+
+							</br>
+							
+							<div class="row">
+								<div class="col-lg-1"></div>
+								<div class="col-lg-2">
+									<button type="button" onclick="window.location='../index.html'"class="btn btn-primary">Retour</button>
+								</div>
+								<div class=" col-lg-1">
+									<button type="submit" class="btn btn-primary">Valider</button>
+								</div>
+								<div class="col-lg-1"></div>
+								<div class="col-lg-4"><?php echo($alert);?></div>
+							</div>
+							<div class="col-lg-2"></div>
+						</div>
+						<div class="col-lg-3">
+							<img src="../resources/salade.jpg" style=" max-width: 125%; max-height: 125%;">
+						</div>
+						
+					</div>
+
 				</div>
-				<div class="col-lg-2">
-					<button type="button" onclick="window.location='../index.html'"class="btn btn-primary">Retour</button>
-				</div>
-				<div class=" col-lg-1">
-					<button type="submit" class="btn btn-primary">Valider</button>
-				</div>
-        <div class="col-lg-1">
-        </div>
-        <div class="col-lg-4">
-  				<?php echo($alert);?>
-  			</div>
-			</div>
-
-			<div class="col-lg-2">
-			</div>
-
 
 			</div>
-
-      <div class="col-lg-3">
-        <img src="../resources/salade.jpg" style=" max-width: 125%; max-height: 125%;">
-      </div>
-
-
-	</div>
-</form>
-
-
-</div>
-</div>
-
-
-
+		</form>
 
 	<footer>
-
 	</footer>
-
 	</body>
-
-
-
 </html>

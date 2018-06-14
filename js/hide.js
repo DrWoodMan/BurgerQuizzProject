@@ -1,7 +1,7 @@
-
 hide();
 
 function hide(){
+  
   var password= document.getElementById("pwd");
   var checkOut =document.getElementById("confirm-pwd");
   var checked = document.getElementById("show-pwd");

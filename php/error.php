@@ -1,17 +1,8 @@
-
 <?php
-$idError=$_GET['idError'];
-
-
-
-
-
-
-
-
+  $idError=$_GET['idError'];
  ?>
-<html>
 
+<html>
 	<head>
 		<!-- Meta tags -->
 		<meta charset="utf-8" />
@@ -28,69 +19,44 @@ $idError=$_GET['idError'];
     <script src="../js/jquery-3.3.1.min.js" defer></script>
     <script src="../js/bootstrap.min.js" defer></script>
     <script src="../js/headerFooter.js" defer></script>
-    <script type="text/javascript" src="../js/js.cookie.js" defer></script>
-
 	</head>
-
-
-
-
-
 	<body>
 		<header>
 		</header>
 
-  </br>
-<div id="centerPart">
-    <div class="row" style="margin-left:80px;">
-      <div class="col-lg-4">
-      </div>
-      <h4 class =" col-lg-4 " >Erreur <?php echo $idError;?>: Page introuvable</h4>
-    </div>
-
-
-  	</br>
-
-		<form method="post">
     </br>
-  </br>
-</br>
 
+    <div id="centerPart">
+      <div class="row" style="margin-left:80px;">
+        <div class="col-lg-4"></div>
+        <h4 class =" col-lg-4 " >Erreur <?php echo $idError;?>: Page introuvable</h4>
+      </div>
 
+  	  </br>
 
-</br>
+      <form method="post">
 
-<div class="row" >
-  <div class="col-lg-3" style="margin-left:120px;">
-  </div>
+        </br>
+        </br>
+        </br>
+        </br>
 
-  <p class =" col-lg-4 " style="text-align: center;">Oh non, il semblerait que votre lien ne soit pas valide! Mais ne vous en faites pas,
-     retournez sur la page d'accueil, et mangez un peu de salade pour la route! ;)</p>
-</div>
+        <div class="row" >
+          <div class="col-lg-3" style="margin-left:120px;"></div>
+          <p class =" col-lg-4 " style="text-align: center;">Oh non, il semblerait que votre lien ne soit pas valide! Mais ne vous en faites pas, retournez sur la page d'accueil, et mangez un peu de salade pour la route! ;)</p>
+        </div>
 
+        </br>
+        </br>
 
-</br>
-</br>
+        <div class="row" >
+          <div class="col-lg-5" style="margin-left:80px;"></div>
+          <button type="button" class="btn btn-primary" onclick=locateToAnywhere("..")>Retour</button>
+        </div>
 
-<div class="row" >
-  <div class="col-lg-5" style="margin-left:80px;">
-  </div>
-
-  <button type="button" class="btn btn-primary" onclick=locateToAnywhere("..")>Retour</button>
-</div>
-
-
-    </form>
-
-
-
-
-</div>
-	<footer>
-	</footer>
-
+      </form>
+    </div>
+	  <footer>
+	  </footer>
 	</body>
-
-
-
 </html>

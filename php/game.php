@@ -74,7 +74,8 @@ $answer3 = "<button type='button' class='btn btn-primary' value='2' onclick=wind
     <script src="../js/jquery-3.3.1.min.js" defer></script>
     <script src="../js/bootstrap.min.js" defer></script>
     <script src="../js/headerFooter.js" defer></script>
-    <script type="text/javascript" src="../js/js.cookie.js" defer></script>
+    <script src="../js/ajax.js" defer></script>
+    <script src="../js/time.js" defer></script>
 
 	</head>
 
@@ -116,7 +117,7 @@ $answer3 = "<button type='button' class='btn btn-primary' value='2' onclick=wind
     <div class="row" style="margin-left:10px;">
       <div class="col-lg-10">
       </div>
-      <h4 class =" col-lg-2 " id="time">01:23</h4>
+      <h4 class =" col-lg-2 " id="time"></h4>
     </div>
 
 

@@ -1,10 +1,19 @@
-setInterval(ajaxRequest, 1000, 'GET', 'php/time.php', displayClock);
+//récupération de l'id de la partie dans l'url
+var url = window.location.href;
+url = url.split('/');
+url = url[4];
+url = url.split('&');
+url = url[1];
+url = url.split('=');
+var idGame = url[1];
 
+//envoi d'un requête ajax contenant l'id de la partie dans la requête
+setInterval(ajaxRequest, 1000, 'GET', '/php/time.php?idGame='+idGame, displayClock);
 
-function displayClock(ajaxResponse)
-{
+//récupération de la réponse du serveur et affichage du temps écoulé depuis le début de la partie
+function displayClock(ajaxResponse){
   var time;
 
   time = JSON.parse(ajaxResponse);
-
-  $('#time').html(time[0].minutes + ":" + time[0].seconds);
+  $('#time').html(time.minutes + ":" + time.seconds);
+}

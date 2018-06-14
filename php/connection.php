@@ -12,12 +12,13 @@ $alert=NULL;
 	$dbh->connection();
 	$content=loadUserFromLogin($_POST['login'],$dbh->getDb());
   $pwd= encryptionPassword($_POST['pwd'], $dbh->getDb());
+  print_r($pwd);
 
 
 	if(count($content[0]) == NULL){
 		$validation=false;
 
-	}else if($content[0]->getPassword() != $_POST['pwd']){// on vérifie si le mdp associé au login est le bon
+	}else if($content[0]->getPassword() != $pwd){// on vérifie si le mdp associé au login est le bon
 		$validation=false;
 	}else{
 		$content=createToken($content, $dbh->getDb());
@@ -108,7 +109,7 @@ $alert=NULL;
 							</div>
 
 							</br>
-							
+
 							<div class="row">
 								<div class="col-lg-1"></div>
 								<div class="col-lg-2">
@@ -125,7 +126,7 @@ $alert=NULL;
 						<div class="col-lg-3">
 							<img src="../resources/salade.jpg" style=" max-width: 125%; max-height: 125%;">
 						</div>
-						
+
 					</div>
 
 				</div>

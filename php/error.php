@@ -7,7 +7,7 @@ $errorContent="Oh non, il semblerait que votre lien ne soit pas valide!";
 
 
 
-switch ($typeError) {
+switch ($idError) {
 
     case 400:
         $typeError="Requête incorrecte";
@@ -48,7 +48,7 @@ switch ($idError) {
         $errorContent="Il s'avère qu'il y a un problème de communications entre certains serveurs... ";
         break;
     case 503:
-        $errorContent="La page que vous demandez est surchargée ou en maintenance";
+        $errorContent="La page que vous demandez est surchargée ou en maintenance. ";
         break;
 
 }

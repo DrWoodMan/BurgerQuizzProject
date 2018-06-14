@@ -13,7 +13,7 @@
   $dbh->connection();
   $content=loadUserFromToken($token, $dbh->getDb());
   $score= getScoreSpecific($content[0]->getLogin(), $idGame, $dbh->getDb());
-  $userScore= round($score[0]->getScore()*TOTAL_PROPOSITIONS/(/*TODO: timestamp*3    /*/ 2),0);
+  $userScore= round($score[0]->getScore()*TOTAL_PROPOSITIONS/((time()-$score[0]->getTime())/10),0);
 
   updateScore($score, $userScore, $dbh->getDb() );
 
@@ -43,7 +43,7 @@
 	<body>
 		<header>
     </header>
-    
+
     </br>
 
     <div class="row" style="margin-left:10px;">
@@ -52,7 +52,7 @@
     </div>
 
   	</br>
-    
+
 		<form method="post">
 
       </br>

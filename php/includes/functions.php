@@ -14,6 +14,14 @@
 require_once('DBmanage.php');
 
 
+
+
+/**
+* \brief Retourne les informations de l'utilisateur stocké dans un objet User.
+* \param[in] string $login: le login de l'utilisateur .
+* \param[in] PDO $db: l'instance de la PDO .
+* \return User $user : Un objet User contenant les informations de l'utilisateur.
+*/
 function loadUserFromLogin($login, $db ){
 
   $prep_fetch = $db->prepare("SELECT * FROM user WHERE login=:login");
@@ -25,7 +33,12 @@ function loadUserFromLogin($login, $db ){
 
 
 
-
+/**
+* \brief Retourne les informations de l'utilisateur stocké dans un objet User.
+* \param[in] string $token: le token associé à l'utilisateur .
+* \param[in] PDO $db: l'instance de la PDO .
+* \return User $user : Un objet User contenant les informations de l'utilisateur.
+*/
 function loadUserFromToken($token, $db ){
 
   $prep_fetch = $db->prepare("SELECT * FROM user WHERE token=:token");
@@ -40,25 +53,15 @@ function loadUserFromToken($token, $db ){
 
 
 
-function loadGameFromId($id, $db ){
-
-  $prep_fetch = $db->prepare("SELECT * FROM has WHERE id=:id");
-  $prep_fetch->execute(array(':id'=>$id));
-  $game = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'Game');
-  if($game[0]==NULL){
-    header('Location: /php/error.php&idError=404');
-  }
-  return $game;
-
-}
-
-
-
-
+/**
+* \brief Modifie dans la BDD et sur l'objet contenant les informations de l'utilisateur le token permettant de naviguer dans le site.
+* \param[in] User $user: les informations de l'utilisateur .
+* \param[in] PDO $db: l'instance de la PDO .
+* \return User $user : Un objet User contenant les informations mises à jour de l'utilisateur.
+*/
 function createToken($user, $db ){
 
   $token = base_convert(hash('sha256', time() . mt_rand()), 16, 36);
-  print_r($user);
   $user[0]->setToken($token);
   $update = $db->prepare("UPDATE user SET token=:token WHERE login=:login");
   $update->execute(array(':token'=>$token,':login'=>$user[0]->getLogin()));
@@ -67,6 +70,12 @@ function createToken($user, $db ){
 
 
 
+/**
+* \brief Retourne le hash du mot de passe de l'utilisateur.
+* \param[in] string $pwd: le mot de passe en clair de l'utilisateur .
+* \param[in] PDO $db: l'instance de la PDO .
+* \return string $pwdHash : le mot de passe crypté de l'utilisateur.
+*/
 function encryptionPassword($pwd, $db ){
 
   $pwdHash = base_convert(hash('sha256', $pwd ), 16, 36);
@@ -75,8 +84,11 @@ function encryptionPassword($pwd, $db ){
 
 
 
-
-
+/**
+* \brief Supprime le token de la BDD et redirige vers l'index du site.
+* \param[in] User $user: les informations de l'utilisateur .
+* \param[in] PDO $db: l'instance de la PDO .
+*/
 function deconnection($user, $db){
 
   $user[0]->setToken(NULL);
@@ -88,9 +100,15 @@ function deconnection($user, $db){
 
 
 
+/**
+* \brief Vérification de la présence ou non du login entré par l'utilisateur dans la BDD.
+* \param[in] string $login: le login de l'utilisateur .
+* \param[in] PDO $db: l'instance de la PDO .
+* \return string $alert_login : Une alerte qui empêche la création d'un compte utilisateur si le login est déjà dans la BDD.
+*/
+function checkLogin($login, $db){
 
-function checkLogin($login, $db, $alert_login){
-
+  $alert_login=NULL;
   $prep_fetch = $db->prepare("SELECT * FROM user WHERE login=:login");
   $prep_fetch->execute(array(':login'=>$login));
   $user = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'User');
@@ -102,7 +120,12 @@ function checkLogin($login, $db, $alert_login){
 
 
 
-
+/**
+* \brief Vérification de la présence de l'adresse mail ou non entrée par l'utilisateur dans la BDD.
+* \param[in] string $email: l'adresse mail de l'utilisateur .
+* \param[in] PDO $db: l'instance de la PDO .
+* \return string $alert_mail : Une alerte qui empêche la création d'un compte utilisateur si l'adresse mail est déjà dans la BDD.
+*/
 function checkEmail($email, $db){
   $alert_mail=NULL;
   $prep_fetch = $db->prepare("SELECT * FROM user WHERE mailAddress=:email");
@@ -116,7 +139,14 @@ function checkEmail($email, $db){
 
 
 
-
+/**
+* \brief Création dans la BDD et en local d'un compte utilisateur.
+* \param[in] string $login: le login de l'utilisateur .
+* \param[in] string $pwd: le mot de passe hashé de l'utilisateur .
+* \param[in] string $email: l'adresse mail de l'utilisateur .
+* \param[in] PDO $db: l'instance de la PDO .
+* \return User $user : Un objet User contenant les informations de l'utilisateur nouvellement créé.
+*/
 function createUser($login, $pwd, $email, $db){
 
   $insertion = $db->prepare("INSERT INTO user (login, passwordHash, mailAddress ) VALUES (:login, :passwordHash, :mailAddress)");
@@ -128,7 +158,11 @@ function createUser($login, $pwd, $email, $db){
 
 
 
-
+/**
+* \brief Sélection des 5 meilleurs scores de la table Score de la BDD.
+* \param[in] PDO $db: l'instance de la PDO .
+* \return Score $score : Un tableau contenant les informations des 5 meilleures parties stockées dans la BDD.
+*/
 function getScoreForGlobalPodium($db){
 
   $prep_fetch = $db->prepare("SELECT * FROM score ORDER BY score DESC LIMIT 5");
@@ -140,7 +174,12 @@ function getScoreForGlobalPodium($db){
 
 
 
-
+/**
+* \brief Sélection des scores de la table Score de la BDD, étant liés aux 5 dernières parties jouées par l'utilisateur.
+* \param[in] string $login: le login de l'utilisateur .
+* \param[in] PDO $db: l'instance de la PDO .
+* \return Score $score : Un tableau contenant les informations des scores stockés dans la BDD étant liés aux 5 dernières parties jouées par l'utilisateur.
+*/
 function getScoreForPersonalList($login, $db){
 
   $prep_fetch = $db->prepare("SELECT * FROM score WHERE login=:login ORDER BY time DESC LIMIT 5");
@@ -152,7 +191,13 @@ function getScoreForPersonalList($login, $db){
 
 
 
-
+/**
+* \brief Génération automatique de chaque div de la section "Palmarès" contenant le nom de l'utilisateur correspondant, l'un des 5 meilleurs score de la BDD, l'Id de la partie où il a réussi à marquer ce score, et un bouton permettant à l'utilisateur connecté de tenter sa chance sur cette partie .
+* \param[in] string $login: le login de l'utilisateur .
+* \param[in] string $login: le login de l'utilisateur .
+* \param[in] PDO $db: l'instance de la PDO .
+* \return Score $score : Un tableau contenant les informations des scores stockés dans la BDD étant liés aux 5 dernières parties jouées par l'utilisateur.
+*/
 function generateGlobalGamesPodium($globalScore, $i, $user){
 
 

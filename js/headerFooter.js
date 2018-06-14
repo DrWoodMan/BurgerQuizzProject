@@ -4,9 +4,10 @@ winLoad();
 
 function winLoad(){
 
+
   var deco_var , part1Url, part2Url, url, chaine, header, myUrl, token;
   var footer, windowHeight, headerHeight, centerHeight, footerHeight;
-    
+
   url=document.location.href;
   myUrl= url.split('/');
   part1Url = myUrl[3];

@@ -22,7 +22,8 @@ require_once('LinkGameQuestion.php');
 
 
     /**
-    * \brief Instancie dans l'objet Game toutes les données à afficher liées à la progression du joueur, sauf le temps, géré via time.php.
+    * \brief Constructeur de la classe Game
+    * \details Instancie dans l'objet Game toutes les données à afficher liées à la progression du joueur, sauf le temps, géré via time.php.
     * \param[in] string : le contenu de la Question où est rendu le User .
     * \param[in] string : le contenu de la Proposition où est rendu le User .
     * \param[in] string : le contenu du Theme associé à la Question où est rendu le User .

@@ -13,14 +13,24 @@
   $dbh->connection();
   $content=loadUserFromToken($token, $dbh->getDb());
   $score= getScoreSpecific($content[0]->getLogin(), $idGame, $dbh->getDb());
-  $userScore= round($score[0]->getScore()*TOTAL_PROPOSITIONS/((time()-$score[0]->getTime())/10),0);
 
-  updateScore($score, $userScore, $dbh->getDb() );
-  updateTime($score, $dbh->getDb());
 
-  $content=createToken($content, $dbh->getDb());
-  $return="<button type='button' class='btn btn-primary' onclick=window.location='user.php?token=".$content[0]->getToken()."'>Retour à l'écran de séléction</button>";
+  if($score[0]->getScore() <=TOTAL_PROPOSITIONS){
+    $userScore= round($score[0]->getScore()*TOTAL_PROPOSITIONS/((time()-$score[0]->getTime())/10),0);
+    $info="Vous avez eu ".$score[0]->getScore()." bonnes réponses sur ".TOTAL_PROPOSITIONS;
+    updateScore($score, $userScore, $dbh->getDb() );
+    updateTime($score, $dbh->getDb());
+    $content=createToken($content, $dbh->getDb());
+    $return="<button type='button' class='btn btn-primary' onclick=window.location='user.php?token=".$content[0]->getToken()."'>Retour à l'écran de séléction</button>";
+  }else{
 
+    $info="Il se sert à rien de s'énerver! Pour vous apprendre le calme, nous allons changer votre score.";
+    $userScore=0;
+    updateScore($score, $userScore, $dbh->getDb() );
+    updateTime($score, $dbh->getDb());
+    $content=createToken($content, $dbh->getDb());
+    $return="<button type='button' class='btn btn-primary' onclick=window.location='user.php?token=".$content[0]->getToken()."'>Retour à l'écran de séléction</button>";
+  }
 ?>
 
 <html>
@@ -66,7 +76,7 @@
 
       <div class="row" >
         <div class="col-lg-4" style="margin-left:60px;"></div>
-        <p class =" col-lg-3 " >Vous avez eu <?php echo($score[0]->getScore()." bonnes réponses sur ".TOTAL_PROPOSITIONS); ?> </p>
+        <p class =" col-lg-3 " ><?php echo $info;?></p>
       </div>
 
       </br>

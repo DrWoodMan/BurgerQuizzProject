@@ -14,7 +14,6 @@ $dbh = new DBmanage;
 $score= new Score;
 
 $newPropositionNumber=$propositionNumber+1;
-$limitValue= TOTAL_PROPOSITIONS+1;
 
 //on se connecte à la BDD, puis on vérifie si le token fourni est dans la base de données
 
@@ -33,11 +32,11 @@ if($value === $answer){
 
 
 }
-$oui="j'ai pas encore géré cette page";
 
-if($propositionNumber<=TOTAL_PROPOSITIONS){
-  header("Location: /php/game.php?token=".$token."&idGame=".$idGame."&propositionNumber=".$newPropositionNumber);
+if($newScore> TOTAL_PROPOSITIONS){
+  header("Location: /php/end.php?token=".$token."&idGame=".$idGame);
 }else if($value== 12){
   header("Location: /php/end.php?token=".$token."&idGame=".$idGame);
-
+}else if($propositionNumber<=TOTAL_PROPOSITIONS){
+    header("Location: /php/game.php?token=".$token."&idGame=".$idGame."&propositionNumber=".$newPropositionNumber);
 }

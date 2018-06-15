@@ -19,12 +19,15 @@
             ErrorDocument 503 /php/redirect.php?idError=503
         </Directory>
 
+#### INSTRUCTIONS POUR CONNEXION PHP AU SITE ####
+
+    Dans le dossier "php", ouvrez le fichier Constants.php situé dans le répertoire "includes". Renseignez les informations concernant l'IP du serveur, le port associé, le nom de la base de données et le login ainsi que le mot de passe de l'utilisateur de la base de données qui seront utilisés pour effectuer les requêtes.
 
 #### INSTRUCTIONS POUR INTERFACE D'ADMINISTRATION ####
 
     L'application doit d'abord être compilée. Placez vous dans le répertoire "administration" et saisissez "make" pour compiler.
     
     A la première utilisation un fichier contenant les identifiants de connexion sera crée dans le répertoire suivant :
-        ~/.config/ISEN/Salade-Quiz\ Administrator.conf
+        "~/.config/ISEN/Salade-Quiz\ Administrator.conf"
 
     

@@ -275,54 +275,54 @@ class Controls : public QWidget{
         void slot_backToQuestions();
 
     private:
-        QSettings settings;
-        QVBoxLayout *mainLayout;
+        QSettings settings;/*!< Permet l'enregistrement des champs renseignés pour la connexion. */
+        QVBoxLayout *mainLayout;/*!< Layout principal. */
 
-        QCheckBox *fullscreen;
-        QPushButton *logout;
+        QCheckBox *fullscreen;/*!< Case de mise en plein écran. */
+        QPushButton *logout;/*!< Bouton d edéconnexion. */
 
-        QWidget *authenticationWidget;
-        QLineEdit *serverIP;
-        QLineEdit *dataBaseName;
-        QLineEdit *login;
+        QWidget *authenticationWidget;/*!< Widget contenant les widgets d'authentification. */
+        QLineEdit *serverIP;/*!< Champ de saisie de l'IP et du port du serveur. */
+        QLineEdit *dataBaseName;/*!< Champ de saisie du nom de la base de données. */
+        QLineEdit *login;/*!< Champ de saisie de l'utilisateur de la base de données'. */
 
-        QLineEdit *password;
-        QCheckBox *showPassword;
-        QPushButton *validateConnection;
+        QLineEdit *password;/*!< Champ de saisie du mot de passe de la base de données. */
+        QCheckBox *showPassword;/*!< Case d'affichage du mot de passe. */
+        QPushButton *validateConnection;/*!< Bouton de validation de connexion. */
 
-        QWidget *themeWidget;
-        QComboBox *themeSelection;
-        QPushButton *deleteTheme;
-        QPushButton *relatedQuestions;
-        QTextEdit *themeWritingField;
-        QPushButton *modifyTheme;
-        QPushButton *addTheme;
+        QWidget *themeWidget;/*!< Widget contenant les widgets des thèmes. */
+        QComboBox *themeSelection;/*!< Menu déroulant de sélection de thème. */
+        QPushButton *deleteTheme;/*!< Bouton de suppression de thème. */
+        QPushButton *relatedQuestions;/*!< Bouton de questions associées. */
+        QTextEdit *themeWritingField;/*!< Champ de saisie de saisie de thème. */
+        QPushButton *modifyTheme;/*!< Bouton de modification de thème. */
+        QPushButton *addTheme;/*!< Bouton d'ajout de thème. */
 
-        QWidget *questionWidget;
+        QWidget *questionWidget;/*!< Widget contenant les widgets des questions. */
         QHBoxLayout *questionPlaceholderLayout;
         QHBoxLayout *selectedThemeLayout;
-        QLabel *selectedTheme;
-        QComboBox *questionSelection;
-        QPushButton *deleteQuestion;
-        QPushButton *relatedPropositions;
-        QLineEdit *questionWritingField1;
-        QLineEdit *questionWritingField2;
-        QPushButton *modifyQuestion;
-        QPushButton *addQuestion;
-        QPushButton *backToThemes;
+        QLabel *selectedTheme;/*!< Indication du thème sélectionnée. */
+        QComboBox *questionSelection;/*!< Menu déroulant de sélection de thème. */
+        QPushButton *deleteQuestion;/*!< Bouton de suppression de question. */
+        QPushButton *relatedPropositions;/*!< Bouton des propositions associées. */
+        QLineEdit *questionWritingField1;/*!< Champ de saisie de la partie 1  de la question. */
+        QLineEdit *questionWritingField2;/*!< Champ de saisie de la partie 2  de la question. */
+        QPushButton *modifyQuestion;/*!< Bouton de modification de question. */
+        QPushButton *addQuestion;/*!< Bouton d'ajout de question. */
+        QPushButton *backToThemes;/*!< Bouton de retour aux thèmes. */
 
-        QWidget *propositionWidget;
+        QWidget *propositionWidget;/*!< Widget contenant les widgets des propositions. */
         QHBoxLayout *propositionPlaceholderLayout;
-        QLabel *selectedQuestion;
-        QComboBox *propositionSelection;
-        QPushButton *deleteProposition;
-        QTextEdit *propositionWritingField;
-        QPushButton *modifyProposition;
-        QPushButton *addProposition;
-        QPushButton *backToQuestions;
-        QRadioButton *theOne;
-        QRadioButton *theOther;
-        QRadioButton *both;
+        QLabel *selectedQuestion;/*!< Indication de la question sélectionnée. */
+        QComboBox *propositionSelection;/*!< Menu déroulant de sélection de proposition. */
+        QPushButton *deleteProposition;/*!< Bouton de suppression de proposition. */
+        QTextEdit *propositionWritingField;/*!< Champ de saisie de proposition. */
+        QPushButton *modifyProposition;/*!< Bouton de modification de proposition. */
+        QPushButton *addProposition;/*!< Bouton d'ajout de proposition. */
+        QPushButton *backToQuestions;/*!< Bouton de retour aux questions. */
+        QRadioButton *theOne;/*!< Bouton radio de choix de la réponse de la proposition. */
+        QRadioButton *theOther;/*!< Bouton radio de choix de la réponse de la proposition. */
+        QRadioButton *both;/*!< Bouton radio de choix de la réponse de la proposition. */
 
 };
 #endif

@@ -125,11 +125,11 @@ class DataBase{
         void deleteProposition(unsigned int idProposition);
 
     private :
-        sql::Driver *driver;
-        sql::Connection *connection = NULL;
-        sql::Statement *statement = NULL;
-        sql::PreparedStatement *preparedStatement = NULL;
-        sql::ResultSet *result = NULL;
-        std::string error;
+        sql::Driver *driver; /*!< Driver de MySQL Connector. */
+        sql::Connection *connection = NULL; /*!< Connexion. */
+        sql::Statement *statement = NULL; /*!< Requête. */
+        sql::PreparedStatement *preparedStatement = NULL; /*!< Requête préparée. */
+        sql::ResultSet *result = NULL;/*!< Résultat de la requête. */
+        std::string error; /*!< Chaine contenant la requête. */
 };
 #endif

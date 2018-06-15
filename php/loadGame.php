@@ -14,7 +14,7 @@ $content=loadUserFromToken($token,$dbh->getDb());
 if(checkScore($content[0]->getLogin(), $idGame, $dbh->getDb())){
   $score=getScoreSpecific($content[0]->getLogin(), $idGame, $dbh->getDb());
   updateScore($score, 0 , $dbh->getDb());
-
+  updateTime($score, $dbh->getDb());
 }else{
   $score=createScore($content[0]->getLogin(), $idGame, $dbh->getDb());
 }

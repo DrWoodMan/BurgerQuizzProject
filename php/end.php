@@ -16,6 +16,7 @@
   $userScore= round($score[0]->getScore()*TOTAL_PROPOSITIONS/((time()-$score[0]->getTime())/10),0);
 
   updateScore($score, $userScore, $dbh->getDb() );
+  updateTime($score, $dbh->getDb());
 
   $content=createToken($content, $dbh->getDb());
   $return="<button type='button' class='btn btn-primary' onclick=window.location='user.php?token=".$content[0]->getToken()."'>Retour à l'écran de séléction</button>";

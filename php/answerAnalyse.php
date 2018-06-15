@@ -29,9 +29,9 @@ if($value === $answer){
   $score[0]->setScore($score[0]->getScore()+1);
 
   $newScore=$score[0]->getScore();
-
-
   updateScore($score, $newScore, $dbh->getDb());
+
+
 }
 $oui="j'ai pas encore géré cette page";
 

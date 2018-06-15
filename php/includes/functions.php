@@ -278,6 +278,14 @@ function updateScore($score, $newScore, $db ){
 }
 
 
+function updateTime($score, $db ){
+
+
+  $update = $db->prepare("UPDATE score SET  time=:time WHERE login=:login AND  idGame=:idGame");
+  $update->execute(array(':login'=>$score[0]->getLogin(), ':idGame' => $score[0]->getIdGame(), ':time' => time()));
+
+}
+
 
 function selectRandomQuestions($db){
 

@@ -93,6 +93,29 @@ void DataBase::modifyTheme(Theme theme){
 void DataBase::deleteTheme(unsigned int idTheme){
 
     try{
+        std::vector<unsigned int> idGame;
+
+        preparedStatement = connection->prepareStatement("SELECT DISTINCT idGame FROM has WHERE idQuestion IN (SELECT idQuestion FROM question WHERE idTheme = (?))");
+        preparedStatement->setInt(1, idTheme);
+        result = preparedStatement->executeQuery();
+
+        while(result->next()){
+            idGame.push_back(result->getInt(1));
+        }
+        for(auto &id : idGame){
+            preparedStatement = connection->prepareStatement("DELETE FROM has WHERE idGame = (?)");
+            preparedStatement->setInt(1, id);
+            result = preparedStatement->executeQuery();
+
+            preparedStatement = connection->prepareStatement("DELETE FROM score WHERE idGame = (?)");
+            preparedStatement->setInt(1, id);
+            result = preparedStatement->executeQuery();
+            
+            preparedStatement = connection->prepareStatement("DELETE FROM game WHERE idGame = (?)");
+            preparedStatement->setInt(1, id);
+            result = preparedStatement->executeQuery();
+        }
+
         preparedStatement = connection->prepareStatement("DELETE FROM proposition WHERE idQuestion IN (SELECT idQuestion FROM question WHERE idTheme = (?))");
         preparedStatement->setInt(1, idTheme);
         result = preparedStatement->executeQuery();
@@ -172,6 +195,29 @@ void DataBase::modifyQuestion(Question question){
 void DataBase::deleteQuestion(unsigned int idQuestion){
 
     try{
+        std::vector<unsigned int> idGame;
+
+        preparedStatement = connection->prepareStatement("SELECT DISTINCT idGame FROM has WHERE idQuestion = (?)");
+        preparedStatement->setInt(1, idQuestion);
+        result = preparedStatement->executeQuery();
+
+        while(result->next()){
+            idGame.push_back(result->getInt(1));
+        }
+        for(auto &id : idGame){
+            preparedStatement = connection->prepareStatement("DELETE FROM has WHERE idGame = (?)");
+            preparedStatement->setInt(1, id);
+            result = preparedStatement->executeQuery();
+
+            preparedStatement = connection->prepareStatement("DELETE FROM score WHERE idGame = (?)");
+            preparedStatement->setInt(1, id);
+            result = preparedStatement->executeQuery();
+
+            preparedStatement = connection->prepareStatement("DELETE FROM game WHERE idGame = (?)");
+            preparedStatement->setInt(1, id);
+            result = preparedStatement->executeQuery();
+        }
+
         preparedStatement = connection->prepareStatement("DELETE FROM proposition WHERE idQuestion = (?)");
         preparedStatement->setInt(1, idQuestion);
         result = preparedStatement->executeQuery();
@@ -246,6 +292,29 @@ void DataBase::modifyProposition(Proposition proposition){
 void DataBase::deleteProposition(unsigned int idProposition){
 
     try{
+        std::vector<unsigned int> idGame;
+
+        preparedStatement = connection->prepareStatement("SELECT DISTINCT idGame FROM has WHERE idProposition = (?)");
+        preparedStatement->setInt(1, idProposition);
+        result = preparedStatement->executeQuery();
+
+        while(result->next()){
+            idGame.push_back(result->getInt(1));
+        }
+        for(auto &id : idGame){
+            preparedStatement = connection->prepareStatement("DELETE FROM has WHERE idGame = (?)");
+            preparedStatement->setInt(1, id);
+            result = preparedStatement->executeQuery();
+
+            preparedStatement = connection->prepareStatement("DELETE FROM score WHERE idGame = (?)");
+            preparedStatement->setInt(1, id);
+            result = preparedStatement->executeQuery();
+
+            preparedStatement = connection->prepareStatement("DELETE FROM game WHERE idGame = (?)");
+            preparedStatement->setInt(1, id);
+            result = preparedStatement->executeQuery();
+        }
+
         preparedStatement = connection->prepareStatement("DELETE FROM proposition WHERE idProposition = (?)");
         preparedStatement->setInt(1, idProposition);
         result = preparedStatement->executeQuery();

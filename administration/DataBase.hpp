@@ -65,7 +65,7 @@ class DataBase{
 
         /**
         * \brief Supprime un thème en base de données.
-        * \details Supprime le thème ainsi que les questions et propositions associées.
+        * \details Supprime le thème ainsi que les questions, propositions et parties associées.
         * \param[in] "unsigned int" idTheme : id en base de données du thème à supprimer.
         */
         void deleteTheme(unsigned int idTheme);
@@ -73,7 +73,7 @@ class DataBase{
         /**
         * \brief Retourne les questions.
         * \details Récupère les questions en base de données, les place des des structs Question et renvoi un std::vector<Question>.
-        * * \param[in] "unsigned int" idTheme : id du theme correspondant.
+        * \param[in] "unsigned int" idTheme : id du theme correspondant.
         * \return std::vector<Question> : vecteur de Question.
         */
         std::vector<Question> getQuestions(unsigned int idTheme);
@@ -92,7 +92,7 @@ class DataBase{
 
         /**
         * \brief Supprime une question en base de données.
-        * \details Supprime la question ainsi que les propositions associées.
+        * \details Supprime la question ainsi que les propositions associées et parties associées.
         * \param[in] "unsigned int" idQuestion: id en base de de données de la question à supprimer.
         */
         void deleteQuestion(unsigned int idQuestion);
@@ -119,6 +119,7 @@ class DataBase{
 
         /**
         * \brief Supprime une proposition en base de données.
+        * \details Supprime une proposition ainsi que les parties l'utilisant.
         * \param[in] unsigned int idProposition: id en base de de données de la proposition à supprimer.
         */
         void deleteProposition(unsigned int idProposition);

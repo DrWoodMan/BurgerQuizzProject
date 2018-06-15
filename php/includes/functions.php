@@ -194,7 +194,7 @@ function getScoreForPersonalList($login, $db){
 /**
 * \brief Génération automatique de chaque div de la section "Palmarès" contenant le nom de l'utilisateur correspondant, l'un des 5 meilleurs score de la BDD, l'Id de la partie où il a réussi à marquer ce score, et un bouton permettant à l'utilisateur connecté de tenter sa chance sur cette partie .
 * \param[in] string $globalScore: un tableau contenant les informations du Palmarès .
-* \param[in] string $i: le rang de la partie dans la BDD .
+* \param[in] int $i: le rang de la partie dans la BDD .
 * \param[in] User $user: les informations de l'utilisateur .
 * \return string $global : le HTML d'affichage des informations de la partie au rang $i dans la BDD.
 */
@@ -215,7 +215,7 @@ function generateGlobalGamesPodium($globalScore, $i, $user){
 /**
 * \brief Génération automatique de chaque div de la section "Palmarès" contenant le nom de l'utilisateur correspondant, l'un des 5 meilleurs score de la BDD, l'Id de la partie où il a réussi à marquer ce score, et un bouton permettant à l'utilisateur connecté de tenter sa chance sur cette partie .
 * \param[in] string $specificScore: un tableau contenant les informations de la section "Mon historique" .
-* \param[in] string $i: le rang de la partie de l'utilisateur dans la BDD .
+* \param[in] int $i: le rang de la partie de l'utilisateur dans la BDD .
 * \param[in] User $user: les informations de l'utilisateur .
 * \return string $specific : le HTML d'affichage des informations de la partie au rang $i pour l'utilisateur.
 */
@@ -232,7 +232,13 @@ function generatePersonalHistory($specificScore, $i, $user){
 
 
 
-
+/**
+* \brief Récupération automatique des scores d'un utilisateur .
+* \param[in] string $login: le login de l'utilisateur.
+* \param[in] int $idGame: l'Id de la partie jouée .
+* \param[in] PDO $db: l'instance de la PDO .
+* \return Score $score : un tableau contenant tous les Scores correspondant au login de l'utilisateur.
+*/
 function getScoreSpecific($login, $idGame, $db){
 
   $prep_fetch = $db->prepare("SELECT * FROM score WHERE login=:login AND idGame=:idGame");
@@ -244,24 +250,34 @@ function getScoreSpecific($login, $idGame, $db){
 
 
 
-
+/**
+* \brief Vérification de la présence ou non d'un score sur la partie selectionnée par l'utilisateur .
+* \param[in] string $login: le login de l'utilisateur.
+* \param[in] int $idGame: l'Id de la partie jouée .
+* \param[in] PDO $db: l'instance de la PDO .
+* \return bool .
+*/
 function checkScore($login, $idGame, $db){
 
   $prep_fetch = $db->prepare("SELECT * FROM score WHERE login=:login AND idGame=:idGame");
   $prep_fetch->execute(array(':login'=>$login, ':idGame' => $idGame));
   $score = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'Score');
   if(isset($score[0])){
-    echo("partie déja jouée par l'utilisateur");
     return true;
   }
-  echo("partie jamais jouée par l'utilisateur");
   return false;
 
 }
 
 
 
-
+/**
+* \brief Création automatique d'un scores pour un utilisateur .
+* \param[in] string $login: le login de l'utilisateur.
+* \param[in] int $idGame: l'Id de la partie jouée .
+* \param[in] PDO $db: l'instance de la PDO .
+* \return Score $score : un tableau contenant toutes les informations du nouveau Score correspondant au login de l'utilisateur.
+*/
 function createScore($login, $idGame, $db){
 
 
@@ -274,25 +290,38 @@ function createScore($login, $idGame, $db){
 
 
 
-
+/**
+* \brief Mise à jour du score d'un utilisateur sur une partie donnée.
+* \param[in] Score $score: Tableau contenant les informations liées au score sélectionné.
+* \param[in] int $newScore: le nouveau score .
+* \param[in] PDO $db: l'instance de la PDO .
+*/
 function updateScore($score, $newScore, $db ){
-
 
   $update = $db->prepare("UPDATE score SET score=:score  WHERE login=:login AND  idGame=:idGame");
   $update->execute(array(':score' => $newScore, ':login'=>$score[0]->getLogin(), ':idGame' => $score[0]->getIdGame()));
-
 }
 
 
-function updateTime($score, $db ){
 
+/**
+* \brief Mise à jour de la dernière fois qu'un score d'un utilisateur sur une partie donnée a été modifiée.
+* \param[in] Score $score: Tableau contenant les informations liées au score sélectionné.
+* \param[in] PDO $db: l'instance de la PDO .
+*/
+function updateTime($score, $db ){
 
   $update = $db->prepare("UPDATE score SET  time=:time WHERE login=:login AND  idGame=:idGame");
   $update->execute(array(':login'=>$score[0]->getLogin(), ':idGame' => $score[0]->getIdGame(), ':time' => time()));
-
 }
 
 
+
+/**
+* \brief Choix aléatoire des questions nécessaires pour une partie.
+* \param[in] PDO $db: l'instance de la PDO .
+* \return Question $questions : un tableau contenant toutes les questions choisies aléatoirement.
+*/
 function selectRandomQuestions($db){
 
   $myRequest = "SELECT * FROM question  ORDER BY RAND() LIMIT ". QUESTION_NUMBER;
@@ -305,9 +334,11 @@ function selectRandomQuestions($db){
 
 
 
-
-
-
+/**
+* \brief Création d'une nouvelle partie dans la BDD.
+* \param[in] PDO $db: l'instance de la PDO .
+* \return int $newId[0] : l'Id de la partie nouvellement créé.
+*/
 function createNewGame($db){
 
   $insertion = $db->prepare("INSERT INTO game(idGame) VALUES (NULL)");
@@ -317,12 +348,16 @@ function createNewGame($db){
   $newId = $prep_fetch->fetchAll();
 
   return $newId[0];
-
 }
 
 
 
-
+/**
+* \brief Choix aléatoire des propositions nécessaire pour une question.
+* \param[in] int $i: l'Id de la question associée .
+* \param[in] PDO $db: l'instance de la PDO .
+* \return Proposition $propositions : un tableau contenant toutes les propositions choisies aléatoirement.
+*/
 function selectRandomPropositions($i , $db){
 
   $myRequest="SELECT * FROM proposition WHERE idQuestion =:idQuestion  ORDER BY RAND() LIMIT ".PROPOSITION_NUMBER;
@@ -330,12 +365,20 @@ function selectRandomPropositions($i , $db){
   $prep_fetch->execute(array(':idQuestion'=> $i));
   $propositions = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'Proposition');
   return $propositions;
-
 }
 
 
 
-
+/**
+* \brief Association des propositions avec une partie, en sauvegardant l'ordre des questions dans la partie, et l'ordre des propositions dans chaque question.
+* \param[in] int $idGame: l'Id de la partie .
+* \param[in] int $idQuestion: l'Id de la question associée à la partie.
+* \param[in] int $idProposition: l'Id de la proposition associée à chaque question.
+* \param[in] int $i: l'ordre de la question dans la partie .
+* \param[in] int $j: l'ordre de la proposition dans la question .
+* \param[in] PDO $db: l'instance de la PDO .
+* \return LinkGameQuestion $LinkGameQuestion : un tableau contenant tous les id de chaque élément avec leur rang dans la partie.
+*/
 function associatePropositionsWithGame($idGame, $idQuestion, $idProposition ,$i ,$j ,$db){
 
   $insertion = $db->prepare("INSERT INTO has (idGame, idQuestion, idProposition, questionOrder, propositionOrder )
@@ -348,68 +391,86 @@ function associatePropositionsWithGame($idGame, $idQuestion, $idProposition ,$i 
 
 
 
-
+/**
+* \brief Récupération de toutes les contenus à afficher.
+* \param[in] int $idGame: l'Id de la partie .
+* \param[in] int $i: l'ordre de la question dans la partie .
+* \param[in] int $j: l'ordre de la proposition dans la question .
+* \param[in] PDO $db: l'instance de la PDO .
+* \return Game $content : un tableau contenant le contenu à afficher.
+*/
 function getAllInformationsOfTheProposition($idGame, $i, $j , $db){
 
   $link=selectTargetedLinks($idGame, $i, $j , $db);
   $question=selectTargetedQuestions($link[0]->getIdQuestion(), $db);
   $proposition=selectTargetedPropositions($link[0]->getIdProposition(),$db);
   $theme= selectTargetedTheme($question[0]->getIdTheme(), $db);
-
   $content=new Game($question[0],$proposition[0],$theme[0]);
   return $content;
 }
 
 
 
-
-
+/**
+* \brief Récupération du tableau contenant tous les id de chaque élément avec leur rang dans la partie.
+* \param[in] int $idGame: l'Id de la partie .
+* \param[in] int $i: l'ordre de la question dans la partie .
+* \param[in] int $j: l'ordre de la proposition dans la question .
+* \param[in] PDO $db: l'instance de la PDO .
+* \return LinkGameQuestion $link : un tableau contenant tous les id de chaque élément avec leur rang dans la partie.
+*/
 function selectTargetedLinks($idGame, $i, $j , $db){
-
 
   $prep_fetch = $db->prepare("SELECT * FROM has WHERE idGame =:idGame AND questionOrder=:questionOrder AND propositionOrder=:propositionOrder");
   $prep_fetch->execute(array(':idGame'=> $idGame, ':questionOrder'=>$i , ':propositionOrder'=>$j));
   $link = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'LinkGameQuestion');
 
   return $link;
-
 }
 
 
-
+/**
+* \brief Récupération du tableau contenant les informations de la question où est rendu l'utilisateur .
+* \param[in] int $idQuestion: l'Id de la question dans la partie .
+* \param[in] PDO $db: l'instance de la PDO .
+* \return Question $questions : un tableau contenant les informations de la question où est rendu l'utilisateur .
+*/
 function selectTargetedQuestions($idQuestion, $db){
-
 
   $prep_fetch = $db->prepare("SELECT * FROM question  WHERE idQuestion=:idQuestion");
   $prep_fetch->execute(array(':idQuestion'=>$idQuestion));
   $questions = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'Question');
   return $questions;
-
 }
 
 
 
-
+/**
+* \brief Récupération du tableau contenant les informations de la proposition où est rendu l'utilisateur .
+* \param[in] int $idProposition: l'Id de la proposition dans la question .
+* \param[in] PDO $db: l'instance de la PDO .
+* \return Proposition $propositions : un tableau contenant les informations de la proposition où est rendu l'utilisateur .
+*/
 function selectTargetedPropositions($idProposition, $db){
-
 
   $prep_fetch = $db->prepare("SELECT * FROM proposition  WHERE idProposition=:idProposition");
   $prep_fetch->execute(array(':idProposition'=>$idProposition));
   $propositions = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'Proposition');
   return $propositions;
-
 }
 
 
 
-
-
+/**
+* \brief Récupération du tableau contenant les informations du thème où est rendu l'utilisateur .
+* \param[in] int $idTheme: l'Id du thème de la question dans la partie .
+* \param[in] PDO $db: l'instance de la PDO .
+* \return Theme $themes : un tableau contenant les informations du thème de la question où est rendu l'utilisateur .
+*/
 function selectTargetedTheme($idTheme, $db){
-
 
   $prep_fetch = $db->prepare("SELECT * FROM theme  WHERE idTheme=:idTheme");
   $prep_fetch->execute(array(':idTheme'=>$idTheme));
   $themes = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'Theme');
   return $themes;
-
 }

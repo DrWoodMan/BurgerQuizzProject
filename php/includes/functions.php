@@ -45,7 +45,7 @@ function loadUserFromToken($token, $db ){
   $prep_fetch->execute(array(':token'=>$token));
   $user = $prep_fetch->fetchAll(PDO::FETCH_CLASS,'User');
   if(!isset($user)){
-    header('Location: /php/error.php&idError=403');
+    header('Location: /php/error.php?idError=403');
   }
   return $user;
 
@@ -193,10 +193,10 @@ function getScoreForPersonalList($login, $db){
 
 /**
 * \brief Génération automatique de chaque div de la section "Palmarès" contenant le nom de l'utilisateur correspondant, l'un des 5 meilleurs score de la BDD, l'Id de la partie où il a réussi à marquer ce score, et un bouton permettant à l'utilisateur connecté de tenter sa chance sur cette partie .
-* \param[in] string $login: le login de l'utilisateur .
-* \param[in] string $login: le login de l'utilisateur .
-* \param[in] PDO $db: l'instance de la PDO .
-* \return Score $score : Un tableau contenant les informations des scores stockés dans la BDD étant liés aux 5 dernières parties jouées par l'utilisateur.
+* \param[in] string $globalScore: un tableau contenant les informations du Palmarès .
+* \param[in] string $i: le rang de la partie dans la BDD .
+* \param[in] User $user: les informations de l'utilisateur .
+* \return string $global : le HTML d'affichage des informations de la partie au rang $i dans la BDD.
 */
 function generateGlobalGamesPodium($globalScore, $i, $user){
 
@@ -212,7 +212,13 @@ function generateGlobalGamesPodium($globalScore, $i, $user){
 
 
 
-
+/**
+* \brief Génération automatique de chaque div de la section "Palmarès" contenant le nom de l'utilisateur correspondant, l'un des 5 meilleurs score de la BDD, l'Id de la partie où il a réussi à marquer ce score, et un bouton permettant à l'utilisateur connecté de tenter sa chance sur cette partie .
+* \param[in] string $specificScore: un tableau contenant les informations de la section "Mon historique" .
+* \param[in] string $i: le rang de la partie de l'utilisateur dans la BDD .
+* \param[in] User $user: les informations de l'utilisateur .
+* \return string $specific : le HTML d'affichage des informations de la partie au rang $i pour l'utilisateur.
+*/
 function generatePersonalHistory($specificScore, $i, $user){
 
   $specific="<a id='score' >".$specificScore[$i]->getScore()." pts</a>

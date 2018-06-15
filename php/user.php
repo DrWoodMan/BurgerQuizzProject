@@ -5,7 +5,7 @@ $token=$_GET['token'];
 $content=new User;
 $dbh = new DBmanage;
 
-//on se connecte à la BDD, puis on vérifie si le login fourni est dans la base de données
+//on se connecte à la BDD, puis on vérifie si le token fourni est dans la base de données
 $dbh->connection();
 $content=loadUserFromToken($token,$dbh->getDb());
 
@@ -85,7 +85,7 @@ $generate= "<button type='button' class='btn btn-primary' onclick=window.locatio
             </div>
 
               <div class="col-lg-2"></div>
-          
+
           <div class=" col-lg-2" style="margin-left:50px;"> <!-- Historique personnel-->
             <div class="row">
               <div><?php echo $specificScore[0];?></div>
@@ -138,7 +138,7 @@ $generate= "<button type='button' class='btn btn-primary' onclick=window.locatio
           <div class="col-lg-2" style="margin-left:40px;"></div>
           <?php echo $generate; ?>
         </div>
-          
+
           </br>
 
           <!--Quatrième section-->

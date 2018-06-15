@@ -33,9 +33,7 @@ if($value === $answer){
 
 }
 
-if($newScore> TOTAL_PROPOSITIONS){
-  header("Location: /php/end.php?token=".$token."&idGame=".$idGame);
-}else if($value== 12){
+if($newScore> TOTAL_PROPOSITIONS || $propositionNumber>TOTAL_PROPOSITIONS || $value==12){
   header("Location: /php/end.php?token=".$token."&idGame=".$idGame);
 }else if($propositionNumber<=TOTAL_PROPOSITIONS){
     header("Location: /php/game.php?token=".$token."&idGame=".$idGame."&propositionNumber=".$newPropositionNumber);

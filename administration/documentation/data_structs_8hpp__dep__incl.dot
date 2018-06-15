@@ -1,0 +1,17 @@
+digraph "dataStructs.hpp"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="dataStructs.hpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="includes.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$includes_8hpp.html",tooltip="fichier regroupant les inclusions de bibliothèques externes "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="Controls.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_controls_8hpp.html",tooltip="Classe de création de l&#39;interface utilisateur. "];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="MainWindow.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_main_window_8hpp.html",tooltip="Classe principale. "];
+  Node2 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="DataBase.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_data_base_8hpp.html",tooltip="Classe d&#39;accès à la base de données. "];
+  Node5 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

@@ -6,6 +6,13 @@
 -- Generation Time: Jun 15, 2018 at 01:44 PM
 -- Server version: 5.7.22-0ubuntu0.16.04.1
 -- PHP Version: 7.0.30-0ubuntu0.16.04.1
+DROP TABLE IF EXISTS score;
+DROP TABLE IF EXISTS has;
+DROP TABLE IF EXISTS game;
+DROP TABLE IF EXISTS proposition;
+DROP TABLE IF EXISTS question;
+DROP TABLE IF EXISTS theme;
+DROP TABLE IF EXISTS user;
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";

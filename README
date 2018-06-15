@@ -1,3 +1,9 @@
+Documentation de l'interface d'administration disponible dans le dossier "administration", dans le dossier documentation ouvrir le fichier "index.html".
+
+Documentation du site web disponible dans le dossier "php", dans le dossier documentation ouvrir le fichier "index.html".
+
+----------------------------------------------
+
 #### CRÉATION DE LA BASE DE DONNÉES ####
 
     Ouvrez le fichier "bdd.sql", renseignez le nom de votre base de données à la place de "saladeQuiz" à la ligne 6 puis décommentez cette dernière.
